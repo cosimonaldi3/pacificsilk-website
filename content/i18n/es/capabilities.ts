@@ -168,9 +168,23 @@ export const capabilitiesContent: CapabilitiesPageContent = {
       },
     ],
   },
-  projectsGrid: {
-    label: "Algunos de nuestros proyectos",
-    headline: "¿Te suena familiar?",
+  impact: {
+    label: "Impacto en clientes",
+    headline: "Trabajo hecho, no propuesto.",
+    intro:
+      "Proyectos reales, anonimizados. Lo que el cliente necesitaba, lo que ejecutamos en China y lo que cambió para él.",
+    ctaLabel: "Leer el proyecto",
+    carouselLabel: "Proyectos de clientes",
+    dotsLabel: "Elegir un proyecto",
+    slideLabel: "Proyecto {n} de {total}",
+    typeLabels: {
+      sourcing: "Abastecimiento",
+      manufacturing: "Fabricación",
+      logistics: "Logística",
+      "market-entry": "Entrada al mercado",
+      advisory: "Asesoría",
+      consulting: "Consultoría",
+    },
   },
   blogSection: {
     label: "Desde el terreno",

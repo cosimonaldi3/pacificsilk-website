@@ -60,3 +60,8 @@ Format: one item per line. Use checkboxes. Group by category.
 - [ ] Chinese + Spanish translations (next-intl integration)
 - [ ] Client portal integration (SSO, shared tokens)
 - [ ] Fork for SPL, Lance Trade, Alliance umbrella sites
+
+## Client impact carousel (/capabilities)
+- [ ] Badges show facts taken from each project's own text (`impact` in `content/projects.ts`). Replace with real client figures (cost saved, lead time, units) once clients approve them
+- [ ] Project names, summaries and badges are English only on `/es` and `/zh` (project data in `content/projects.ts` is not localized yet)
+- [ ] `npm run lint` does nothing useful: ESLint 4.19 is installed with no config, so it only prints help. Upgrade to ESLint 9 + `eslint-config-next` flat config

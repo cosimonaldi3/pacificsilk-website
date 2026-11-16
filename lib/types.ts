@@ -29,6 +29,8 @@ export interface Project {
   image?: string;
   bodyImages?: string[];
   countryImage?: string; // e.g. "/countries/belgium.jpg" — set when a photo exists
+  // Headline fact for the client impact carousel badge. Only facts stated in the project text.
+  impact?: { value: string; label: string };
 }
 
 export interface CountryMarker {

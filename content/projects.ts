@@ -4,6 +4,7 @@ export const projects: Project[] = [
   {
     id: "tools-machinery-benelux",
     slug: "tools-machinery-benelux",
+    impact: { value: "Since 2020", label: "Recurring orders, no China-side hire" },
     name: "Tools & Machinery Sourcing — Benelux",
     type: "sourcing",
     status: "in-progress",
@@ -30,6 +31,7 @@ export const projects: Project[] = [
   {
     id: "agricultural-component-spain",
     slug: "agricultural-component-spain",
+    impact: { value: "Mould to sample", label: "Pre-production run in Zhejiang" },
     name: "Agricultural Component Production — Spain",
     type: "manufacturing",
     status: "in-progress",
@@ -60,6 +62,7 @@ export const projects: Project[] = [
   {
     id: "modular-housing-dominican-republic",
     slug: "modular-housing-dominican-republic",
+    impact: { value: "Jiangsu", label: "Factories visited before any quote" },
     name: "Modular Housing Prospection — Dominican Republic",
     type: "sourcing",
     status: "in-progress",
@@ -94,6 +97,7 @@ export const projects: Project[] = [
   {
     id: "market-entry-design-china",
     slug: "market-entry-design-china",
+    impact: { value: "0 trips", label: "Market entry run remotely" },
     name: "Market Entry — Design Firm, China",
     type: "market-entry",
     status: "in-progress",
@@ -125,6 +129,7 @@ export const projects: Project[] = [
   {
     id: "sister-city-palma-ningbo",
     slug: "sister-city-palma-ningbo",
+    impact: { value: "6 months", label: "To a signed agreement" },
     name: "Sister City Agreement — Palma de Mallorca & Ningbo",
     type: "advisory",
     status: "completed",

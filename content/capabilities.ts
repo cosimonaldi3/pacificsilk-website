@@ -119,9 +119,16 @@ export interface CapabilitiesPageContent {
       count?: number;
     }>;
   };
-  projectsGrid: {
+  impact: {
     label: string;
     headline: string;
+    intro: string;
+    ctaLabel: string;
+    carouselLabel: string;
+    dotsLabel: string;
+    /** "{n}" and "{total}" are replaced at render time */
+    slideLabel: string;
+    typeLabels: Record<string, string>;
   };
   blogSection: {
     label: string;
@@ -311,9 +318,23 @@ export const capabilitiesContent: CapabilitiesPageContent = {
       },
     ],
   },
-  projectsGrid: {
-    label: "Some of our projects",
-    headline: "See something familiar?",
+  impact: {
+    label: "Client impact",
+    headline: "Work done, not proposed.",
+    intro:
+      "Real projects, anonymized. What the client needed, what we ran in China, and what changed for them.",
+    ctaLabel: "Read the project",
+    carouselLabel: "Client projects",
+    dotsLabel: "Choose a project",
+    slideLabel: "Project {n} of {total}",
+    typeLabels: {
+      sourcing: "Sourcing",
+      manufacturing: "Manufacturing",
+      logistics: "Logistics",
+      "market-entry": "Market entry",
+      advisory: "Advisory",
+      consulting: "Consulting",
+    },
   },
   blogSection: {
     label: "From the field",

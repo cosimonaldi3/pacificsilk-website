@@ -102,9 +102,22 @@ export const capabilitiesContent: CapabilitiesPageContent = {
       },
     ],
   },
-  projectsGrid: {
-    label: "我们的部分项目",
-    headline: "有没有看到类似您的项目？",
+  impact: {
+    label: "客户成果",
+    headline: "已经完成，而非提案。",
+    intro: "真实项目，已匿名处理。客户的需求、我们在中国的执行，以及为客户带来的改变。",
+    ctaLabel: "阅读项目",
+    carouselLabel: "客户项目",
+    dotsLabel: "选择项目",
+    slideLabel: "第 {n} 个项目，共 {total} 个",
+    typeLabels: {
+      sourcing: "采购",
+      manufacturing: "制造",
+      logistics: "物流",
+      "market-entry": "市场准入",
+      advisory: "咨询顾问",
+      consulting: "咨询",
+    },
   },
   blogSection: {
     label: "来自一线",

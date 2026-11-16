@@ -3,7 +3,7 @@ import Nav from "@/components/ui/Nav";
 import Footer from "@/components/ui/Footer";
 import Container from "@/components/ui/Container";
 import ProjectFinder from "@/components/sections/capabilities/ProjectFinder";
-import ProjectsGrid from "@/components/sections/ProjectsGrid";
+import ImpactCarousel from "@/components/sections/capabilities/ImpactCarousel";
 import BlogBlock from "@/components/sections/BlogBlock";
 import FinalCta from "@/components/sections/FinalCta";
 import {
@@ -54,7 +54,7 @@ export default async function CapabilitiesPage({
       getPosts(),
     ]);
 
-  const { intro, finder, projectTypes, projectsGrid, blogSection, finalCta } = content;
+  const { intro, finder, impact, blogSection, finalCta } = content;
 
   const projectsJsonLd = {
     "@context": "https://schema.org",
@@ -86,9 +86,9 @@ export default async function CapabilitiesPage({
             <p className="max-w-2xl font-sans text-body leading-body text-psc-gray">{intro.subline}</p>
           </Container>
         </section>
-        {/* C5 Projects */}
+        {/* Client examples first, then the globe of where the work happened */}
+        <ImpactCarousel content={impact} projects={allProjects} />
         <ProjectFinder content={finder} countryMarkers={countryMarkers} offices={offices} />
-        <ProjectsGrid content={projectsGrid} projects={allProjects} />
         <BlogBlock content={blogSection} posts={posts} />
         <FinalCta content={finalCta} />
       </main>

@@ -1,0 +1,145 @@
+/* Client impact carousel (ImpactCarousel.tsx).
+   The track holds every card in one row. The active card is wide, the rest narrow.
+   --active (index) and --count come from React; everything else is CSS so the motion
+   is two transitions: card width and track position. */
+
+.impact-viewport {
+  --w-open: 86%;
+  --w-closed: 86%;
+  --gap: 12px;
+  /* Clip on the left (cards already passed), let the next card bleed to the screen edge */
+  clip-path: inset(0 -100vw 0 0);
+  touch-action: pan-y;
+}
+@media (min-width: 768px) {
+  .impact-viewport { --w-open: 70%; --w-closed: 70%; --gap: 16px; }
+}
+/* Wide/collapsed pattern only where the open card has room for a side panel */
+@media (min-width: 1024px) {
+  .impact-viewport {
+    --w-open: 58%;
+    --w-closed: 30%;
+    --gap: 16px;
+  }
+}
+
+.impact-track {
+  display: flex;
+  gap: var(--gap);
+  /* Move so the active card sits at the left edge, but never past the last card */
+  transform: translateX(
+    calc(
+      -1 *
+        min(
+          var(--active) * (var(--w-closed) + var(--gap)),
+          max(0%, (var(--count) - 1) * (var(--w-closed) + var(--gap)) - (100% - var(--w-open)))
+        )
+    )
+  );
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.impact-card {
+  position: relative;
+  flex: 0 0 var(--w-closed);
+  height: 440px;
+  overflow: hidden;
+  border-radius: 4px;
+  transition: flex-basis 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.impact-card[data-active="true"] {
+  flex-basis: var(--w-open);
+}
+@media (min-width: 768px) {
+  .impact-card { height: 460px; }
+}
+
+/* Shared photo treatment: slightly warm, slightly desaturated */
+.impact-photo {
+  filter: sepia(0.08) saturate(0.86);
+  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.impact-card:not([data-active="true"]):hover .impact-photo {
+  transform: scale(1.03);
+}
+
+.impact-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 1;
+  max-width: 150px;
+  padding: 14px 16px;
+  border-radius: 4px;
+}
+
+/* Panel: bottom strip on mobile and on collapsed cards, right column on the open card */
+.impact-panel {
+  position: absolute;
+  z-index: 1;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 22px;
+  border-radius: 4px;
+  animation: impact-in 500ms ease-out both;
+}
+.impact-title {
+  font-size: 24px;
+  line-height: 1.12;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+.impact-summary {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+.impact-card:not([data-active="true"]) .impact-summary { display: none; }
+.impact-card[data-active="true"] .impact-title { -webkit-line-clamp: 4; }
+
+@media (min-width: 1024px) {
+  .impact-card[data-active="true"] .impact-panel {
+    top: 20px;
+    right: 20px;
+    bottom: 20px;
+    left: auto;
+    width: min(50%, 380px);
+    padding: 26px 28px;
+    animation-name: impact-open;
+  }
+  .impact-card[data-active="true"] .impact-title { font-size: 26px; -webkit-line-clamp: 5; }
+  .impact-card[data-active="true"] .impact-summary { -webkit-line-clamp: 4; min-height: 0; flex-shrink: 1; }
+  .impact-card[data-active="true"] .impact-title { flex-shrink: 0; }
+  .impact-card[data-active="true"] .impact-cta { margin-top: auto; }
+  .impact-card[data-active="true"] .impact-summary + .impact-cta { margin-top: auto; }
+  .impact-card[data-active="true"] .impact-summary { margin-bottom: 24px; }
+}
+
+@media (min-width: 1280px) {
+  .impact-card[data-active="true"] .impact-panel { width: min(44%, 380px); }
+  .impact-card[data-active="true"] .impact-title { font-size: 30px; }
+}
+
+/* Two names so the fade reruns whenever a card changes state */
+@keyframes impact-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes impact-open {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .impact-track,
+  .impact-card,
+  .impact-photo { transition: none; }
+  .impact-panel { animation: none; }
+  .impact-card:not([data-active="true"]):hover .impact-photo { transform: none; }
+}
