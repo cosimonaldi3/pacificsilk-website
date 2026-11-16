@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Nav from "@/components/ui/Nav";
 import Footer from "@/components/ui/Footer";
-import Container from "@/components/ui/Container";
 import ProjectFinder from "@/components/sections/capabilities/ProjectFinder";
 import ImpactCarousel from "@/components/sections/capabilities/ImpactCarousel";
 import BlogBlock from "@/components/sections/BlogBlock";
@@ -54,7 +53,7 @@ export default async function CapabilitiesPage({
       getPosts(),
     ]);
 
-  const { intro, finder, impact, blogSection, finalCta } = content;
+  const { finder, impact, blogSection, finalCta } = content;
 
   const projectsJsonLd = {
     "@context": "https://schema.org",
@@ -76,16 +75,6 @@ export default async function CapabilitiesPage({
       />
       <Nav />
       <main>
-        {/* C1 Intro */}
-        <section className="bg-psc-bg pt-16 pb-4 md:pt-20">
-          <Container>
-            <p className="mb-4 font-sans text-small font-medium uppercase tracking-widest text-psc-gray">
-              {intro.label}
-            </p>
-            <h1 className="mb-4 font-display text-h1 font-medium text-psc-ink">{intro.headline}</h1>
-            <p className="max-w-2xl font-sans text-body leading-body text-psc-gray">{intro.subline}</p>
-          </Container>
-        </section>
         {/* Client examples first, then the globe of where the work happened */}
         <ImpactCarousel content={impact} projects={allProjects} />
         <ProjectFinder content={finder} countryMarkers={countryMarkers} offices={offices} />
