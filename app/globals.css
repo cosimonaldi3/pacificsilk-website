@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+/* The data pipeline holds large CSVs and never ships: keep it out of the class scan */
+@source not "../data-pipeline";
+
+/* Tailwind v4 CSS-first config: tokens declared here, not in tailwind.config.ts */
+
+/* Colors: literal hex values, resolved at build time.
+   static: always emit these as CSS variables, because components/tools/tools.css reads them
+   from a separate stylesheet that Tailwind's usage detection cannot see. */
+@theme static {
+  --color-psc-bg: #FAFAF7;
+  --color-psc-ink: #0A0A0A;
+  --color-psc-gray: #6B6B6B;
+  --color-psc-muted: #EFECE4;
+  --color-psc-red: #E71F1F;
+  --color-psc-border: #E5E3DC;
+
+  /* Brand tokens — canonical colour system */
+  --color-brand-red:   #e82020;
+  --color-brand-ink:   #1a1a1a;
+  --color-brand-white: #ffffff;
+  --color-brand-cream: #faf7f2;
+  --color-brand-stone: #8a8376;
+
+  --text-display: clamp(2.5rem, 10vw, 5.25rem);   /* 40px → 84px */
+  --text-h1: clamp(2rem, 7vw, 3.75rem);            /* 32px → 60px */
+  --text-h2: clamp(1.75rem, 5vw, 2.5rem);          /* 28px → 40px */
+  --text-h3: clamp(1.125rem, 2.5vw, 1.625rem);     /* 18px → 26px */
+  --text-body: 17px;
+  --text-small: 14px;
+
+  --leading-display: 1.05;
+  --leading-tight: 1.1;
+  --leading-snug: 1.25;
+  --leading-body: 1.6;
+}
+
+@keyframes scroll-hint {
+  0%, 100% { transform: translateY(0); opacity: 0.55; }
+  50%       { transform: translateY(8px); opacity: 0.25; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-hint-arrow { animation: none !important; }
+}
+
+/* Fonts: reference runtime CSS vars from next/font — must use @theme inline */
+@theme inline {
+  --font-display: var(--font-cormorant), serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+}
+
+/* Chinese locale: swap Latin fonts for CJK-capable equivalents.
+   Applied via data-locale="zh" on <html> — set by the locale layout.
+   Tailwind's font-display and font-sans utilities resolve to these overrides. */
+[data-locale="zh"] {
+  /* System CJK fonts: no download, present on macOS/iOS, Windows and most Android */
+  --font-display: "Songti SC", "Noto Serif SC", "SimSun", serif;
+  --font-sans: "PingFang SC", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+}

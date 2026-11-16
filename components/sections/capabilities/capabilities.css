@@ -1,0 +1,113 @@
+/* Capability tile motion. Load-time and ambient loops only: nothing is driven by scroll.
+   Every loop has a static final state under prefers-reduced-motion. */
+
+/* Checklists tick in one by one, hold, then reset */
+@keyframes cap-check {
+  0%, 8% { opacity: 0.25; transform: scale(0.6); }
+  14%, 88% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0.25; transform: scale(0.6); }
+}
+.cap-check .cap-check-mark {
+  animation: cap-check 6s ease-out infinite;
+  animation-delay: calc(var(--i) * 0.45s);
+}
+.cap-badge { animation: cap-badge 6s ease-out infinite; }
+@keyframes cap-badge {
+  0%, 30% { opacity: 0; transform: translateY(4px); }
+  36%, 88% { opacity: 1; transform: none; }
+  100% { opacity: 0; }
+}
+
+/* Network: nodes breathe, cross-network links pulse red */
+.cap-node {
+  fill: var(--color-psc-ink);
+  animation: cap-node 3.2s ease-in-out infinite;
+  animation-delay: calc(var(--i) * -0.23s);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+@keyframes cap-node {
+  0%, 100% { opacity: 0.35; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1); }
+}
+.cap-edge { stroke: var(--color-psc-border); stroke-width: 1.25; }
+.cap-bridge-edge {
+  stroke: var(--color-psc-red);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 5;
+  animation: cap-dash 1.6s linear infinite;
+}
+@keyframes cap-dash { to { stroke-dashoffset: -18; } }
+
+/* Bars grow from zero, then settle and sway */
+.cap-bar {
+  transform-origin: bottom;
+  animation: cap-bar 4.8s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.12s);
+}
+@keyframes cap-bar {
+  0% { transform: scaleY(0.05); }
+  25%, 70% { transform: scaleY(1); }
+  85% { transform: scaleY(0.88); }
+  100% { transform: scaleY(1); }
+}
+
+/* Documents fan out on hover; the stamp lands in a loop */
+.cap-doc {
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: translate(calc((var(--i) - 1) * 6px), calc(var(--i) * 10px)) rotate(calc((var(--i) - 1) * 3deg));
+}
+.cap-tile:hover .cap-doc {
+  transform: translate(calc((var(--i) - 1) * 34px), calc(var(--i) * 12px)) rotate(calc((var(--i) - 1) * 7deg));
+}
+.cap-stamp { animation: cap-stamp 4s cubic-bezier(0.3, 1.4, 0.5, 1) infinite; }
+@keyframes cap-stamp {
+  0%, 30% { opacity: 0; transform: scale(1.8) rotate(-14deg); }
+  40%, 90% { opacity: 1; transform: scale(1) rotate(-8deg); }
+  100% { opacity: 0; transform: scale(1) rotate(-8deg); }
+}
+
+/* Timeline: progress line draws in on load; current step pulses */
+.cap-progress { width: var(--w); animation: cap-progress 1.6s 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+@keyframes cap-progress { from { width: 0; } }
+.cap-pulse { animation: cap-pulse 2s ease-in-out infinite; }
+@keyframes cap-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-psc-red) 45%, transparent); }
+  50% { box-shadow: 0 0 0 6px transparent; }
+}
+
+/* Detail panel */
+.cap-panel:not([hidden]) { animation: cap-panel 0.35s ease-out; }
+@keyframes cap-panel { from { opacity: 0; transform: translateY(12px); } }
+
+/* Building-block glyphs */
+.bb-scan { animation: bb-scan 4s ease-in-out infinite; }
+@keyframes bb-scan { 0%, 100% { transform: translate(0, 0); } 33% { transform: translate(12px, 4px); } 66% { transform: translate(4px, 12px); } }
+.bb-swap-a, .bb-swap-b { animation: bb-swap 4s ease-in-out infinite; }
+.bb-swap-b { animation-delay: -2s; }
+@keyframes bb-swap { 0%, 40%, 100% { opacity: 1; } 50%, 90% { opacity: 0.25; } }
+.bb-stamp { transform-box: fill-box; transform-origin: center; animation: cap-stamp 4s cubic-bezier(0.3, 1.4, 0.5, 1) infinite; }
+.bb-truck { animation: bb-truck 3.6s ease-in-out infinite; }
+@keyframes bb-truck { 0% { transform: translateX(0); opacity: 0; } 10%, 85% { opacity: 1; } 100% { transform: translateX(22px); opacity: 0; } }
+.bb-needle { transform-origin: 24px 24px; animation: bb-needle 5s ease-in-out infinite; }
+@keyframes bb-needle { 0%, 100% { transform: rotate(-25deg); } 40% { transform: rotate(30deg); } 70% { transform: rotate(10deg); } }
+.bb-link { stroke-dasharray: 20; animation: bb-link 4s ease-in-out infinite; animation-delay: calc(var(--i) * 0.3s); }
+@keyframes bb-link { 0% { stroke-dashoffset: 20; } 30%, 80% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 20; } }
+
+/* Move and support: container dot travelling the route */
+.ms-dot { animation: ms-dot 7s linear infinite; }
+@keyframes ms-dot { 0% { left: 0%; opacity: 0; } 4% { opacity: 1; } 92% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .cap-check .cap-check-mark, .cap-badge, .cap-node, .cap-bridge-edge, .cap-bar,
+  .cap-stamp, .cap-progress, .cap-pulse, .cap-panel:not([hidden]),
+  .bb-scan, .bb-swap-a, .bb-swap-b, .bb-stamp, .bb-truck, .bb-needle, .bb-link, .ms-dot {
+    animation: none;
+  }
+  .cap-stamp { transform: rotate(-8deg); }
+  .cap-doc { transition: none; }
+  .bb-truck { transform: translateX(12px); }
+  .bb-needle { transform: rotate(20deg); }
+  .bb-link { stroke-dashoffset: 0; }
+  .ms-dot { left: 50%; }
+}

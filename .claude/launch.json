@@ -1,0 +1,74 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "pacific-silk-website",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
+      "port": 3000,
+      "autoPort": true
+    },
+    {
+      "name": "pacific-silk-prod",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "next",
+        "start",
+        "-p",
+        "3005"
+      ],
+      "port": 3005
+    },
+    {
+      "name": "crm",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "../pacific-silk-crm",
+        "run",
+        "dev",
+        "--",
+        "--port",
+        "3100"
+      ],
+      "port": 3100
+    },
+    {
+      "name": "crm-sample-data",
+      "runtimeExecutable": "env",
+      "runtimeArgs": [
+        "CRM_SAMPLE_DATA=1",
+        "DEV_PREVIEW_ROLE=admin",
+        "npm",
+        "--prefix",
+        "../pacific-silk-crm",
+        "run",
+        "dev",
+        "--",
+        "--port",
+        "3101"
+      ],
+      "port": 3101
+    },
+    {
+      "name": "crm-sample-developer",
+      "runtimeExecutable": "env",
+      "runtimeArgs": [
+        "CRM_SAMPLE_DATA=1",
+        "DEV_PREVIEW_ROLE=developer",
+        "npm",
+        "--prefix",
+        "../pacific-silk-crm",
+        "run",
+        "dev",
+        "--",
+        "--port",
+        "3102"
+      ],
+      "port": 3102
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+/* Process page motion: ambient loops and click transitions only.
+   Still state under prefers-reduced-motion. */
+
+/* A dot travels each lane, both lanes in sync */
+.pr-lane-dot { animation: pr-lane-x 7s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+@keyframes pr-lane-x {
+  0% { left: 12.5%; opacity: 0; }
+  6% { opacity: 1; }
+  94% { opacity: 1; }
+  100% { left: 87.5%; opacity: 0; }
+}
+.pr-lane-dot-y { animation: pr-lane-y 7s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+@keyframes pr-lane-y {
+  0% { top: 12.5%; opacity: 0; }
+  6% { opacity: 1; }
+  94% { opacity: 1; }
+  100% { top: 87.5%; opacity: 0; }
+}
+
+/* Handoff connectors between the two lanes */
+.pr-link { background-image: linear-gradient(to bottom, var(--color-psc-gray) 50%, transparent 50%); background-size: 1px 6px; }
+.pr-link[data-on="true"] { background-image: none; background-color: var(--color-psc-red); animation: pr-link 1.6s ease-in-out infinite; }
+@keyframes pr-link { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+
+/* Stage detail cross-fade */
+.pr-fade { animation: pr-fade 0.4s ease-out both; }
+@keyframes pr-fade { from { opacity: 0; transform: translateY(6px); } }
+
+/* Hero sketch: line draws in, dots and labels appear in turn, a red dot then keeps travelling */
+.pr-hero-line { animation: pr-hero-line 1.4s 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+@keyframes pr-hero-line { from { transform: scaleX(0); } }
+.pr-hero-dot { animation: pr-hero-pop 0.5s cubic-bezier(0.34, 1.4, 0.64, 1) both; animation-delay: calc(0.5s + var(--i) * 0.35s); }
+@keyframes pr-hero-pop { from { opacity: 0; transform: scale(0.2); } }
+.pr-hero-label { animation: pr-hero-rise 0.6s ease-out both; animation-delay: calc(0.7s + var(--i) * 0.35s); }
+@keyframes pr-hero-rise { from { opacity: 0; transform: translateY(6px); } }
+.pr-hero-travel { animation: pr-hero-travel 6s 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite; opacity: 0; }
+@keyframes pr-hero-travel {
+  0% { left: 0%; opacity: 0; }
+  8% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+/* ---------- Define tiles (defineVisuals.tsx) ---------- */
+/* Chart draws, holds, resets */
+.pd-line { stroke-dasharray: 420; animation: pd-draw 6s ease-in-out infinite; }
+@keyframes pd-draw { 0%, 8% { stroke-dashoffset: 420; } 45%, 88% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 420; } }
+.pd-area { animation: pd-area 6s ease-in-out infinite; }
+@keyframes pd-area { 0%, 25% { opacity: 0; } 55%, 88% { opacity: 1; } 100% { opacity: 0; } }
+/* Bars fill one after another */
+.pd-fill { animation: pd-fill 6s cubic-bezier(0.2, 0.8, 0.2, 1) infinite; animation-delay: calc(var(--i) * 0.5s); }
+@keyframes pd-fill { 0%, 6% { transform: scaleX(0.04); } 30%, 86% { transform: scaleX(1); } 100% { transform: scaleX(0.04); } }
+/* China map: stickers pop in turn, leader lines flow, tinted regions breathe */
+.pd-sticker { animation: pd-chip 7s ease-out infinite; animation-delay: calc(var(--i) * 0.5s); }
+.pd-lead { animation: pd-lead 1.6s linear infinite; }
+@keyframes pd-lead { to { stroke-dashoffset: -12; } }
+.pd-region { animation: pd-region 5s ease-in-out infinite; }
+@keyframes pd-region { 0%, 100% { opacity: 0.75; } 50% { opacity: 1; } }
+/* Opportunities light up around the project */
+.pd-opp { fill: var(--color-psc-border); animation: pd-opp 6s ease-in-out infinite; animation-delay: calc(var(--i) * 0.7s); }
+@keyframes pd-opp { 0%, 8% { fill: var(--color-psc-border); } 16%, 40% { fill: var(--color-psc-red); } 52%, 100% { fill: var(--color-psc-border); } }
+.pd-ping { transform-box: fill-box; transform-origin: center; animation: pd-ping 2.4s ease-out infinite; }
+@keyframes pd-ping { 0% { transform: scale(1); opacity: 0.9; } 100% { transform: scale(2.1); opacity: 0; } }
+.pd-chip { animation: pd-chip 6s ease-out infinite; animation-delay: calc(var(--i) * 0.4s); }
+@keyframes pd-chip { 0%, 6% { opacity: 0; transform: translateY(5px); } 14%, 88% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+/* Cost bar grows segment by segment, legend follows */
+.pd-seg { animation: pd-fill 7s cubic-bezier(0.2, 0.8, 0.2, 1) infinite; animation-delay: calc(var(--i) * 0.45s); }
+.pd-row { animation: pd-chip 7s ease-out infinite; animation-delay: calc(0.4s + var(--i) * 0.45s); }
+
+@media (prefers-reduced-motion: reduce) {
+  .pd-sticker, .pd-lead, .pd-region, .pd-line, .pd-area, .pd-fill, .pd-opp, .pd-ping, .pd-chip, .pd-seg, .pd-row { animation: none; }
+  .pd-opp:nth-of-type(odd) { fill: var(--color-psc-red); }
+  .pr-hero-line, .pr-hero-dot, .pr-hero-label { animation: none; }
+  .pr-hero-travel { animation: none; opacity: 0; }
+  .pr-lane-dot, .pr-lane-dot-y { animation: none; opacity: 0; }
+  .pr-link[data-on="true"], .pr-fade { animation: none; }
+}

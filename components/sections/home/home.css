@@ -1,0 +1,146 @@
+/* Homepage motion. Mock visuals loop ambiently (same approach as capabilities.css).
+   The journey thread and section reveals follow scroll, as in the approved sketch.
+   Everything has a still, fully visible state under prefers-reduced-motion. */
+
+/* ---------- Section reveal (Reveal.tsx) ---------- */
+.hm-rv {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.hm-rv[data-on="true"] { opacity: 1; transform: none; }
+
+/* ---------- Journey stages ---------- */
+.hm-stage { transition: opacity 0.5s ease-out; opacity: 0.45; }
+.hm-stage[data-lit="true"] { opacity: 1; }
+.hm-node {
+  transition: background-color 0.4s, border-color 0.4s, color 0.4s, transform 0.4s;
+}
+.hm-stage[data-lit="true"] .hm-node {
+  background: var(--color-psc-red);
+  border-color: var(--color-psc-red);
+  color: var(--color-psc-bg);
+  transform: scale(1.06);
+}
+.hm-thread-dot { box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-psc-red) 18%, transparent); }
+
+/* 1. Chat: messages arrive in turn, typing dots, then reset */
+.hm-msg { animation: hm-msg 7s ease-out infinite; animation-delay: calc(var(--i) * 1.6s); }
+@keyframes hm-msg {
+  0%, 4% { opacity: 0; transform: translateY(6px); }
+  10%, 86% { opacity: 1; transform: none; }
+  96%, 100% { opacity: 0; }
+}
+.hm-typing span { animation: hm-dot 1.2s ease-in-out infinite; animation-delay: calc(var(--i) * 0.15s); }
+@keyframes hm-dot { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }
+
+/* 2. Translation relay: Chinese note, red pulse travels, English appears */
+.hm-relay-pulse { animation: hm-relay 4.5s ease-in-out infinite; }
+@keyframes hm-relay {
+  0%, 15% { transform: translateY(0); opacity: 0; }
+  25% { opacity: 1; }
+  45% { transform: translateY(var(--travel, 44px)); opacity: 1; }
+  55%, 100% { transform: translateY(var(--travel, 44px)); opacity: 0; }
+}
+.hm-relay-out { animation: hm-relay-out 4.5s ease-out infinite; }
+@keyframes hm-relay-out {
+  0%, 42% { opacity: 0.15; }
+  52%, 92% { opacity: 1; }
+  100% { opacity: 0.15; }
+}
+
+/* 3. Routes: each starting point lights in turn, the shared route keeps flowing */
+.hm-route { animation: hm-route 8s ease-in-out infinite; animation-delay: calc(var(--i) * 2s); }
+@keyframes hm-route {
+  0%, 25% { stroke: var(--color-psc-red); opacity: 1; }
+  30%, 100% { stroke: var(--color-psc-border); opacity: 1; }
+}
+.hm-route-chip { animation: hm-chip 8s ease-in-out infinite; animation-delay: calc(var(--i) * 2s); }
+@keyframes hm-chip {
+  0%, 25% { fill: var(--color-psc-red); }
+  30%, 100% { fill: var(--color-psc-ink); }
+}
+.hm-flow { stroke-dasharray: 5 6; animation: hm-flow 1.4s linear infinite; }
+@keyframes hm-flow { to { stroke-dashoffset: -22; } }
+
+/* 4. Ladder: steps rise one after another */
+.hm-step { transform-origin: bottom; animation: hm-step 6s cubic-bezier(0.2, 0.8, 0.2, 1) infinite; animation-delay: calc(var(--i) * 0.5s); }
+@keyframes hm-step {
+  0%, 5% { transform: scaleY(0.04); }
+  20%, 85% { transform: scaleY(1); }
+  100% { transform: scaleY(0.04); }
+}
+
+/* 4. Growth tree: branches draw level by level, then fade and regrow */
+.hm-branch { stroke-dasharray: 120; animation: hm-branch 7s ease-out infinite; animation-delay: calc(var(--i) * 0.7s); }
+@keyframes hm-branch {
+  0%, 4% { stroke-dashoffset: 120; }
+  22%, 88% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 120; }
+}
+
+/* 5. Network path: pills light left to right */
+.hm-pill { animation: hm-pill 6s ease-in-out infinite; animation-delay: calc(var(--i) * 1s); }
+@keyframes hm-pill {
+  0%, 8% { background: var(--color-psc-bg); color: var(--color-psc-ink); }
+  14%, 80% { background: var(--color-psc-red); color: var(--color-psc-bg); border-color: var(--color-psc-red); }
+  90%, 100% { background: var(--color-psc-bg); color: var(--color-psc-ink); }
+}
+
+/* ---------- Comparison chains ---------- */
+.hm-chain-dot { offset-rotate: 0deg; }
+/* Yourself: reaches the break, falls through */
+.hm-chain-0 { animation: hm-chain-0 3.6s ease-in infinite; }
+@keyframes hm-chain-0 {
+  0% { offset-distance: 0%; opacity: 1; transform: none; }
+  55% { offset-distance: 100%; opacity: 1; transform: none; }
+  80% { offset-distance: 100%; opacity: 0; transform: translate(6px, 16px); }
+  100% { offset-distance: 100%; opacity: 0; transform: translate(6px, 16px); }
+}
+.hm-broken { animation: hm-broken 3.6s ease-in-out infinite; transform-box: fill-box; transform-origin: left center; }
+@keyframes hm-broken { 0%, 50% { transform: none; } 60% { transform: rotate(5deg); } 75%, 100% { transform: none; } }
+/* Intermediaries: stop-and-go through every layer */
+.hm-chain-1 { animation: hm-chain-1 5.5s steps(8, end) infinite; }
+@keyframes hm-chain-1 { from { offset-distance: 0%; } to { offset-distance: 100%; } }
+/* Pacific Silk: one smooth glide */
+.hm-chain-2 { animation: hm-chain-2 2.8s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate; }
+@keyframes hm-chain-2 { from { offset-distance: 0%; } to { offset-distance: 100%; } }
+
+/* ---------- Benefit glyphs ---------- */
+.hm-swap-a { animation: hm-swap 4s ease-in-out infinite; }
+.hm-swap-b { animation: hm-swap 4s ease-in-out infinite reverse; }
+@keyframes hm-swap {
+  0%, 40% { opacity: 1; transform: none; }
+  50%, 90% { opacity: 0; transform: translateY(-6px); }
+  100% { opacity: 1; transform: none; }
+}
+.hm-tick { animation: cap-check 5s ease-out infinite; animation-delay: calc(var(--i) * 0.9s); }
+.hm-draw { stroke-dasharray: 160; animation: hm-draw 4.5s ease-in-out infinite; }
+@keyframes hm-draw {
+  0%, 10% { stroke-dashoffset: 160; }
+  50%, 85% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 160; }
+}
+.hm-fade-out { animation: hm-fade-out 4.5s ease-in-out infinite; }
+@keyframes hm-fade-out { 0%, 10% { opacity: 1; } 50%, 85% { opacity: 0.12; } 100% { opacity: 1; } }
+.hm-grow { animation: hm-grow 6s ease-out infinite; animation-delay: calc(var(--i) * 0.4s); transform-box: fill-box; transform-origin: center; }
+@keyframes hm-grow {
+  0%, 5% { opacity: 0; transform: scale(0.3); }
+  12%, 85% { opacity: 1; transform: none; }
+  100% { opacity: 0; }
+}
+
+/* ---------- Builder ---------- */
+.hm-service { animation: hm-msg-in 0.35s ease-out both; }
+@keyframes hm-msg-in { from { opacity: 0; transform: translateX(-6px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .hm-rv { opacity: 1; transform: none; transition: none; }
+  .hm-stage { opacity: 1; transition: none; }
+  .hm-msg, .hm-typing span, .hm-relay-pulse, .hm-relay-out, .hm-route, .hm-route-chip,
+  .hm-flow, .hm-step, .hm-branch, .hm-chain-dot, .hm-broken, .hm-pill, .hm-swap-a, .hm-swap-b, .hm-tick, .hm-draw,
+  .hm-fade-out, .hm-grow, .hm-service {
+    animation: none;
+  }
+  .hm-swap-b, .hm-relay-pulse { opacity: 0; }
+}

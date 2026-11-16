@@ -1,0 +1,64 @@
+{
+  "nav": {
+    "chineseSide": "Chinese side",
+    "process": "Process",
+    "capabilities": "Client impact",
+    "about": "About",
+    "gallery": "Gallery",
+    "tools": "Tools",
+    "portal": "Portal",
+    "cta": "Start a project",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "footer": {
+    "cta": "Start a project →",
+    "tagline": "Operating across Europe, Asia & the Americas",
+    "copyright": "© 2026 Pacific Silk Consulting. All rights reserved.",
+    "links": {
+      "process": "Process",
+      "capabilities": "Client impact",
+      "about": "About",
+      "tools": "Tools",
+      "portal": "Portal",
+      "contact": "Contact",
+      "privacy": "Privacy",
+      "terms": "Terms"
+    }
+  },
+  "common": {
+    "you": "You:",
+    "psc": "PSC:",
+    "active": "Active",
+    "completed": "Completed",
+    "since": "Since",
+    "ongoing": "Ongoing",
+    "previous": "← Previous",
+    "next": "Next →",
+    "outcome": "Outcome",
+    "type": "Type",
+    "ledBy": "Led by",
+    "duration": "Duration",
+    "legal": "Legal",
+    "lastUpdated": "Last updated:",
+    "theTeam": "The team",
+    "teamHeadline": "The people behind your project.",
+    "ourProcess": "Our process",
+    "stepsHeadline": "Six steps. One point of contact.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfUse": "Terms of Use",
+    "lessThanOneMonth": "< 1 month",
+    "oneMonth": "1 month",
+    "months": "months",
+    "year": "year",
+    "years": "years"
+  },
+  "typeLabels": {
+    "sourcing": "Sourcing",
+    "manufacturing": "Manufacturing",
+    "logistics": "Logistics",
+    "market-entry": "Market Entry",
+    "advisory": "Advisory",
+    "consulting": "Consulting"
+  }
+}

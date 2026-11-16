@@ -1,0 +1,64 @@
+{
+  "nav": {
+    "chineseSide": "中国方面",
+    "process": "流程",
+    "capabilities": "客户成果",
+    "about": "关于我们",
+    "gallery": "图集",
+    "tools": "工具",
+    "portal": "客户门户",
+    "cta": "开始项目",
+    "openMenu": "打开菜单",
+    "closeMenu": "关闭菜单"
+  },
+  "footer": {
+    "cta": "开始项目 →",
+    "tagline": "业务遍及欧洲、亚洲及美洲",
+    "copyright": "© 2026 太平洋丝绸咨询。保留所有权利。",
+    "links": {
+      "process": "流程",
+      "capabilities": "客户成果",
+      "about": "关于我们",
+      "tools": "工具",
+      "portal": "客户门户",
+      "contact": "联系我们",
+      "privacy": "隐私政策",
+      "terms": "使用条款"
+    }
+  },
+  "common": {
+    "you": "您：",
+    "psc": "PSC：",
+    "active": "进行中",
+    "completed": "已完成",
+    "since": "自",
+    "ongoing": "持续进行",
+    "previous": "← 上一个",
+    "next": "下一个 →",
+    "outcome": "成果",
+    "type": "类型",
+    "ledBy": "负责方",
+    "duration": "时长",
+    "legal": "法律信息",
+    "lastUpdated": "最近更新：",
+    "theTeam": "我们的团队",
+    "teamHeadline": "您项目背后的团队。",
+    "ourProcess": "我们的流程",
+    "stepsHeadline": "六个步骤。一个联系人。",
+    "privacyPolicy": "隐私政策",
+    "termsOfUse": "使用条款",
+    "lessThanOneMonth": "不足1个月",
+    "oneMonth": "1个月",
+    "months": "个月",
+    "year": "年",
+    "years": "年"
+  },
+  "typeLabels": {
+    "sourcing": "采购",
+    "manufacturing": "制造",
+    "logistics": "物流",
+    "market-entry": "市场准入",
+    "advisory": "咨询",
+    "consulting": "顾问"
+  }
+}

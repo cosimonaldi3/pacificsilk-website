@@ -1,0 +1,64 @@
+{
+  "nav": {
+    "chineseSide": "Lado chino",
+    "process": "Proceso",
+    "capabilities": "Impacto en clientes",
+    "about": "Nosotros",
+    "gallery": "Galería",
+    "tools": "Herramientas",
+    "portal": "Portal",
+    "cta": "Iniciar proyecto",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú"
+  },
+  "footer": {
+    "cta": "Iniciar proyecto →",
+    "tagline": "Operando en Europa, Asia y las Américas",
+    "copyright": "© 2026 Pacific Silk Consulting. Todos los derechos reservados.",
+    "links": {
+      "process": "Proceso",
+      "capabilities": "Impacto en clientes",
+      "about": "Nosotros",
+      "tools": "Herramientas",
+      "portal": "Portal",
+      "contact": "Contacto",
+      "privacy": "Privacidad",
+      "terms": "Términos"
+    }
+  },
+  "common": {
+    "you": "Tú:",
+    "psc": "PSC:",
+    "active": "Activo",
+    "completed": "Completado",
+    "since": "Desde",
+    "ongoing": "En curso",
+    "previous": "← Anterior",
+    "next": "Siguiente →",
+    "outcome": "Resultado",
+    "type": "Tipo",
+    "ledBy": "Liderado por",
+    "duration": "Duración",
+    "legal": "Legal",
+    "lastUpdated": "Última actualización:",
+    "theTeam": "El equipo",
+    "teamHeadline": "Las personas detrás de tu proyecto.",
+    "ourProcess": "Nuestro proceso",
+    "stepsHeadline": "Seis pasos. Un único punto de contacto.",
+    "privacyPolicy": "Política de privacidad",
+    "termsOfUse": "Términos de uso",
+    "lessThanOneMonth": "< 1 mes",
+    "oneMonth": "1 mes",
+    "months": "meses",
+    "year": "año",
+    "years": "años"
+  },
+  "typeLabels": {
+    "sourcing": "Abastecimiento",
+    "manufacturing": "Fabricación",
+    "logistics": "Logística",
+    "market-entry": "Entrada al mercado",
+    "advisory": "Asesoría",
+    "consulting": "Consultoría"
+  }
+}
