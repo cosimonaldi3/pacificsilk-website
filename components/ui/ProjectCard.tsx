@@ -57,7 +57,7 @@ export default function ProjectCard({ projects: projectList, className = "" }: P
 
   return (
     <Link
-      href={`/capabilities/${project.slug}`}
+      href={`/client-impact/${project.slug}`}
       className={`group block bg-psc-bg border border-psc-border hover:border-psc-ink transition-colors relative overflow-hidden shadow-sm hover:shadow-md ${className}`}
     >
       {/* Image header — rectangle at the top, like a Notion page header */}

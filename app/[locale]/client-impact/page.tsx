@@ -7,8 +7,6 @@ import BlogBlock from "@/components/sections/BlogBlock";
 import FinalCta from "@/components/sections/FinalCta";
 import {
   getAllProjects,
-  getCountryMarkers,
-  getOffices,
   getPosts,
 } from "@/lib/projects";
 import { capabilitiesContent } from "@/content/capabilities";
@@ -44,12 +42,10 @@ export default async function CapabilitiesPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const [content, allProjects, countryMarkers, offices, posts] =
+  const [content, allProjects, posts] =
     await Promise.all([
       loadContent(locale),
       getAllProjects(),
-      getCountryMarkers(),
-      getOffices(),
       getPosts(),
     ]);
 
@@ -63,7 +59,7 @@ export default async function CapabilitiesPage({
       "@type": "ListItem",
       position: i + 1,
       name: p.name,
-      url: `https://pacificsilkconsulting.com/capabilities/${p.slug}`,
+      url: `https://pacificsilkconsulting.com/client-impact/${p.slug}`,
     })),
   };
 
@@ -77,7 +73,11 @@ export default async function CapabilitiesPage({
       <main>
         {/* Client examples first, then the globe of where the work happened */}
         <ImpactCarousel content={impact} projects={allProjects} />
-        <ProjectFinder content={finder} countryMarkers={countryMarkers} offices={offices} />
+        <ProjectFinder
+          content={finder}
+          typeLabels={impact.typeLabels}
+          projects={allProjects}
+        />
         <BlogBlock content={blogSection} posts={posts} />
         <FinalCta content={finalCta} />
       </main>

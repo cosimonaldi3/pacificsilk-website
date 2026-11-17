@@ -49,12 +49,36 @@ export interface PresenceAction {
   locale?: "en" | "es" | "zh";
 }
 
+export type PresenceCountryId =
+  | "spain"
+  | "italy"
+  | "mexico"
+  | "panama"
+  | "peru"
+  | "more";
+
 export interface PresenceCountry {
-  id: "spain" | "peru" | "china" | "more";
+  id: PresenceCountryId;
   chip: string;
   title: string;
   body: string;
   actions: PresenceAction[];
+  /* Country name for the map label and "{country}" in the services strings.
+     Left out for "more", which has no dot and no services panel. */
+  name?: string;
+  hqCity?: string;
+  servicesIntro?: string;
+  services?: string[];
+  /* The person shown on the country page. Falls back to PresenceContent.representative. */
+  representative?: PresenceRepresentative;
+}
+
+export interface PresenceRepresentative {
+  name: string;
+  title: string;
+  company: string;
+  bio: string;
+  photo: string;
 }
 
 export interface PresenceContent {
@@ -62,7 +86,42 @@ export interface PresenceContent {
   headline: string;
   chipsLabel: string;
   globeLabel: string;
+  hqLabel: string;
+  /** "{country}" is replaced with the country name */
+  servicesLink: string;
+  /** "{country}" is replaced with the country name */
+  servicesTitle: string;
+  expandLabel: string;
+  /* Country page */
+  backLabel: string;
+  /** "{country}" is replaced with the country name */
+  servicesHeading: string;
+  /** "{country}" is replaced with the country name */
+  representativeLabel: string;
+  /* TEMPLATE: shown on every country page until that country sets its own `representative` */
+  representative: PresenceRepresentative;
   countries: PresenceCountry[];
+}
+
+export interface ChinaFootholdContent {
+  label: string;
+  headline: string;
+  body: string;
+  mapLabel: string;
+  hqLabel: string;
+  officesLabel: string;
+  /* lat/lng place the dots on the map; labelDy nudges a label up (-) or down (+) so close cities don't overlap */
+  hq: ChinaCity;
+  offices: ChinaCity[];
+  actions: PresenceAction[];
+}
+
+export interface ChinaCity {
+  name: string;
+  lat: number;
+  lng: number;
+  labelSide: "left" | "right";
+  labelDy?: number;
 }
 
 export interface JoinNetworkTile {
@@ -86,12 +145,11 @@ export interface AboutContent {
   };
   story: {
     label: string;
-    headline: string;
-    body: string;
   };
   team: TeamMember[];
   carousel: { sectionLabel: string; items: CarouselItem[] };
   alliance: AllianceContent;
+  chinaFoothold: ChinaFootholdContent;
   presence: PresenceContent;
   joinNetwork: JoinNetworkContent;
   finalCta: FinalCtaContent;
@@ -105,8 +163,6 @@ export const aboutContent: AboutContent = {
   },
   story: {
     label: "Who we are",
-    headline: "Built for the complexity\nof China.",
-    body: "For most international companies, the word 'China' triggers the same reaction: uncertainty. Wrong suppliers. Quality problems. Logistics delays. Communication breakdowns. We built PSC to eliminate all of it — not with advice, but with an operation.",
   },
   team: [
     {
@@ -213,35 +269,125 @@ export const aboutContent: AboutContent = {
       },
     ],
   },
+  chinaFoothold: {
+    label: "China",
+    headline: "Our foothold in China",
+    body: "Our team on the ground, talking to factories every day. Every China project runs through our headquarters in Ningbo, with offices in Shanghai and Hangzhou.",
+    mapLabel: "Map of China with our headquarters in Ningbo and offices in Shanghai and Hangzhou",
+    hqLabel: "HQ",
+    officesLabel: "Offices",
+    hq: { name: "Ningbo", lat: 29.87, lng: 121.55, labelSide: "right", labelDy: 30 },
+    offices: [
+      { name: "Shanghai", lat: 31.23, lng: 121.47, labelSide: "right", labelDy: -16 },
+      { name: "Hangzhou", lat: 30.27, lng: 120.15, labelSide: "left", labelDy: 6 },
+    ],
+    actions: [
+      { label: "Start a project here", href: "/start" },
+      { label: "Join us", href: `mailto:${startContent.emailAddress}` },
+    ],
+  },
   presence: {
     label: "Where we are",
     headline: "Pacific Silk, country by country",
     chipsLabel: "Choose a country",
-    globeLabel: "Globe showing the selected country",
+    globeLabel: "Map of the countries where we work, with the selected one highlighted",
+    hqLabel: "HQ",
+    servicesLink: "Discover our services in {country}",
+    servicesTitle: "Our services in {country}",
+    expandLabel: "Show our services in this country",
+    backLabel: "All countries",
+    servicesHeading: "What we handle in {country}",
+    representativeLabel: "Your contact in {country}",
+    // TEMPLATE: Jorge stands in until each country has its own representative.
+    representative: {
+      name: "Jorge Villalonga Moragues",
+      title: "Head of Asia Region",
+      company: "Pacific Silk Consulting",
+      bio: "Jorge manages the China side of every engagement — supplier conversations, factory visits, production holds. He is the reason problems get caught before they reach you.",
+      photo: "/team/jorgev-villalonga-jr.png",
+    },
     countries: [
+      // DRAFT services and intros below: replace with the real ones per country.
       {
         id: "spain",
         chip: "Spain",
+        name: "Spain",
         title: "Pacific Silk Spain",
         body: "Your first conversation can happen here, in Spanish, with a team that knows your market.",
-        actions: [{ label: "Start a project here", href: "/start" }],
+        hqCity: "Palma de Mallorca",
+        servicesIntro: "Our European headquarters. Spanish companies brief us here, in Spanish, and we run the China side for them.",
+        services: [
+          "Supplier search and factory visits in China",
+          "Samples checked before you pay",
+          "Price and contract negotiation in Chinese",
+          "Production checks before goods leave the factory",
+          "Shipping, customs and delivery to Spain",
+        ],
+        actions: [{ label: "Start a project here", href: "/start" }, { label: "Join us", href: `mailto:${startContent.emailAddress}` }],
       },
       {
         id: "peru",
         chip: "Peru",
+        name: "Peru",
         title: "Pacific Silk Peru",
         body: "Your first conversation can happen here, in Spanish, with a team that knows your market.",
-        actions: [{ label: "Start a project here", href: "/start" }],
+        hqCity: "Lima",
+        servicesIntro: "Our regional office for Peru, with support for projects across Latin America.",
+        services: [
+          "Supplier search and validation in China",
+          "Samples checked before you commit",
+          "Freight into Callao and customs clearance",
+          "Local follow-up in Spanish",
+        ],
+        actions: [{ label: "Start a project here", href: "/start" }, { label: "Join us", href: `mailto:${startContent.emailAddress}` }],
       },
       {
-        id: "china",
-        chip: "China",
-        title: "Pacific Silk China",
-        body: "Our team on the ground, talking to factories every day. Chinese companies and suppliers have their own section.",
-        actions: [
-          { label: "Go to the Chinese side", href: "/", locale: "zh" },
-          { label: "Start a project here", href: "/start" },
+        id: "mexico",
+        chip: "Mexico",
+        name: "Mexico",
+        title: "Pacific Silk Mexico",
+        body: "Your first conversation can happen here, in Spanish, with a team that knows your market.",
+        hqCity: "Mexico City",
+        servicesIntro: "For Mexican importers and manufacturers buying from China, in Spanish, from first quote to delivery.",
+        services: [
+          "Supplier search and factory visits in China",
+          "Samples and quality checks before shipping",
+          "Negotiation in Chinese",
+          "Sea freight and customs into Mexico",
         ],
+        actions: [{ label: "Start a project here", href: "/start" }, { label: "Join us", href: `mailto:${startContent.emailAddress}` }],
+      },
+      {
+        id: "italy",
+        chip: "Italy",
+        name: "Italy",
+        title: "Pacific Silk Italy",
+        body: "Your first conversation can happen here, in Italian, with a team that knows your market.",
+        hqCity: "Rome",
+        servicesIntro: "Italian manufacturers and brands work with us in Italian, with one contact for the whole China operation.",
+        services: [
+          "Supplier search for components and finished goods",
+          "Factory audits before you sign",
+          "Samples and quality checks in China",
+          "Shipping and customs into Italy",
+        ],
+        actions: [{ label: "Start a project here", href: "/start" }, { label: "Join us", href: `mailto:${startContent.emailAddress}` }],
+      },
+      {
+        id: "panama",
+        chip: "Panama",
+        name: "Panama",
+        title: "Pacific Silk Panama",
+        body: "Your first conversation can happen here, in Spanish, with a team that knows your market.",
+        hqCity: "Panama City",
+        servicesIntro: "Panama connects China with the Americas. We use it to move and consolidate goods for clients across the region.",
+        services: [
+          "Supplier search and factory visits in China",
+          "Cargo consolidation through Panama",
+          "Freight coordination for Central and South America",
+          "Customs paperwork at origin and destination",
+        ],
+        actions: [{ label: "Start a project here", href: "/start" }, { label: "Join us", href: `mailto:${startContent.emailAddress}` }],
       },
       {
         id: "more",

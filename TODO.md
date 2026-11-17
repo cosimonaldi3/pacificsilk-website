@@ -67,7 +67,17 @@ Format: one item per line. Use checkboxes. Group by category.
 - [ ] Client portal integration (SSO, shared tokens)
 - [ ] Fork for SPL, Lance Trade, Alliance umbrella sites
 
-## Client impact carousel (/capabilities)
+## Client impact carousel (/client-impact)
 - [ ] Badges show facts taken from each project's own text (`impact` in `content/projects.ts`). Replace with real client figures (cost saved, lead time, units) once clients approve them
 - [ ] Project names, summaries and badges are English only on `/es` and `/zh` (project data in `content/projects.ts` is not localized yet)
 - [ ] `npm run lint` does nothing useful: ESLint 4.19 is installed with no config, so it only prints help. Upgrade to ESLint 9 + `eslint-config-next` flat config
+
+## Projects map (/client-impact)
+- [ ] HQ descriptions and the Chinese finder strings are English only on `/es` and `/zh` (`content/i18n/zh/capabilities.ts` reuses `en.finder`)
+- [ ] `react-globe.gl` and `three` are no longer imported anywhere; remove them from `package.json` when you are ready (needs your OK per CLAUDE.md)
+
+## About: "Where we are" (Presence section)
+- [ ] Services per country are drafts (en + es) in `content/about.ts` and `content/i18n/es/about.ts`. Send the real list per country
+- [ ] HQ cities for Italy (Rome), Mexico (Mexico City) and Panama (Panama City) are placeholders. Confirm them
+- [ ] HQ photos: only Spain has one. Add the others to `public/countries/` and set `hqImage` in `content/presence-places.ts`
+- [ ] Italy, Mexico and Panama card texts are new copy. `/zh` shows the English text for the whole section

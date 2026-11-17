@@ -2,12 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Nav from "@/components/ui/Nav";
 import Footer from "@/components/ui/Footer";
-import Alliance from "@/components/sections/Alliance";
 import FinalCta from "@/components/sections/FinalCta";
 import TestimonialCarousel from "@/components/sections/TestimonialCarousel";
 import Container from "@/components/ui/Container";
+import ChinaFoothold from "@/components/sections/about/ChinaFoothold";
 import Presence from "@/components/sections/about/Presence";
-import JoinNetwork from "@/components/sections/about/JoinNetwork";
 import { aboutContent } from "@/content/about";
 import { getTranslations } from "next-intl/server";
 
@@ -37,44 +36,22 @@ export default async function AboutPage({
   const { locale } = await params;
   const content = await loadContent(locale);
   const t = await getTranslations({ locale, namespace: "common" });
-  const { story, team, carousel, alliance, presence, joinNetwork, finalCta } = content;
+  const { story, team, carousel, chinaFoothold, presence, finalCta } = content;
 
   return (
     <>
       <Nav />
       <main>
-        {/* Story */}
-        <section className="bg-psc-bg py-32">
-          <Container>
-            <div className="max-w-3xl">
-              <div className="font-sans text-small font-medium text-psc-gray uppercase tracking-widest mb-4">
-                {story.label}
-              </div>
-              <h1 className="font-display text-h1 font-medium text-psc-ink mb-8">
-                {story.headline.split("\n").map((line, i, arr) => (
-                  <span key={i}>
-                    {line}
-                    {i < arr.length - 1 && <br />}
-                  </span>
-                ))}
-              </h1>
-              <p className="font-sans text-body leading-body text-psc-gray">
-                {story.body}
-              </p>
-            </div>
-          </Container>
-        </section>
-
-        {/* Team */}
-        <section className="bg-psc-bg py-24">
+        {/* Who we are + the team */}
+        <section className="bg-psc-bg pt-24 pb-24 md:pt-28">
           <Container>
             <div className="font-sans text-small font-medium text-psc-gray uppercase tracking-widest mb-4">
-              {t("theTeam")}
+              {story.label}
             </div>
-            <h2 className="font-display text-h2 font-medium text-psc-ink">
+            <h1 className="font-display text-h2 font-medium text-psc-ink">
               {t("teamHeadline")}
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 max-w-4xl gap-x-8 gap-y-16 mt-16">
+            </h1>
+            <div className="grid grid-cols-1 sm:grid-cols-2 max-w-4xl gap-x-8 gap-y-16 mt-10">
               {team.map((member) => (
                 <div key={member.name}>
                   {/* Photo area */}
@@ -128,14 +105,11 @@ export default async function AboutPage({
           items={carousel.items}
         />
 
-        {/* The three companies */}
-        <Alliance content={alliance} />
+        {/* China: headquarters and offices */}
+        <ChinaFoothold content={chinaFoothold} />
 
         {/* Presence by country */}
         <Presence content={presence} />
-
-        {/* Join the network */}
-        <JoinNetwork content={joinNetwork} />
 
         {/* Final CTA */}
         <FinalCta content={finalCta} />

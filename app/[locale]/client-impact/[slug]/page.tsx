@@ -258,7 +258,7 @@ export default async function ProjectDetailPage({
               <div className="flex flex-col md:flex-row justify-between gap-6">
                 {prev ? (
                   <Link
-                    href={`/capabilities/${prev.slug}`}
+                    href={`/client-impact/${prev.slug}`}
                     className="group flex flex-col gap-1 max-w-sm"
                   >
                     <span className="font-sans text-small text-psc-gray group-hover:text-psc-ink transition-colors">
@@ -273,7 +273,7 @@ export default async function ProjectDetailPage({
                 )}
                 {next && (
                   <Link
-                    href={`/capabilities/${next.slug}`}
+                    href={`/client-impact/${next.slug}`}
                     className="group flex flex-col gap-1 max-w-sm md:items-end"
                   >
                     <span className="font-sans text-small text-psc-gray group-hover:text-psc-ink transition-colors">

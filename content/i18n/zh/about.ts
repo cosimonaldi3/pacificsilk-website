@@ -9,8 +9,6 @@ export const aboutContent: AboutContent = {
   },
   story: {
     label: "我们是谁",
-    headline: "为中国业务的\n复杂性而生。",
-    body: "对大多数国际企业而言，'中国'这个词会触发同样的反应：不确定性。错误的供应商。质量问题。物流延误。沟通障碍。我们创建PSC，就是为了彻底消除这些问题——不靠建议，而靠实际运营。",
   },
   team: [
     {
@@ -117,6 +115,7 @@ export const aboutContent: AboutContent = {
       },
     ],
   },
+  chinaFoothold: en.chinaFoothold,
   presence: en.presence,
   joinNetwork: en.joinNetwork,
   finalCta: {

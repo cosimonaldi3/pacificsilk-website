@@ -1,4 +1,4 @@
-import type { Project, Office } from "@/lib/types";
+import type { Project } from "@/lib/types";
 
 export const projects: Project[] = [
   {
@@ -158,57 +158,5 @@ export const projects: Project[] = [
       "/projects/sister_city_agreement_palma_ningbo/4.jpg",
       "/projects/sister_city_agreement_palma_ningbo/5.jpg",
     ],
-  },
-];
-
-export const offices: Office[] = [
-  {
-    id: "eur",
-    name: "PSC — Europe",
-    city: "Palma de Mallorca",
-    country: "Spain",
-    countryCode: "ES",
-    lat: 39.5696,
-    lng: 2.6502,
-    featured: true,
-    officeImage: "/countries/office-spain.jpg",
-    description:
-      "Our European headquarters directs Pacific Silk Consulting's strategic operations and provides governance across all regional offices. Based in Spain, our HQ team oversees consulting initiatives across Europe, Latin America, and Asia, ensuring coordinated execution of sourcing and trade corridor projects. We serve as the operational backbone and decision-making center for the Pacific Silk Alliance.",
-  },
-  {
-    id: "cn-hq",
-    name: "PSC — China HQ",
-    city: "Ningbo",
-    country: "China",
-    countryCode: "CN",
-    lat: 29.8683,
-    lng: 121.544,
-    featured: true,
-    // officeImage: "/countries/office-china.jpg" — add when photo is ready; shows black until then
-    description:
-      "Our China operations center manages large-scale sourcing, supplier quality, and logistics coordination for all China-based activities. With an extensive on-ground team, we deliver end-to-end project support, supply chain intelligence, and critical information to our international branches. This hub ensures seamless execution of trade and sourcing initiatives across our global network.",
-  },
-  {
-    id: "cn-hz",
-    name: "PSC — China",
-    city: "Hangzhou",
-    country: "China",
-    countryCode: "CN",
-    lat: 30.2741,
-    lng: 120.1551,
-    // featured: false — black dot only, no card, does not appear in country card
-  },
-  {
-    id: "pe",
-    name: "PSC — Peru",
-    city: "Lima",
-    country: "Peru",
-    countryCode: "PE",
-    lat: -12.0464,
-    lng: -77.0428,
-    featured: true,
-    // officeImage: "/countries/office-peru.jpg" — add when photo is ready; shows black until then
-    description:
-      "Our Peru office serves as PSC's regional headquarters for the Peruvian market, supporting local supplier identification, sourcing projects, and trade initiatives. We provide targeted market expertise and when needed, offer support to broader LATAM projects. Our team focuses on building strong supply chain partnerships within Peru.",
   },
 ];

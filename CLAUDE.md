@@ -252,8 +252,8 @@ Hero (big statement, one clear CTA), short intro to the alliance as our differen
 **2. Process (`/process`)** ← the signature page
 End-to-end walkthrough of how a PSC engagement runs: Inquiry → Scoping → Sourcing/Partner Identification → Samples/Validation → Negotiation → Production/Execution → Logistics → Delivery → Ongoing Management. Step-by-step, tatem.com-inspired. Each step concrete, with what PSC does and what the client sees.
 
-**3. Capabilities (`/capabilities`)**
-Five core capabilities presented as an interconnected system, not a list: Sourcing, Market Entry, Manufacturing, Logistics, Advisory. Each is a substantial section, not a card. Show how they fit together via the alliance.
+**3. Client impact (`/client-impact`)** (formerly Capabilities; `/capabilities` redirects here)
+Client impact carousel, then a map and list of projects, then the building blocks of a project. Project detail pages live at `/client-impact/[slug]`.
 
 **4. About (`/about`)**
 The story: why PSC exists, what the alliance is, how the three companies coordinate, the people. Shorter than traditional consulting About pages — we're not selling credentials, we're selling operations.
@@ -295,7 +295,7 @@ pacific-silk-website/
 │   ├── layout.tsx                # Root layout (fonts, metadata defaults)
 │   ├── page.tsx                  # Home (/)
 │   ├── process/page.tsx          # Process (/process)
-│   ├── capabilities/page.tsx     # Capabilities (/capabilities)
+│   ├── client-impact/page.tsx    # Client impact (/client-impact)
 │   ├── about/page.tsx            # About (/about)
 │   ├── portal/page.tsx           # Portal explainer (/portal)
 │   ├── contact/page.tsx          # Contact (/contact)
@@ -342,7 +342,7 @@ Edit `tailwind.config.ts` under `theme.extend.colors.psc`. Never hardcode hex va
 
 ### Add a new capability
 1. Add entry to `content/capabilities.ts`
-2. If it needs a detail page: `app/capabilities/[slug]/page.tsx`
+2. If it needs a detail page: `app/[locale]/client-impact/[slug]/page.tsx`
 3. Nav update only if it's top-level (it probably isn't)
 
 ### Update portal link

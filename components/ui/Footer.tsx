@@ -8,7 +8,7 @@ export default async function Footer() {
 
   const navLinks = [
     { key: "process" as const, href: "/process" as const },
-    { key: "capabilities" as const, href: "/capabilities" as const },
+    { key: "capabilities" as const, href: "/client-impact" as const },
     { key: "about" as const, href: "/about" as const },
     { key: "tools" as const, href: "/tools/shipping-estimate" as const },
     { key: "portal" as const, href: "/portal/login" as const, target: "_blank" as const },

@@ -9,7 +9,7 @@ import LanguageSwitcher from "./LanguageSwitcher";
 
 const navItems = [
   { key: "process" as const, href: "/process" as const },
-  { key: "capabilities" as const, href: "/capabilities" as const },
+  { key: "capabilities" as const, href: "/client-impact" as const },
   { key: "about" as const, href: "/about" as const },
   { key: "gallery" as const, href: "/gallery" as const },
   { key: "tools" as const, href: "/tools/shipping-estimate" as const },

@@ -69,16 +69,10 @@ export const capabilitiesContent: CapabilitiesPageContent = {
   finder: {
     label: "Proyectos",
     headline: "Encuentra un proyecto como el tuyo",
-    subheadline: "Filtra por tipo de proyecto y abre un marcador para ver el trabajo.",
-    filterLabel: "Filtrar proyectos por tipo",
-    filters: [
-      { label: "Todos", types: null },
-      { label: "Proyectos individuales", types: ["sourcing", "manufacturing", "logistics"] },
-      { label: "Cooperación", types: ["consulting", "advisory"] },
-      { label: "Inversión", types: ["market-entry"] },
-      { label: "Clústeres y asociaciones", types: [] },
-    ],
-    note: "Ejemplos ilustrativos. Los proyectos reales se anonimizan y los aprueban los clientes.",
+    subheadline: "Abre un punto del mapa o un proyecto de la lista.",
+    countOne: "1 proyecto",
+    count: "{n} proyectos",
+    cta: "Leer el proyecto",
   },
   grid: {
     label: "Lo que operamos",

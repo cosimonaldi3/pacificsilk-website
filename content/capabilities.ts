@@ -1,4 +1,3 @@
-import type { ProjectType } from "@/lib/types";
 
 export interface CapabilityLink {
   label: string;
@@ -67,13 +66,6 @@ export interface RouteStep {
   body: string;
 }
 
-export interface ProjectFilter {
-  label: string;
-  /* Project types this chip shows. null = no filter ("All"). An empty array matches
-     nothing yet (no placeholder projects of that kind exist). */
-  types: ProjectType[] | null;
-}
-
 export interface CapabilitiesPageContent {
   meta: {
     title: string;
@@ -99,9 +91,10 @@ export interface CapabilitiesPageContent {
     label: string;
     headline: string;
     subheadline: string;
-    filterLabel: string;
-    filters: ProjectFilter[];
-    note: string;
+    /** "{n}" is replaced with the number of matching projects */
+    count: string;
+    countOne: string;
+    cta: string;
   };
   grid: CapabilitiesContent;
   hero: {
@@ -219,16 +212,10 @@ export const capabilitiesContent: CapabilitiesPageContent = {
   finder: {
     label: "Projects",
     headline: "Find a project like yours",
-    subheadline: "Filter by the kind of project, then open a marker to see the work.",
-    filterLabel: "Filter projects by type",
-    filters: [
-      { label: "All", types: null },
-      { label: "Individual projects", types: ["sourcing", "manufacturing", "logistics"] },
-      { label: "Cooperation", types: ["consulting", "advisory"] },
-      { label: "Investment", types: ["market-entry"] },
-      { label: "Clusters and associations", types: [] },
-    ],
-    note: "Illustrative placeholders. Real projects are anonymized and approved by clients.",
+    subheadline: "Open a dot on the map or a project in the list.",
+    countOne: "1 project",
+    count: "{n} projects",
+    cta: "Read the project",
   },
   grid: {
     label: "What we run",

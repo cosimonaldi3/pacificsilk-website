@@ -195,7 +195,7 @@ function ImpactCard({
         </p>
         {isActive && (
           <Link
-            href={`/capabilities/${project.slug}`}
+            href={`/client-impact/${project.slug}`}
             className="impact-cta mt-6 inline-flex items-center gap-2 self-start border-b border-psc-ink pb-1 font-sans text-small font-semibold uppercase tracking-widest text-psc-ink transition-colors hover:border-psc-red hover:text-psc-red focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-psc-red"
           >
             {ctaLabel}
