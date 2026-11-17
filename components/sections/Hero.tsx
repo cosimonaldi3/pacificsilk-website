@@ -3,10 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
+import Logo, { type LogoVariant } from "@/components/Logo";
 import { useState, useRef, useEffect } from "react";
 
 interface HeroProps {
-  eyebrow: string;
+  eyebrow?: string;
+  /* Brand logo shown in place of the text eyebrow (wordmark, light variant for the dark hero) */
+  logo?: LogoVariant;
   headline: string;
   subheadline: string;
   cta?: { label: string; href: string };
@@ -25,6 +28,7 @@ interface HeroProps {
 
 export default function Hero({
   eyebrow,
+  logo,
   headline,
   subheadline,
   cta,
@@ -127,10 +131,17 @@ export default function Hero({
 
       {/* Content */}
       <Container className="relative z-10">
-        {/* Eyebrow */}
-        <div className="font-sans text-small font-medium text-psc-bg uppercase tracking-widest mb-6">
-          {eyebrow}
-        </div>
+        {/* Eyebrow: logo if given, otherwise text */}
+        {logo ? (
+          /* Sized in em of the headline's display size, so the logo spans the width of "bridge" at every viewport */
+          <div className="mb-6 text-display">
+            <Logo variant={logo} width={160} priority className="block w-[2.5em] h-auto" />
+          </div>
+        ) : (
+          <div className="font-sans text-small font-medium text-psc-bg uppercase tracking-widest mb-6">
+            {eyebrow}
+          </div>
+        )}
 
         {/* Headline */}
         <h1

@@ -1,4 +1,5 @@
 import { BOOKING_URL } from "@/content/start";
+import type { LogoVariant } from "@/components/Logo";
 
 export interface CtaLink {
   label: string;
@@ -6,7 +7,9 @@ export interface CtaLink {
 }
 
 export interface HeroContent {
-  eyebrow: string;
+  /* Text eyebrow, or a logo variant shown in its place */
+  eyebrow?: string;
+  logo?: LogoVariant;
   headline: string;
   subheadline: string;
   cta: CtaLink;
@@ -133,7 +136,7 @@ export interface HomeContent {
 
 export const homeContent: HomeContent = {
   hero: {
-    eyebrow: "Pacific Silk Group",
+    logo: "psc-horizontal-white",
     headline: "The bridge between China\nand your market.",
     subheadline: "One language. One team. You never deal with the Chinese side.",
     cta: { label: "Build your project path", href: "#builder" },

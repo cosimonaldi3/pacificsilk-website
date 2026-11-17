@@ -4,7 +4,7 @@ import { BOOKING_URL } from "@/content/start";
 
 export const homeContent: HomeContent = {
   hero: {
-    eyebrow: "Pacific Silk Group",
+    logo: "psc-horizontal-white",
     headline: "El puente entre China\ny tu mercado.",
     subheadline: "Un idioma. Un equipo. Nunca tratas con la parte china.",
     cta: { label: "Construye el camino de tu proyecto", href: "#builder" },
