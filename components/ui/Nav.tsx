@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Container from "./Container";
 import Logo from "@/components/Logo";
 import LanguageSwitcher from "./LanguageSwitcher";
+import ChineseSiteDialog from "./ChineseSiteDialog";
 
 const navItems = [
   { key: "process" as const, href: "/process" as const },
@@ -18,7 +19,11 @@ const navItems = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const [chineseOpen, setChineseOpen] = useState(false);
   const t = useTranslations("nav");
+  const locale = useLocale();
+  // On the Chinese site there is nothing to switch to, so the entry point is hidden
+  const showChineseSite = locale !== "zh";
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-psc-border bg-psc-bg/95 backdrop-blur-sm">
@@ -33,7 +38,7 @@ export default function Nav() {
             variant="psc-horizontal-black"
             width={160}
             priority
-            className="h-8 w-auto"
+            className="h-12 w-auto"
           />
         </Link>
 
@@ -54,14 +59,16 @@ export default function Nav() {
 
         {/* Desktop: language switcher + CTA | Mobile: hamburger */}
         <div className="flex items-center gap-4">
-          <Link
-            href="/"
-            locale="zh"
-            lang="zh"
-            className="hidden lg:inline-block font-sans text-small font-medium text-psc-gray border border-psc-border rounded-full px-3 py-1.5 hover:text-psc-ink hover:border-psc-ink transition"
-          >
-            {t("chineseSide")}
-          </Link>
+          {showChineseSite && (
+            <button
+              type="button"
+              onClick={() => setChineseOpen(true)}
+              aria-haspopup="dialog"
+              className="hidden lg:inline-block font-sans text-small font-medium text-psc-gray border border-psc-border rounded-full px-3 py-1.5 hover:text-psc-ink hover:border-psc-ink transition"
+            >
+              {t("chineseSite")}
+            </button>
+          )}
           <LanguageSwitcher className="hidden lg:flex" />
           <Link
             href="/start"
@@ -133,18 +140,26 @@ export default function Nav() {
             {/* Chinese side + language switcher — bottom of mobile menu */}
             <div className="mt-4 pt-4 border-t border-psc-border flex items-center justify-between">
               <LanguageSwitcher />
-              <Link
-                href="/"
-                locale="zh"
-                lang="zh"
-                onClick={() => setOpen(false)}
-                className="font-sans text-small font-medium text-psc-gray border border-psc-border rounded-full px-3 py-1.5 hover:text-psc-ink transition"
-              >
-                {t("chineseSide")}
-              </Link>
+              {showChineseSite && (
+                <button
+                  type="button"
+                  aria-haspopup="dialog"
+                  onClick={() => {
+                    setOpen(false);
+                    setChineseOpen(true);
+                  }}
+                  className="font-sans text-small font-medium text-psc-gray border border-psc-border rounded-full px-3 py-1.5 hover:text-psc-ink transition"
+                >
+                  {t("chineseSite")}
+                </button>
+              )}
             </div>
           </Container>
         </div>
+      )}
+
+      {showChineseSite && (
+        <ChineseSiteDialog open={chineseOpen} onClose={() => setChineseOpen(false)} />
       )}
     </header>
   );

@@ -137,11 +137,11 @@ export default function Hero({
           <div className="mb-6 text-display">
             <Logo variant={logo} width={160} priority className="block w-[2.5em] h-auto" />
           </div>
-        ) : (
+        ) : eyebrow ? (
           <div className="font-sans text-small font-medium text-psc-bg uppercase tracking-widest mb-6">
             {eyebrow}
           </div>
-        )}
+        ) : null}
 
         {/* Headline */}
         <h1

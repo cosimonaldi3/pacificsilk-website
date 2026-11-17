@@ -66,7 +66,7 @@ export default async function Home({
         {/* ...and the final call to action is transparent, so the video returns */}
         <FinalCta content={content.finalCta} overVideo />
       </main>
-      <footer className="relative z-10 bg-psc-ink py-16">
+      <footer className="relative z-10 bg-psc-ink py-8">
         <Footer />
       </footer>
     </>
