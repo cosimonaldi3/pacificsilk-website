@@ -1,6 +1,14 @@
 {
   "nav": {
-    "chineseSide": "中国方面",
+    "chineseSite": "中文站",
+    "chineseSiteDialog": {
+      "title": "欢迎访问中文站",
+      "body": "本网站面向中国的工厂、供应商和企业主，适合希望建立供应能力、把产品推向海外新市场的企业。",
+      "question": "您要前往中文站，还是留在当前网站？",
+      "go": "前往中文站",
+      "stay": "留在当前网站",
+      "close": "关闭"
+    },
     "process": "流程",
     "capabilities": "客户成果",
     "about": "关于我们",

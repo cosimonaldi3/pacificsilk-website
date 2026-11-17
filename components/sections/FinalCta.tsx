@@ -10,7 +10,7 @@ interface FinalCtaProps {
 
 export default function FinalCta({ content, overVideo = false }: FinalCtaProps) {
   return (
-    <section className={overVideo ? "relative z-10 flex min-h-[80dvh] items-center py-24 md:py-32" : "bg-psc-ink py-24 md:py-32"}>
+    <section className={overVideo ? "relative z-10 flex items-center py-12 md:py-14" : "bg-psc-ink py-24 md:py-32"}>
       <Container>
         <div className="text-center">
           <h2 className="font-display text-h1 font-medium text-psc-bg mb-6 whitespace-pre-line">

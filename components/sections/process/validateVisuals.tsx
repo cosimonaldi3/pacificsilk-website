@@ -92,6 +92,8 @@ function Seal({ text, id, className }: { text: string; id: string; className: st
 function BusinessLicence({ c, large }: { c: ValidateContent["suppliers"]["licence"]; large: boolean }) {
   const id = large ? "lg" : "sm";
   const small = "text-[2.1cqw]";
+  /* Chinese text is softened, not removed: it reads as script without being legible */
+  const zh = "blur-[0.7px]";
   const rows = [...c.left, ...c.right];
   return (
     <figure className="@container relative w-full">
@@ -101,33 +103,15 @@ function BusinessLicence({ c, large }: { c: ValidateContent["suppliers"]["licenc
         lang="zh"
         className="relative aspect-[1.42] w-full overflow-hidden rounded-md bg-psc-bg shadow-[0_12px_40px_-16px_rgb(10_10_10/0.3)]"
       >
-        {/* Guilloche border: a repeating wave pattern in gold, cut out by the paper inside */}
-        <svg className="absolute inset-0 h-full w-full">
-          <defs>
-            <pattern id={`pv-guilloche-${id}`} width="10" height="10" patternUnits="userSpaceOnUse">
-              <path d="M0 5 Q2.5 0 5 5 T10 5" fill="none" stroke="var(--color-psc-gold)" strokeWidth="0.8" />
-              <path d="M0 5 Q2.5 10 5 5 T10 5" fill="none" stroke="var(--color-psc-gold)" strokeWidth="0.5" opacity="0.7" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill={`url(#pv-guilloche-${id})`} />
-        </svg>
-        <div className="absolute inset-[3.5%] rounded-sm border border-psc-gold/50 bg-psc-bg" />
-
-        {/* Faint watermark */}
-        <div className="pointer-events-none absolute inset-[3.5%] flex flex-col justify-around overflow-hidden">
-          {[0, 1, 2].map((r) => (
-            <p key={r} className="text-[4cqw] whitespace-nowrap font-sans font-semibold tracking-[0.5em] text-psc-border">
-              {`${c.watermark} `.repeat(6)}
-            </p>
-          ))}
-        </div>
+        {/* One thin gold frame, the only ornament on the licence */}
+        <div className="absolute inset-[3.5%] rounded-sm border border-psc-gold/60 bg-psc-bg" />
 
         <div className="absolute inset-[3.5%] flex flex-col px-[4.5%] pt-[3%] pb-[3.5%] text-psc-ink">
           {/* Top row: credit code, roundel and title, QR */}
           <div className="grid grid-cols-[1fr_auto_1fr] items-start gap-[2cqw]">
             <div className={`${small} leading-snug`}>
-              <p className="text-psc-gray">{c.serial}</p>
-              <p className="mt-[0.6cqw]">{c.codeLabel}</p>
+              <p className={`text-psc-gray ${zh}`}>{c.serial}</p>
+              <p className={`mt-[0.6cqw] ${zh}`}>{c.codeLabel}</p>
               <p className="font-mono tracking-tight">{c.code}</p>
             </div>
             <div className="flex flex-col items-center">
@@ -135,19 +119,19 @@ function BusinessLicence({ c, large }: { c: ValidateContent["suppliers"]["licenc
               <span className="flex h-[6.5cqw] w-[6.5cqw] items-center justify-center rounded-full bg-psc-gold">
                 <span className="h-[70%] w-[70%] rounded-full border border-psc-bg/70 bg-psc-red" />
               </span>
-              <p className="mt-[1cqw] text-[7cqw] font-serif leading-none font-bold tracking-[0.25em] whitespace-nowrap">
+              <p className={`mt-[1cqw] text-[7cqw] font-serif leading-none font-bold tracking-[0.25em] whitespace-nowrap ${zh}`}>
                 {c.title}
               </p>
-              <p className={`${small} mt-[0.8cqw]`}>{c.copy}</p>
+              <p className={`${small} mt-[0.8cqw] ${zh}`}>{c.copy}</p>
             </div>
             <div className="flex items-start justify-end gap-[1cqw]">
-              <p className="max-w-[5.5em] text-right text-[1.7cqw] leading-snug text-psc-gray">{c.qrNote}</p>
+              <p className={`max-w-[5.5em] text-right text-[1.7cqw] leading-snug text-psc-gray ${zh}`}>{c.qrNote}</p>
               <FakeQr className="h-[10cqw] w-[10cqw] shrink-0" />
             </div>
           </div>
 
           {/* Fields: left column, then right column; they appear one by one */}
-          <dl className="mt-[4cqw] grid flex-1 grid-flow-col grid-cols-2 grid-rows-4 content-start gap-x-[5cqw] gap-y-[2.2cqw] text-[2.4cqw]">
+          <dl className={`mt-[4cqw] grid flex-1 grid-flow-col grid-cols-2 grid-rows-4 content-start gap-x-[5cqw] gap-y-[2.2cqw] text-[2.4cqw] ${zh}`}>
             {rows.map((f, i) => (
               <div key={f.label} style={v(i)} className="pd-row flex gap-[2cqw] leading-snug">
                 <dt className="w-[5em] shrink-0 tracking-[0.15em] text-psc-gray">{f.label}</dt>
@@ -158,12 +142,12 @@ function BusinessLicence({ c, large }: { c: ValidateContent["suppliers"]["licenc
 
           {/* Issuer and date, with the seal stamped over them */}
           <div className="relative ml-auto flex w-[40%] flex-col items-center text-[2.4cqw]">
-            <p className="tracking-[0.3em]">{c.issuerLabel}</p>
-            <p className="mt-[0.5cqw]">{c.issued}</p>
+            <p className={`tracking-[0.3em] ${zh}`}>{c.issuerLabel}</p>
+            <p className={`mt-[0.5cqw] ${zh}`}>{c.issued}</p>
             <Seal
               id={`pv-seal-${id}`}
               text={c.seal}
-              className="pv-stamp absolute top-1/2 left-1/2 h-[17cqw] w-[17cqw] -translate-1/2 opacity-90 mix-blend-multiply"
+              className={`pv-stamp absolute top-1/2 left-1/2 h-[17cqw] w-[17cqw] -translate-1/2 opacity-90 mix-blend-multiply ${zh}`}
             />
           </div>
         </div>
@@ -274,65 +258,62 @@ export function LogisticsVisual({ c, large = false }: { c: ValidateContent["logi
   );
 }
 
-/* ---------- Golden sample: three checks on the sample, side by side (no text) ---------- */
+/* ---------- Golden sample: a bottle line on a conveyor; the golden sample is the one with the red cap (no text) ---------- */
 
 const GS_INK = "var(--color-psc-ink)";
 const GS_RED = "var(--color-psc-red)";
+const GS_GOLD = "var(--color-psc-gold)";
+const GS_MUTED = "var(--color-psc-muted)";
+const GS_BG = "var(--color-psc-bg)";
 
-/* The sample: the same box in each of the three scenes */
-function SampleBox() {
-  return (
-    <>
-      <path d="M40 48 L80 32 L120 48 L80 64 Z" fill="var(--color-psc-muted)" stroke={GS_INK} strokeWidth="1.2" strokeLinejoin="round" />
-      <path d="M40 48 L40 72 L80 88 L80 64 Z" fill="var(--color-psc-bg)" stroke={GS_INK} strokeWidth="1.2" strokeLinejoin="round" />
-      <path d="M120 48 L120 72 L80 88 L80 64 Z" fill="var(--color-psc-border)" stroke={GS_INK} strokeWidth="1.2" strokeLinejoin="round" />
-    </>
-  );
-}
+/* One bottle, origin at its left edge, standing on the belt at y = 180 */
+const BOTTLE = "M20 100 H36 V112 Q36 118 52 126 V180 H4 V126 Q20 118 20 112 Z";
 
-function CheckScene({ children, large }: { children: React.ReactNode; large: boolean }) {
+function Bottle({ x, golden = false }: { x: number; golden?: boolean }) {
   return (
-    <svg viewBox="0 0 160 112" aria-hidden="true" className={`w-full overflow-visible ${large ? "max-w-[13rem]" : "max-w-[10rem]"}`}>
-      {children}
-    </svg>
+    <g transform={`translate(${x} 0)`}>
+      <path d={BOTTLE} fill={golden ? GS_GOLD : GS_MUTED} stroke={GS_INK} strokeWidth="1.4" strokeLinejoin="round" />
+      {golden && <rect x="18" y="91" width="20" height="10" rx="2.5" fill={GS_RED} stroke={GS_INK} strokeWidth="1.2" />}
+    </g>
   );
 }
 
 export function GoldenSampleVisual({ large = false }: { large?: boolean }) {
+  /* The golden sample sits at index 3, centred under the filling head */
+  const xs = [8, 74, 140, 206, 272, 338];
   return (
-    <div className={`flex h-full items-center justify-center gap-1 sm:gap-3 ${large ? "mx-auto w-full max-w-[44rem]" : "px-4 pb-8 md:px-6"}`}>
-      {/* Measuring: callipers close on the sample */}
-      <CheckScene large={large}>
-        <SampleBox />
-        <g fill="none" stroke={GS_INK} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M30 98 H150" />
-          <path d="M38 100 V102 M46 100 V102 M54 100 V102 M62 100 V102 M70 100 V102 M78 100 V102 M86 100 V102 M94 100 V102 M102 100 V102 M110 100 V102 M118 100 V102" strokeWidth="1" />
-          <path d="M40 96 V70" stroke={GS_RED} strokeWidth="2" />
-          <g className="pv-jaw">
-            <path d="M120 96 V70" stroke={GS_RED} strokeWidth="2" />
-            <path d="M120 96 H132" />
-          </g>
+    <div className={`flex h-full items-center justify-center ${large ? "mx-auto w-full max-w-[44rem]" : "px-4 pb-8 md:px-6"}`}>
+      <svg viewBox="0 0 400 230" aria-hidden="true" className="w-full overflow-visible">
+        {/* Pipes running along the line, behind the bottles */}
+        <g fill="none" stroke={GS_GOLD} strokeWidth="1" strokeLinecap="round">
+          <path d="M0 128 H400" />
+          <path d="M0 146 H400" />
         </g>
-      </CheckScene>
 
-      {/* Inspecting: a lens passes over the surface and finds nothing wrong */}
-      <CheckScene large={large}>
-        <SampleBox />
-        <g className="pv-lens">
-          <circle r="13" fill="var(--color-psc-bg)" fillOpacity="0.55" stroke={GS_INK} strokeWidth="1.6" />
-          <path d="M9 9 L19 19" stroke={GS_INK} strokeWidth="3" strokeLinecap="round" />
-          <path className="pv-lens-tick" d="M-5 0 L-1 4 L6 -4" fill="none" stroke={GS_RED} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+        {/* Filling head: a housing with its nozzle over the golden sample */}
+        <g stroke={GS_INK} strokeWidth="1.6" strokeLinejoin="round">
+          <rect x="184" y="0" width="100" height="40" rx="10" fill={GS_BG} />
+          <rect x="219" y="40" width="30" height="14" fill={GS_BG} />
         </g>
-      </CheckScene>
 
-      {/* Load test: a plate presses down on the sample, holds, lifts */}
-      <CheckScene large={large}>
-        <SampleBox />
-        <g className="pv-press">
-          <path d="M34 26 L80 8 L126 26 L80 44 Z" fill={GS_INK} fillOpacity="0.85" stroke={GS_INK} strokeWidth="1.2" strokeLinejoin="round" />
-          <path d="M80 -12 L80 8" stroke={GS_INK} strokeWidth="2" strokeLinecap="round" />
+        {/* Bottles */}
+        {xs.map((x, i) => (
+          <Bottle key={x} x={x} golden={i === 3} />
+        ))}
+
+        {/* Conveyor belt: two lines, bottles stand on the top one */}
+        <g fill="none" stroke={GS_INK} strokeWidth="1.4" strokeLinecap="round">
+          <path d="M0 180 H400" />
+          <path d="M0 192 H400" />
         </g>
-      </CheckScene>
+
+        {/* Rollers */}
+        <g fill={GS_BG} stroke={GS_INK} strokeWidth="1.4">
+          {Array.from({ length: 10 }, (_, i) => (
+            <circle key={i} cx={12 + i * 40} cy="214" r="6" />
+          ))}
+        </g>
+      </svg>
     </div>
   );
 }
@@ -385,6 +366,27 @@ export function QuotationVisual({ c, large = false }: { c: ValidateContent["quot
             {c.stamp}
           </p>
         </div>
+      </div>
+
+      {/* The options: validated suppliers quoting the same product, each adjustable to the client's terms */}
+      <div className={`${card} mt-4 overflow-hidden`}>
+        <div className="flex items-center justify-between gap-2 px-5 py-3">
+          <p className="font-sans text-[13px] font-medium text-psc-ink">{c.optionsTitle}</p>
+          <span className="rounded-full bg-psc-muted px-2.5 py-1 font-sans text-[11px] font-medium text-psc-ink">{c.adjustable}</span>
+        </div>
+        <ul>
+          {c.options.map((o) => (
+            <li
+              key={o.supplier}
+              className={`grid grid-cols-[1fr_auto_auto_auto] items-baseline gap-x-4 border-t border-psc-border px-5 py-2.5 font-sans ${text}`}
+            >
+              <span className="font-medium text-psc-ink">{o.supplier}</span>
+              <span className="text-psc-gray">{o.lead}</span>
+              <span className="text-psc-ink">{o.fob}</span>
+              <span className="text-right font-medium text-psc-ink">{o.total}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );

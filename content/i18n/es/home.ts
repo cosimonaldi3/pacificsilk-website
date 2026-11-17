@@ -116,6 +116,7 @@ export const homeContent: HomeContent = {
         ],
       },
       dest: { question: "¿Dónde termina?", placeholder: "País de destino" },
+      other: { label: "Cuéntanos sobre tu proyecto", placeholder: "Describe lo que tienes en mente" },
       worry: {
         question: "¿Qué te preocupa más?",
         options: [

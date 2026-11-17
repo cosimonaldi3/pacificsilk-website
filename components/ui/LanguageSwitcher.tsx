@@ -7,10 +7,17 @@ import { routing } from "@/i18n/routing";
 const LABELS: Record<string, string> = {
   en: "EN",
   es: "ES",
+  zh: "中",
 };
 
-/* Chinese is a separate section reached from the nav's "Chinese side" button,
-   not a language option (homepage brief, section 11). */
+const NAMES: Record<string, string> = {
+  en: "English",
+  es: "Español",
+  zh: "中文",
+};
+
+/* Chinese is a language option here: it translates the current page in place.
+   The nav's "Chinese site" button is a separate entry point that asks first. */
 const SWITCHABLE = routing.locales.filter((loc) => loc in LABELS);
 
 interface Props {
@@ -41,8 +48,9 @@ export default function LanguageSwitcher({ className }: Props) {
                 ? "text-psc-ink cursor-default"
                 : "text-psc-gray hover:text-psc-ink"
             }`}
-            aria-label={`Switch language to ${loc}`}
+            aria-label={`Switch language to ${NAMES[loc]}`}
             aria-current={locale === loc ? "true" : undefined}
+            lang={loc === "zh" ? "zh-Hans" : loc}
           >
             {LABELS[loc]}
           </button>

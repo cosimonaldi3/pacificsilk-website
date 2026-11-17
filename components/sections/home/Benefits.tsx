@@ -43,9 +43,9 @@ const GLYPHS: React.ReactNode[] = [
 
 export default function Benefits({ content }: BenefitsProps) {
   return (
-    <section aria-labelledby="benefits-heading" className="bg-psc-muted py-16 md:py-20">
+    <section aria-labelledby="benefits-heading" className="py-16 md:py-20">
       <Container>
-        <p id="benefits-heading" className="mb-8 font-sans text-small uppercase tracking-widest text-psc-gray">
+        <p id="benefits-heading" className="mb-8 font-sans text-small uppercase tracking-widest text-psc-bg">
           {content.label}
         </p>
 

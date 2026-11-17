@@ -4,6 +4,8 @@ import type { LogoVariant } from "@/components/Logo";
 export interface CtaLink {
   label: string;
   href: string;
+  /* Opens in a new tab (the booking page) */
+  external?: boolean;
 }
 
 export interface HeroContent {
@@ -92,8 +94,9 @@ export interface BuilderContent {
   modes: { guided: string; manual: string };
   questions: {
     type: { question: string; options: BuilderOption[] };
-    today: { question: string; options: BuilderOption[] };
+    today: { question: string; options: BuilderOption[]; byType?: Record<string, BuilderOption[]> };
     dest: { question: string; placeholder: string };
+    other: { label: string; placeholder: string };
     worry: { question: string; options: BuilderOption[] };
   };
   groups: { title: string; services: BuilderOption[] }[];
@@ -138,29 +141,29 @@ export const homeContent: HomeContent = {
   hero: {
     logo: "psc-horizontal-white",
     headline: "The bridge between China\nand your market.",
-    subheadline: "One language. One team. You never deal with the Chinese side.",
-    cta: { label: "Build your project path", href: "#builder" },
-    secondaryCta: { label: "See how it works", href: "#journey" },
+    subheadline: "One language. One team. Doing business with China, redefined.",
+    cta: { label: "Book a call", href: BOOKING_URL, external: true },
+    secondaryCta: { label: "Get a quote", href: "/start" },
   },
   journey: {
     label: "How it works",
-    headline: "One path, from your country to China and back.",
+    headline: "Local insight, seamlessly joined with supplier research in China.",
     local: {
       label: "Your country",
       title: "Start with a local team",
-      body: "Your project begins in your language, with people near you. From the first conversation to delivery, this is the only team you talk to.",
+      body: "Talk with our regional representatives. Understand your project's capabilities together and build trust locally, where local knowledge is needed.",
       chatName: "Your project lead",
       chatStatus: "Replies in your language",
       messages: [
         { from: "you", text: "We need 2,000 units of our cotton tote by spring." },
-        { from: "team", text: "Understood. We'll shortlist three factories and come back with samples." },
+        { from: "team", text: "Understood. We'll shortlist three suppliers and come back with samples." },
       ],
     },
     china: {
       label: "China",
       title: "China, handled for you",
-      body: "Our team in China speaks to the factories in Chinese, understands how they really work, and brings everything back to you in your own language.",
-      factoryLabel: "Factory note",
+      body: "Our sourcing experts speak to the suppliers in Chinese and bring back translated information, with real insights on how to move forward.",
+      factoryLabel: "Supplier note",
       factoryNote: "样品周五寄出，大货交期 35 天。",
       relayLabel: "What you read",
       relayNote: "Samples ship Friday. Production takes 35 days.",
@@ -168,7 +171,7 @@ export const homeContent: HomeContent = {
     project: {
       label: "Your project",
       title: "Whatever the project, same path",
-      body: "Start with what you need. The model stays the same.",
+      body: "Every project is special. We give extra care to the aspects that need it most and cut the noise, guided by experts on both sides.",
       routes: [
         { name: "Individual project", line: "One product, one need, one clear route." },
         { name: "Cooperation", line: "Work together with partners in China and in your market." },
@@ -179,13 +182,13 @@ export const homeContent: HomeContent = {
     ladder: {
       label: "Growth",
       title: "Grow with your project",
-      body: "As the project deepens, the same team keeps supporting you, taking the friction out of doing business with China.",
+      body: "We are here to help you at every stage: as your project deepens and opportunities grow, the same team keeps supporting your next steps.",
       steps: ["Individual project", "Cooperation", "Joint venture", "New markets"],
     },
     network: {
       label: "The network",
       title: "From client to collaborator",
-      body: "After a few projects together, you can join us as a collaborator and become part of a worldwide network of project accelerator clusters.",
+      body: "Join the Pacific Silk Network of representatives and collaborators worldwide. Accelerate your projects and open opportunities between your region, our network and China.",
       path: ["Client", "Collaborator", "Network"],
       networkLabel: "A verified network, both ends",
     },
@@ -193,15 +196,15 @@ export const homeContent: HomeContent = {
   benefits: {
     label: "What you get by working this way",
     lead: {
-      title: "One language. One team. Zero dealing with China.",
-      body: "You speak with your own team, in your own language. We handle the Chinese side: the factories, the negotiation, the follow-up.",
+      title: "One language. One team. We deal with China for you.",
+      body: "You speak with your own team, in your own language. We handle the Chinese side: the suppliers, the negotiation, the follow-up.",
       image: "/images/home/shanghai-skyline.jpg",
       imageAlt: "Shanghai skyline across the Huangpu river",
     },
     items: [
-      { title: "Factories, understood", body: "We speak Chinese with them and relay it clearly." },
+      { title: "Suppliers, understood", body: "We speak Chinese with them and give you clear insights." },
       { title: "Same standard at both ends", body: "Checked in China and again when the goods arrive." },
-      { title: "Less friction, fewer surprises", body: "We absorb the advisory, import and logistics work." },
+      { title: "We reduce your risk", body: "We tailor a solution for you. Advisory, import and logistics are add-ons, offered when you need them." },
       { title: "A network that grows with you", body: "Start as a client, go deeper, join the network." },
     ],
   },
@@ -210,17 +213,17 @@ export const homeContent: HomeContent = {
     headline: "Three ways to do it.",
     note: "Typical patterns, side by side.",
     columns: [
-      { title: "Doing it yourself", sub: "You to the factory, alone" },
+      { title: "Doing it yourself", sub: "You to the supplier, alone" },
       { title: "A chain of intermediaries", sub: "You, then layer after layer" },
       { title: "Pacific Silk", sub: "You, one team on both ends" },
     ],
     rows: [
-      { label: "Who you deal with", values: ["Factories directly, alone", "A chain of agents and distributors", "One team, in your language"] },
+      { label: "Who you deal with", values: ["Suppliers directly, alone", "A chain of agents and distributors", "Suppliers directly, with one team that works for you in China"] },
       { label: "Language and culture", values: ["You bridge it yourself", "Lost at each handoff", "Handled on both ends"] },
       { label: "Trust and verification", values: ["You verify from far away", "Each layer checks only its own part", "Verified at source and on arrival"] },
       { label: "Quality", values: ["Checked only if you can travel", "Depends on who is paid to check", "Same standard at both ends"] },
       { label: "Accountability", values: ["Entirely yours", "Spread across layers, easy to lose", "One team, end to end"] },
-      { label: "What you see", values: ["Only what you can reach", "Filtered by each layer", "Direct, clear, in your language"] },
+      { label: "What you see", values: ["Only what you can reach", "Filtered by each layer", "Direct, clear and efficient"] },
     ],
   },
   builder: {
@@ -231,27 +234,42 @@ export const homeContent: HomeContent = {
       type: {
         question: "What kind of project is it?",
         options: [
-          { id: "individual", label: "Individual project" },
-          { id: "cooperation", label: "Cooperation" },
-          { id: "investment", label: "Investment" },
-          { id: "cluster", label: "Cluster or association" },
+          { id: "individual", label: "I want to produce or buy from China" },
+          { id: "cooperation", label: "I want to find my right partner in China to collaborate" },
+          { id: "research", label: "I want to engage in research and cross-country initiatives" },
+          { id: "other", label: "Other" },
         ],
       },
       today: {
         question: "Where are you today?",
+        /* Default list: individual projects, and Other */
         options: [
           { id: "idea", label: "I have an idea" },
           { id: "specs", label: "I have specs" },
           { id: "supplier", label: "I have a supplier" },
           { id: "importing", label: "I already import" },
         ],
+        /* Per project type, when the list differs from the default */
+        byType: {
+          cooperation: [
+            { id: "distributor", label: "Build a distributor network for a Chinese provider" },
+            { id: "sell", label: "Sell my products in China" },
+            { id: "tender", label: "Engage in a public contract application with a Chinese supplier" },
+          ],
+          research: [
+            { id: "joint", label: "Run a joint research project" },
+            { id: "pilot", label: "Test a cross-border pilot with a Chinese partner" },
+            { id: "codev", label: "Co-develop a product or technology" },
+          ],
+        },
       },
       dest: { question: "Where does it end?", placeholder: "Destination country" },
+      other: { label: "Tell us about your project", placeholder: "Describe what you have in mind" },
       worry: {
         question: "What worries you most?",
         options: [
-          { id: "language", label: "Language" },
-          { id: "trust", label: "Trust" },
+          { id: "language", label: "Language and culture barriers" },
+          { id: "trust", label: "Risk bearing" },
           { id: "quality", label: "Quality" },
           { id: "logistics", label: "Logistics" },
         ],
@@ -290,15 +308,24 @@ export const homeContent: HomeContent = {
     map: {
       type: {
         individual: [],
-        cooperation: ["matching"],
+        cooperation: [],
         investment: ["assessment"],
         cluster: ["coordination"],
+        research: [],
+        other: [],
       },
       today: {
         idea: ["feasibility"],
         specs: ["search", "negotiation"],
         supplier: ["verification", "followup"],
         importing: ["inspection", "shipping", "destination"],
+        /* Drafts for the cooperation and research options */
+        distributor: ["matching", "verification"],
+        sell: ["feasibility", "matching"],
+        tender: ["feasibility", "verification", "negotiation"],
+        joint: ["matching", "coordination"],
+        pilot: ["matching", "shipping"],
+        codev: ["matching", "feasibility"],
       },
       worry: {
         language: ["negotiation"],
@@ -325,7 +352,7 @@ export const homeContent: HomeContent = {
   },
   finalCta: {
     headline: "Tell us what you need.\nWe'll show you the path.",
-    body: "No commitment. No pop-ups. Just a clear first proposal.",
+    body: "No commitment. You get a clear first proposal: a quote, a sample plan and a supplier shortlist.",
     cta: { label: "Build your project path", href: "#builder" },
     secondary: [
       { label: "Book a call", href: BOOKING_URL },
