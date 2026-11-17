@@ -12,8 +12,8 @@ interface HeroProps {
   logo?: LogoVariant;
   headline: string;
   subheadline: string;
-  cta?: { label: string; href: string };
-  secondaryCta?: { label: string; href: string };
+  cta?: { label: string; href: string; external?: boolean };
+  secondaryCta?: { label: string; href: string; external?: boolean };
   /* Pin the video to the viewport so the page scrolls over it. The page must give
      the sections below `relative z-10` and an opaque background; any transparent
      section further down shows the video again. */
@@ -161,22 +161,42 @@ export default function Hero({
         {/* CTAs */}
         {(cta || secondaryCta) && (
           <div className="flex flex-wrap gap-3">
-            {cta && (
-              <Link
-                href={cta.href}
-                className="inline-block font-sans text-base font-medium px-8 py-4 bg-psc-red text-psc-bg hover:opacity-80 transition"
-              >
-                {cta.label}
-              </Link>
-            )}
-            {secondaryCta && (
-              <Link
-                href={secondaryCta.href}
-                className="inline-block font-sans text-base font-medium px-8 py-4 border border-psc-bg/50 text-psc-bg hover:border-psc-bg hover:bg-psc-bg/10 transition"
-              >
-                {secondaryCta.label}
-              </Link>
-            )}
+            {cta &&
+              (cta.external ? (
+                <a
+                  href={cta.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block font-sans text-base font-medium px-8 py-4 bg-psc-red text-psc-bg hover:opacity-80 transition"
+                >
+                  {cta.label}
+                </a>
+              ) : (
+                <Link
+                  href={cta.href}
+                  className="inline-block font-sans text-base font-medium px-8 py-4 bg-psc-red text-psc-bg hover:opacity-80 transition"
+                >
+                  {cta.label}
+                </Link>
+              ))}
+            {secondaryCta &&
+              (secondaryCta.external ? (
+                <a
+                  href={secondaryCta.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block font-sans text-base font-medium px-8 py-4 border border-psc-bg/50 text-psc-bg hover:border-psc-bg hover:bg-psc-bg/10 transition"
+                >
+                  {secondaryCta.label}
+                </a>
+              ) : (
+                <Link
+                  href={secondaryCta.href}
+                  className="inline-block font-sans text-base font-medium px-8 py-4 border border-psc-bg/50 text-psc-bg hover:border-psc-bg hover:bg-psc-bg/10 transition"
+                >
+                  {secondaryCta.label}
+                </Link>
+              ))}
           </div>
         )}
         {children}

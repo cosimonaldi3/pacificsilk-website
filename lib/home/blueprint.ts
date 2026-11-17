@@ -26,7 +26,8 @@ export function buildBlueprint(answers: GuidedAnswers, config: BuilderContent): 
     answers.worries.length > 0,
   ].filter(Boolean).length;
 
-  if (answered > 0) add([config.firstService]);
+  /* Always shown, so the free definition is visible before the visitor clicks anything */
+  add([config.firstService]);
   if (answers.type) add(config.map.type[answers.type]);
   if (answers.today) add(config.map.today[answers.today]);
   answers.worries.forEach((w) => add(config.map.worry[w]));

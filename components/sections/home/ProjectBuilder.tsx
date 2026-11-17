@@ -19,7 +19,9 @@ export default function ProjectBuilder({ content }: ProjectBuilderProps) {
   const [mode, setMode] = useState<Mode>("guided");
   const [answers, setAnswers] = useState<GuidedAnswers>({ type: null, today: null, dest: "", worries: [] });
   const [manual, setManual] = useState<string[]>([]);
+  const [otherText, setOtherText] = useState("");
   const destId = useId();
+  const otherId = useId();
 
   const labels = useMemo(() => {
     const m: Record<string, string> = {};
@@ -43,13 +45,16 @@ export default function ProjectBuilder({ content }: ProjectBuilderProps) {
   const mailto = (() => {
     const lines = services.map((id) => `- ${labels[id]}`);
     if (mode === "guided" && answers.dest.trim()) lines.push(`${content.destinationLabel}: ${answers.dest.trim()}`);
+    if (mode === "guided" && answers.type === "other" && otherText.trim()) lines.push(`${content.questions.other.label}: ${otherText.trim()}`);
     const body = `${content.send.intro}\n\n${lines.join("\n")}`;
     return `mailto:${content.send.email}?subject=${encodeURIComponent(content.send.subject)}&body=${encodeURIComponent(body)}`;
   })();
 
+  /* "Where are you today?" depends on the project type; Other and no pick use the default list */
+  const todayOptions = content.questions.today.byType?.[answers.type ?? ""] ?? content.questions.today.options;
   const questions: { key: "type" | "today" | "worry"; question: string; options: BuilderOption[] }[] = [
     { key: "type", ...content.questions.type },
-    { key: "today", ...content.questions.today },
+    { key: "today", question: content.questions.today.question, options: todayOptions },
     { key: "worry", ...content.questions.worry },
   ];
   const done = {
@@ -89,7 +94,12 @@ export default function ProjectBuilder({ content }: ProjectBuilderProps) {
                   setAnswers((a) =>
                     multi
                       ? { ...a, worries: toggleIn(a.worries, o.id) }
-                      : { ...a, [q.key]: a[q.key as "type" | "today"] === o.id ? null : o.id },
+                      : {
+                          ...a,
+                          [q.key]: a[q.key as "type" | "today"] === o.id ? null : o.id,
+                          /* A different project type has different "today" options, so the old pick no longer applies */
+                          ...(q.key === "type" ? { today: null } : {}),
+                        },
                   )
                 }
               >
@@ -98,6 +108,21 @@ export default function ProjectBuilder({ content }: ProjectBuilderProps) {
             );
           })}
         </div>
+        {q.key === "type" && answers.type === "other" && (
+          <div className="mt-5 pl-10">
+            <label htmlFor={otherId} className="mb-3 block font-display text-lg font-medium text-psc-ink">
+              {content.questions.other.label}
+            </label>
+            <input
+              id={otherId}
+              type="text"
+              value={otherText}
+              onChange={(e) => setOtherText(e.target.value)}
+              placeholder={content.questions.other.placeholder}
+              className="w-full max-w-sm rounded-lg border border-psc-border bg-psc-bg px-4 py-2.5 font-sans text-[14px] text-psc-ink placeholder:text-psc-gray focus:border-psc-red focus:outline-none"
+            />
+          </div>
+        )}
       </fieldset>
     );
   };
