@@ -17,6 +17,8 @@ interface HeroProps {
   fixedBackdrop?: boolean;
   /* Still image instead of the video, same framing and overlay */
   image?: { src: string; alt: string };
+  /* Drop the small chevron when the page brings its own scroll cue */
+  hideScrollHint?: boolean;
   /* Extra content under the text, over the background */
   children?: React.ReactNode;
 }
@@ -29,6 +31,7 @@ export default function Hero({
   secondaryCta,
   fixedBackdrop = false,
   image,
+  hideScrollHint = false,
   children,
 }: HeroProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -171,6 +174,7 @@ export default function Hero({
       {/* Scroll indicator */}
       <div
         aria-hidden="true"
+        hidden={hideScrollHint}
         className={`absolute bottom-8 left-1/2 -translate-x-1/2 z-10 transition-opacity duration-700 ${
           scrolled ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}

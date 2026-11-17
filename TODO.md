@@ -52,6 +52,12 @@ Format: one item per line. Use checkboxes. Group by category.
 - [ ] This folder isn't a git repo (looks like a ZIP of `main`): connect it to the GitHub repo, then commit this work on a feature branch
 - [ ] Align `CLAUDE.md` with the code: sections 2, 10 and 12 still describe no i18n, a separate portal codebase, and `tailwind.config.ts`. Tally is missing from section 16
 
+## Process page
+- [ ] Validate stage: the quotation tile shows sample figures (USD 4.20 FOB Ningbo, 3,000 units, desk lamp) in `content/process.ts` → `validate.quote`. Swap them for numbers PSC is happy to show, or keep them as a clearly tagged example
+- [ ] Give stage 4 (Beyond) the same bento treatment as Define, Validate and Execute
+- [ ] Hydration warning on `/process`: `useId` values differ between server and browser (seen on `CapabilitiesGrid` tiles). Something above them renders differently on each side. The Define/Validate bentos now use fixed ids and no longer trigger it
+- [ ] Chinese copy for the Validate and Execute tiles: `/zh/process` shows the English text
+
 ## Questions for the user
 
 ## Future phases (not V1)

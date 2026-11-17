@@ -15,6 +15,8 @@
   --color-psc-muted: #EFECE4;
   --color-psc-red: #E71F1F;
   --color-psc-border: #E5E3DC;
+  /* Golden sample accent (Validate stage). Fill and stroke only: too light for text on cream */
+  --color-psc-gold: #B8913A;
 
   /* Brand tokens — canonical colour system */
   --color-brand-red:   #e82020;
@@ -41,8 +43,31 @@
   50%       { transform: translateY(8px); opacity: 0.25; }
 }
 
+/* ScrollCue: two banks of fog drift slowly in opposite directions; the arrow nudges down */
+.scroll-fog { position: absolute; bottom: -30%; height: 90%; width: 160%; filter: blur(28px); opacity: 0.95; }
+.scroll-fog-a {
+  left: -30%;
+  background:
+    radial-gradient(ellipse 30% 55% at 18% 70%, color-mix(in srgb, var(--color-psc-bg) 92%, transparent), transparent),
+    radial-gradient(ellipse 26% 50% at 55% 60%, color-mix(in srgb, var(--color-psc-bg) 85%, transparent), transparent),
+    radial-gradient(ellipse 30% 55% at 88% 72%, color-mix(in srgb, var(--color-psc-bg) 92%, transparent), transparent);
+  animation: scroll-fog-a 26s ease-in-out infinite alternate;
+}
+.scroll-fog-b {
+  left: -50%;
+  background:
+    radial-gradient(ellipse 28% 45% at 30% 80%, color-mix(in srgb, var(--color-psc-bg) 80%, transparent), transparent),
+    radial-gradient(ellipse 30% 50% at 70% 70%, color-mix(in srgb, var(--color-psc-bg) 88%, transparent), transparent);
+  animation: scroll-fog-b 34s ease-in-out infinite alternate;
+}
+@keyframes scroll-fog-a { from { transform: translateX(-6%); } to { transform: translateX(6%); } }
+@keyframes scroll-fog-b { from { transform: translateX(7%) translateY(4%); } to { transform: translateX(-7%) translateY(-3%); } }
+.scroll-cue-arrow { animation: scroll-cue-nudge 2.2s ease-in-out infinite; }
+@keyframes scroll-cue-nudge { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(3px); } }
+
 @media (prefers-reduced-motion: reduce) {
   .scroll-hint-arrow { animation: none !important; }
+  .scroll-cue-arrow, .scroll-fog { animation: none !important; }
 }
 
 /* Fonts: reference runtime CSS vars from next/font — must use @theme inline */

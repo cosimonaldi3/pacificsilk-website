@@ -2,24 +2,14 @@ import type { Metadata } from "next";
 import Nav from "@/components/ui/Nav";
 import FinalCta from "@/components/sections/FinalCta";
 import Footer from "@/components/ui/Footer";
+import ScrollCue from "@/components/ui/ScrollCue";
 import Hero from "@/components/sections/Hero";
-import CapabilitiesGrid from "@/components/sections/CapabilitiesGrid";
-import MoveAndSupport from "@/components/sections/capabilities/MoveAndSupport";
 import HeroSteps from "@/components/sections/process/HeroSteps";
 import ProcessExplorer from "@/components/sections/process/ProcessExplorer";
 import { processContent } from "@/content/process";
 import "@/components/sections/capabilities/capabilities.css";
 import "@/components/sections/home/home.css";
 import "@/components/sections/process/process.css";
-
-/* The grid and the route reuse the capabilities copy (they moved here from that page) */
-async function loadCapabilities(locale: string) {
-  if (locale === "es")
-    return (await import("@/content/i18n/es/capabilities")).capabilitiesContent;
-  if (locale === "zh")
-    return (await import("@/content/i18n/zh/capabilities")).capabilitiesContent;
-  return (await import("@/content/capabilities")).capabilitiesContent;
-}
 
 async function loadContent(locale: string) {
   if (locale === "es")
@@ -49,12 +39,12 @@ export default async function ProcessPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const { intro, detail, stages, define, finalCta } = await loadContent(locale);
-  const { grid, move } = await loadCapabilities(locale);
+  const { intro, detail, stages, define, validate, execute, beyond, finalCta } = await loadContent(locale);
 
   return (
     <>
       <Nav />
+      <ScrollCue label={intro.scrollCue} />
       <main>
         {/* P1 Intro: image backdrop, same framing as the homepage video */}
         <Hero
@@ -62,6 +52,7 @@ export default async function ProcessPage({
           headline={intro.headline}
           subheadline={intro.subline}
           image={{ src: intro.image, alt: intro.imageAlt }}
+          hideScrollHint
           fixedBackdrop
         >
           <HeroSteps stages={stages} />
@@ -70,11 +61,7 @@ export default async function ProcessPage({
         {/* Everything below scrolls over the fixed image */}
         <div className="relative z-10">
         {/* P3 Stage detail */}
-        <ProcessExplorer detail={detail} stages={stages} define={define} />
-
-        {/* What we run + the route from factory to door */}
-        <CapabilitiesGrid content={grid} />
-        <MoveAndSupport content={move} globe={grid.movement} />
+        <ProcessExplorer detail={detail} stages={stages} define={define} validate={validate} execute={execute} beyond={beyond} />
 
         {/* P4 Call to action */}
         <FinalCta content={finalCta} />

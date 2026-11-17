@@ -52,8 +52,10 @@
 @keyframes pd-fill { 0%, 6% { transform: scaleX(0.04); } 30%, 86% { transform: scaleX(1); } 100% { transform: scaleX(0.04); } }
 /* China map: stickers pop in turn, leader lines flow, tinted regions breathe */
 .pd-sticker { animation: pd-chip 7s ease-out infinite; animation-delay: calc(var(--i) * 0.5s); }
-.pd-lead { animation: pd-lead 1.6s linear infinite; }
-@keyframes pd-lead { to { stroke-dashoffset: -12; } }
+/* China map icon badges: fade only, because the badge position is an SVG transform attribute */
+.pd-badge-disc { filter: drop-shadow(0 3px 6px rgb(10 10 10 / 0.14)); }
+.pd-accent { stroke: var(--color-psc-red); }
+.pd-accent-fill { stroke: var(--color-psc-red); fill: color-mix(in srgb, var(--color-psc-red) 22%, transparent); }
 .pd-region { animation: pd-region 5s ease-in-out infinite; }
 @keyframes pd-region { 0%, 100% { opacity: 0.75; } 50% { opacity: 1; } }
 /* Opportunities light up around the project */
@@ -67,9 +69,92 @@
 .pd-seg { animation: pd-fill 7s cubic-bezier(0.2, 0.8, 0.2, 1) infinite; animation-delay: calc(var(--i) * 0.45s); }
 .pd-row { animation: pd-chip 7s ease-out infinite; animation-delay: calc(0.4s + var(--i) * 0.45s); }
 
+/* Split-flap departures board (Prospection trip tile), after the Solari mechanic: the top flap
+   falls (shading as it turns away), then the bottom flap lands. .pd-flap-tick times one flip. */
+.pd-flap-cell { position: relative; display: block; height: 2.25rem; width: 1.75rem; flex: 0 0 auto; border-radius: 3px; perspective: 160px; font-family: var(--font-sans); font-size: 1.25rem; font-weight: 600; color: var(--color-psc-bg); }
+.pd-flap-cell::after { content: ""; position: absolute; inset-inline: 0; top: 50%; z-index: 5; height: 1px; background: color-mix(in srgb, var(--color-psc-bg) 18%, var(--color-psc-ink)); }
+.pd-half { position: absolute; inset-inline: 0; height: 50%; overflow: hidden; background: var(--color-psc-ink); backface-visibility: hidden; }
+.pd-half-top { top: 0; border-radius: 3px 3px 0 0; transform-origin: 50% 100%; }
+.pd-half-bottom { bottom: 0; border-radius: 0 0 3px 3px; transform-origin: 50% 0; }
+.pd-glyph { position: absolute; inset-inline: 0; display: flex; height: 200%; align-items: center; justify-content: center; }
+.pd-half-top .pd-glyph { top: 0; }
+.pd-half-bottom .pd-glyph { bottom: 0; }
+.pd-flap-top { z-index: 3; animation: pd-flap-top 55ms ease-in forwards; }
+.pd-flap-bottom { z-index: 4; transform: rotateX(90deg); animation: pd-flap-bottom 55ms ease-out 55ms forwards; }
+.pd-flap-tick { position: absolute; animation: pd-flap-tick 110ms linear; }
+@keyframes pd-flap-top { from { transform: rotateX(0); } to { transform: rotateX(-90deg); background: color-mix(in srgb, var(--color-psc-ink) 55%, var(--color-psc-gray)); } }
+@keyframes pd-flap-bottom { from { transform: rotateX(90deg); background: color-mix(in srgb, var(--color-psc-ink) 55%, var(--color-psc-gray)); } to { transform: rotateX(0); } }
+@keyframes pd-flap-tick { from { opacity: 0; } to { opacity: 0; } }
+
+/* Larger departures board inside the opened Define overlay */
+.pd-large .pd-flap-cell { height: 3.4rem; width: 2.6rem; font-size: 1.9rem; }
+
+/* ---------- Validate tiles (validateVisuals.tsx) ---------- */
+/* A stamp lands after the rows above it have appeared, holds, then lifts. --r sets its tilt. */
+.pv-stamp { --r: -14deg; animation: pv-stamp 7s cubic-bezier(0.2, 0.8, 0.2, 1) infinite; }
+@keyframes pv-stamp {
+  0%, 56% { opacity: 0; transform: scale(1.6) rotate(var(--r)); }
+  62%, 90% { opacity: 0.9; transform: scale(1) rotate(var(--r)); }
+  100% { opacity: 0; transform: scale(1) rotate(var(--r)); }
+}
+/* Chat: each message arrives in turn, the thread holds, then clears */
+.pv-msg { animation: pv-msg 8s ease-out infinite; animation-delay: calc(var(--i) * 0.9s); }
+@keyframes pv-msg { 0%, 4% { opacity: 0; transform: translateY(6px); } 10%, 86% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+/* Clock second hand: one turn a minute */
+.pv-hand { transform-box: view-box; transform-origin: 12px 12px; animation: pv-spin 60s linear infinite; }
+@keyframes pv-spin { to { transform: rotate(360deg); } }
+/* Golden sample: three checks side by side, each on its own 6s loop (callipers, lens, load
+   plate). No text, so nothing to translate. */
+.pv-jaw { animation: pv-jaw 6s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+@keyframes pv-jaw { 0%, 8% { transform: translateX(22px); } 38%, 80% { transform: translateX(0); } 100% { transform: translateX(22px); } }
+.pv-lens { animation: pv-lens 6s ease-in-out infinite; }
+@keyframes pv-lens {
+  0%, 4% { transform: translate(56px, 44px); }
+  34% { transform: translate(104px, 44px); }
+  52%, 84% { transform: translate(98px, 66px); }
+  100% { transform: translate(56px, 44px); }
+}
+.pv-lens-tick { animation: pv-lens-tick 6s ease-out infinite; }
+@keyframes pv-lens-tick { 0%, 50% { opacity: 0; } 56%, 84% { opacity: 1; } 92%, 100% { opacity: 0; } }
+.pv-press { animation: pv-press 6s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+@keyframes pv-press { 0%, 8% { transform: translateY(-6px); } 32%, 62% { transform: translateY(14px); } 88%, 100% { transform: translateY(-6px); } }
+
+/* ---------- Define bento: a tile grows to cover the grid (DefineBento.tsx) ---------- */
+/* The overlay's clip-path runs from the tile's rectangle to the whole grid; keep 520ms in sync with GROW_MS */
+.pd-overlay { transition: clip-path 520ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+/* The closed tiles step back while the overlay covers them */
+.pd-dim { transition: opacity 400ms ease, transform 520ms cubic-bezier(0.2, 0.8, 0.2, 1), filter 400ms ease; }
+.pd-dim-on { opacity: 0; transform: scale(0.98); filter: blur(2px); }
+/* Tall grids: the tiles below the opened card stay faintly visible */
+.pd-dim-soft { opacity: 0.25; transform: scale(0.98); filter: blur(2px); }
+/* Enlarged visual settles in, then the text rises line by line */
+.pd-overlay-in .pd-overlay-visual { animation: pd-settle 0.7s 0.15s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+@keyframes pd-settle { from { opacity: 0; transform: scale(0.94); } }
+.pd-rise { opacity: 0; }
+.pd-overlay-in .pd-rise { animation: pd-rise 0.55s ease-out both; animation-delay: calc(0.25s + var(--i) * 0.08s); }
+@keyframes pd-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* Beyond, other ways in: the dashed path climbs the steps (cap-dash, capabilities.css) */
+.pb-climb { animation: cap-dash 1.6s linear infinite; }
+/* A ripple off the "today" dot */
+.pb-here { transform-box: fill-box; transform-origin: center; animation: pb-here 2s ease-out infinite; }
+@keyframes pb-here {
+  0% { opacity: 0.45; transform: scale(1); }
+  100% { opacity: 0; transform: scale(2.6); }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .pd-sticker, .pd-lead, .pd-region, .pd-line, .pd-area, .pd-fill, .pd-opp, .pd-ping, .pd-chip, .pd-seg, .pd-row { animation: none; }
+  .pd-overlay, .pd-dim { transition: none; }
+  .pd-dim-on, .pd-dim-soft { transform: none; filter: none; }
+  .pd-rise { opacity: 1; }
+  .pd-overlay-in .pd-overlay-visual, .pd-overlay-in .pd-rise { animation: none; }
+  .pd-sticker, .pd-region, .pd-line, .pd-area, .pd-fill, .pd-opp, .pd-ping, .pd-chip, .pd-seg, .pd-row { animation: none; }
   .pd-opp:nth-of-type(odd) { fill: var(--color-psc-red); }
+  .pv-stamp, .pv-msg, .pv-hand, .pv-jaw, .pv-lens, .pv-lens-tick, .pv-press, .pb-climb { animation: none; }
+  .pb-here { animation: none; opacity: 0; }
+  .pv-lens { transform: translate(98px, 66px); }
+  .pv-press { transform: translateY(-6px); }
+  .pv-stamp { opacity: 0.9; transform: rotate(var(--r)); }
   .pr-hero-line, .pr-hero-dot, .pr-hero-label { animation: none; }
   .pr-hero-travel { animation: none; opacity: 0; }
   .pr-lane-dot, .pr-lane-dot-y { animation: none; opacity: 0; }

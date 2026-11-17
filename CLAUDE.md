@@ -109,6 +109,7 @@ See `.claude/design-recreation.md` for the workflow when recreating elements ins
 --psc-muted:    #EFECE4   /* subtle warm tone for section backgrounds */
 --psc-red:      #E71F1F   /* brand accent — sparingly, confidently */
 --psc-border:   #E5E3DC   /* subtle dividers */
+--psc-gold:     #B8913A   /* golden sample accent — fill/stroke only, never text on cream */
 ```
 
 ### Typography
