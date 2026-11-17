@@ -58,14 +58,14 @@ export default function Nav() {
             href="/"
             locale="zh"
             lang="zh"
-            className="hidden lg:inline-block font-sans text-small font-medium text-psc-gray border border-psc-border px-3 py-1.5 hover:text-psc-ink hover:border-psc-ink transition"
+            className="hidden lg:inline-block font-sans text-small font-medium text-psc-gray border border-psc-border rounded-full px-3 py-1.5 hover:text-psc-ink hover:border-psc-ink transition"
           >
             {t("chineseSide")}
           </Link>
           <LanguageSwitcher className="hidden lg:flex" />
           <Link
             href="/start"
-            className="hidden lg:inline-block font-sans text-small font-medium px-5 py-2.5 bg-psc-ink text-psc-bg hover:opacity-80 transition"
+            className="hidden lg:inline-block font-sans text-small font-medium rounded-full px-5 py-2.5 bg-psc-ink text-psc-bg hover:opacity-80 transition"
           >
             {t("cta")}
           </Link>
@@ -126,7 +126,7 @@ export default function Nav() {
             <Link
               href="/start"
               onClick={() => setOpen(false)}
-              className="mt-4 inline-block text-center font-sans text-small font-medium px-5 py-3 bg-psc-ink text-psc-bg hover:opacity-80 transition"
+              className="mt-4 inline-block text-center font-sans text-small font-medium rounded-full px-5 py-3 bg-psc-ink text-psc-bg hover:opacity-80 transition"
             >
               {t("cta")}
             </Link>
@@ -138,7 +138,7 @@ export default function Nav() {
                 locale="zh"
                 lang="zh"
                 onClick={() => setOpen(false)}
-                className="font-sans text-small font-medium text-psc-gray border border-psc-border px-3 py-1.5 hover:text-psc-ink transition"
+                className="font-sans text-small font-medium text-psc-gray border border-psc-border rounded-full px-3 py-1.5 hover:text-psc-ink transition"
               >
                 {t("chineseSide")}
               </Link>
