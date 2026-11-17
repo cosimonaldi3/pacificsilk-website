@@ -48,7 +48,6 @@ export default async function ProcessPage({
       <main>
         {/* P1 Intro: image backdrop, same framing as the homepage video */}
         <Hero
-          eyebrow={intro.label}
           headline={intro.headline}
           subheadline={intro.subline}
           image={{ src: intro.image, alt: intro.imageAlt }}
@@ -64,7 +63,8 @@ export default async function ProcessPage({
         <ProcessExplorer detail={detail} stages={stages} define={define} validate={validate} execute={execute} beyond={beyond} />
 
         {/* P4 Call to action */}
-        <FinalCta content={finalCta} />
+        {/* Transparent, so the fixed hero image returns at the bottom, as on the home page */}
+        <FinalCta content={finalCta} overVideo />
         </div>
       </main>
       <footer className="relative z-10 bg-psc-ink py-16">

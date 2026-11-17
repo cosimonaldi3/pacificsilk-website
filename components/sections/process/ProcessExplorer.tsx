@@ -3,6 +3,8 @@ import DefineGrid from "./DefineGrid";
 import ValidateGrid from "./ValidateGrid";
 import ExecuteGrid from "./ExecuteGrid";
 import BeyondGrid from "./BeyondGrid";
+import BeyondNetwork from "./BeyondNetwork";
+import StageGroup from "./StageGroup";
 import type { ProcessPageContent } from "@/content/process";
 
 interface ProcessExplorerProps {
@@ -16,8 +18,8 @@ interface ProcessExplorerProps {
 
 const num = (i: number) => String(i + 1).padStart(2, "0");
 
-/* Stage detail: all four stages stacked one under the other, scroll to read them.
-   Each stage is a bento of live tiles. */
+/* Stage detail: all four stages stacked one under the other. Each stage's bento of live tiles
+   folds open and shut with its own plus/minus, so the page stays short until a stage is wanted. */
 export default function ProcessExplorer({ detail, stages, define, validate, execute, beyond }: ProcessExplorerProps) {
   return (
     <section aria-labelledby="stage-detail-heading" className="bg-psc-bg py-16 md:py-20">
@@ -28,13 +30,17 @@ export default function ProcessExplorer({ detail, stages, define, validate, exec
 
         <ol className="space-y-14 md:space-y-16">
           {stages.map((stage, i) => (
-            <li key={stage.name} id={`stage-${i + 1}`} className="scroll-mt-24">
-              <h2 className="font-display text-h2 font-medium leading-tight text-psc-ink">
-                <span className="mr-3 font-mono text-base text-psc-red">{num(i)}</span>
-                {stage.name}
-              </h2>
-              <p className="mb-6 mt-1 font-sans text-body text-psc-gray">{stage.span}</p>
-
+            <StageGroup
+              key={stage.name}
+              index={i + 1}
+              number={num(i)}
+              name={stage.name}
+              span={stage.span}
+              showLabel={detail.showStage}
+              hideLabel={detail.hideStage}
+              /* Beyond's network sits under the toggled tiles, always visible */
+              footer={i === 3 ? <BeyondNetwork content={beyond.network} /> : undefined}
+            >
               {i === 0 ? (
                 <DefineGrid content={define} />
               ) : i === 1 ? (
@@ -44,7 +50,7 @@ export default function ProcessExplorer({ detail, stages, define, validate, exec
               ) : (
                 <BeyondGrid content={beyond} />
               )}
-            </li>
+            </StageGroup>
           ))}
         </ol>
       </Container>
