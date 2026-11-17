@@ -72,7 +72,6 @@ export interface ValidateContent {
       issuerLabel: string;
       issued: string;
       seal: string;
-      watermark: string;
       qrNote: string;
     };
   };
@@ -95,6 +94,10 @@ export interface ValidateContent {
     price: { label: string; value: string; unit: string };
     total: { label: string; value: string };
     stamp: string;
+    /* Validated suppliers quoting the same product, side by side, each adjustable to the client's terms */
+    optionsTitle: string;
+    adjustable: string;
+    options: { supplier: string; fob: string; lead: string; total: string }[];
   };
 }
 
@@ -145,7 +148,7 @@ export interface BeyondContent {
 
 export interface ProcessPageContent {
   meta: { title: string; description: string };
-  intro: { label: string; headline: string; subline: string; scrollCue: string; image: string; imageAlt: string };
+  intro: { headline: string; subline: string; scrollCue: string; image: string; imageAlt: string };
   lanes: {
     label: string;
     headline: string;
@@ -158,6 +161,9 @@ export interface ProcessPageContent {
   detail: {
     label: string;
     cards: { local: string; china: string; youGet: string; youDecide: string };
+    /* Accessible names for the plus/minus button that opens and closes each stage */
+    showStage: string;
+    hideStage: string;
   };
   /* Exactly four: Define, Validate, Execute, Beyond */
   stages: ProcessStage[];
@@ -175,7 +181,6 @@ export const processContent: ProcessPageContent = {
       "From idea to delivery in four stages. Two teams work side by side, one in your country and one in China. You only talk to one.",
   },
   intro: {
-    label: "Process",
     headline: "From idea to delivery.",
     subline: "Four stages. Two teams working side by side. One team talking to you.",
     scrollCue: "Scroll",
@@ -199,11 +204,13 @@ export const processContent: ProcessPageContent = {
       youGet: "You get",
       youDecide: "You decide",
     },
+    showStage: "Show stage",
+    hideStage: "Hide stage",
   },
   stages: [
     {
       name: "Define",
-      span: "From zero to a go or no-go decision",
+      span: "From zero to a go / no-go decision",
       local: "Listens and scopes your project in your language.",
       china: "Checks on the ground what the factories can really do.",
       youGet: "A clear scope and a first proposal.",
@@ -239,12 +246,12 @@ export const processContent: ProcessPageContent = {
     closeLabel: "Hide details",
     insight: {
       title: "Insight on your market in China",
-      body: "Which products China makes, how strong each industry is and where it is. Explained by people with local and industry knowledge, in your language.",
+      body: "Which products China makes, how strong each industry is and where it is. Explained by people with local and industry knowledge.",
       link: { label: "Start a project", href: "/start" },
       points: [
         "Where each industry is concentrated, province by province",
         "Which categories are growing and which are crowded",
-        "What it means for your product, explained in your language",
+        "What it means for your product and how to make the project useful",
       ],
       cardTitle: "Where China makes it",
       products: { electronics: "Electronics", machinery: "Machinery", textiles: "Textiles", footwear: "Footwear", tea: "Tea", ceramics: "Ceramics", batteries: "Batteries" },
@@ -257,7 +264,7 @@ export const processContent: ProcessPageContent = {
       points: [
         "Landed cost compared with what you pay today",
         "Yearly gain and payback time worked out for your volumes",
-        "A clear go or no-go before you spend anything",
+        "A clear go / no-go before you spend anything",
       ],
       cardTitle: "Project gain check",
       factors: [
@@ -270,19 +277,19 @@ export const processContent: ProcessPageContent = {
     },
     cost: {
       title: "Transparent costs",
-      body: "Before you commit, you get one contract. It states our fees, how the work is structured, the timeline of each stage and exactly which services are included. It binds us as much as it binds you.",
+      body: "Before you commit, you get one contract. It states our fees, how the work is structured, the estimated timeline of each stage and exactly which services are included. It binds us as much as it binds you.",
       link: { label: "Start a project", href: "/start" },
       points: [
         "Our fees fixed in writing before work starts",
-        "A timeline for every stage, from first quote to delivery",
-        "Every included service listed. Nothing implied",
+        "An estimated timeline for every stage, from first quote to delivery",
+        "Our list of services, proposed based on the current outlook",
       ],
       cardTitle: "Our commitment",
       terms: [
         { label: "Fees", value: "Fixed, in writing" },
         { label: "Structure", value: "One contract, one contact" },
-        { label: "Timelines", value: "Set for each stage" },
-        { label: "Services", value: "Listed, nothing implied" },
+        { label: "Timelines", value: "Estimated, set for each stage" },
+        { label: "Services", value: "Proposed for the current outlook" },
       ],
       note: "Binding once signed",
     },
@@ -293,15 +300,15 @@ export const processContent: ProcessPageContent = {
     },
     trip: {
       title: "Prospection trip",
-      body: "Travel to China with us: meet the people and see the places that matter before you decide.",
+      body: "Travel to China with us to meet your team in China and get introduced to its ecosystem. It is an exploratory trip, so it shows the landscape before you decide. It does not promise a supplier.",
       link: { label: "Start a project", href: "/start" },
       points: [
-        "We plan the route, the meetings and the factory visits",
-        "We travel with you and translate on site",
-        "You meet the people and see the work before you decide",
+        "We plan the route and the programme around your market",
+        "We travel with you and interpret on site",
+        "You meet your team in China and get introduced to its ecosystem",
       ],
       cardTitle: "Trip plan",
-      items: ["Meet the people", "Visit the sites", "See it working"],
+      items: ["Meet your team", "Meet the ecosystem", "Understand the market"],
       globe: { from: "Your country", to: "China", status: "Trip planned" },
       board: { title: "Departures", cities: ["Shanghai", "Ningbo", "Shenzhen"] },
     },
@@ -340,7 +347,6 @@ export const processContent: ProcessPageContent = {
         issuerLabel: "登记机关",
         issued: "2000年01月01日",
         seal: "示例样本 · 仅供展示 ·",
-        watermark: "SAMPLE",
         qrNote: "扫描二维码查询",
       },
     },
@@ -368,33 +374,33 @@ export const processContent: ProcessPageContent = {
     },
     logistics: {
       title: "The right route for your goods",
-      body: "Sea, rail or air. We compare cost, transit time and risk for your order, and we help you choose the logistics that fit your product, your volumes and your deadline.",
+      body: "Sea, rail or air, under the Incoterm you need. We compare cost, transit time, tariffs and import and export procedures for your order, on the same terms, so the numbers can be checked side by side. DDP or another Incoterm: we recommend what fits. You see the full outlook before you pay or hire the freight.",
       link: { label: "Estimate a shipment", href: "/tools/shipping-estimate" },
       points: [
-        "Sea, rail and air compared for your volumes",
-        "Transit time and cost set against your deadline",
-        "One route recommended, with the reasons in writing",
+        "Tariffs and import and export procedures included in every comparison",
+        "A route recommended for your Incoterm, DDP or other, with the reasons in writing",
+        "Comparable cost lines, so each option can be checked before you pay for freight",
       ],
       globe: { from: "China", to: "Your market", status: "Route defined" },
     },
     sample: {
-      title: "Define the golden sample",
-      body: "Nothing goes to production until a sample matches your spec. We test it for you, point by point. Once you approve it, it becomes the golden sample: every unit made after it is checked against it.",
+      title: "Reduce the risk of quality misalignment",
+      body: "Quality problems usually start with a gap between the sample and the spec. Nothing goes to production until the sample matches your spec. We test it in China, where tests run faster than shipping a sample to your market and waiting. Once you approve it, it becomes the golden sample: every unit made after it is checked against it.",
       link: { label: "Start a project", href: "/start" },
       points: [
-        "Samples tested against your spec by our team in China",
-        "You approve the sample before anything is produced",
-        "The approved sample becomes the standard for production",
+        "Samples tested in China, faster than in your market",
+        "Every gap against your spec found before production, not after shipping",
+        "The approved golden sample becomes the standard for every unit",
       ],
     },
     quote: {
       title: "A quotation you can rely on",
-      body: "You leave this stage with a detailed quotation: the FOB price, the product specs, the quantities, the lead time and the terms. Binding, and ready to sign.",
+      body: "You get a comparison of quotations from validated suppliers. Each one can be adapted to your specs, volumes and terms, so you see the options with the full picture. The one you choose becomes a detailed, binding quotation, ready to sign.",
       link: { label: "Start a project", href: "/start" },
       points: [
-        "FOB price per unit, fixed in writing",
-        "Product specs tied to the approved golden sample",
-        "Quantities, lead time, packaging and payment terms stated",
+        "Several quotations from validated suppliers, side by side",
+        "Each one adjustable to your specs, quantities and terms",
+        "The full picture for each option: FOB price, lead time, payment and total cost",
       ],
       cardTitle: "Quotation",
       ref: "Ref. Q-0000",
@@ -412,15 +418,22 @@ export const processContent: ProcessPageContent = {
       price: { label: "FOB price", value: "USD 4.20", unit: "per unit, FOB Ningbo" },
       total: { label: "Order total", value: "USD 12,600" },
       stamp: "Binding",
+      optionsTitle: "Validated suppliers, same product",
+      adjustable: "Adjustable",
+      options: [
+        { supplier: "Supplier A", fob: "USD 4.20", lead: "35 days", total: "USD 12,600" },
+        { supplier: "Supplier B", fob: "USD 4.55", lead: "28 days", total: "USD 13,650" },
+        { supplier: "Supplier C", fob: "USD 3.98", lead: "42 days", total: "USD 11,940" },
+      ],
     },
   },
   execute: {
     expandLabel: "Show details",
     closeLabel: "Hide details",
     tracking: {
-      title: "Track every project",
-      body: "One shared view of where your project stands, what is next and what we need from you. We follow production closely and you see every step as it happens.",
-      link: { label: "About the portal", href: "/portal" },
+      title: "Track your projects closely",
+      body: "We follow every project closely, from the factory to your door. One shared view of where it stands, what is next and what we need from you. You see every step as it happens.",
+      link: { label: "Log in to the portal", href: "/portal/login" },
       points: [
         "Every stage of production followed by our team in China",
         "Updates in your language, without having to ask",
@@ -433,12 +446,12 @@ export const processContent: ProcessPageContent = {
     },
     quality: {
       title: "Quality, checked on both ends",
-      body: "We inspect at the factory before it ships, and again when it lands. One standard, written down, applied twice.",
+      body: "We visit in person when it is required, and we check at the key points of the project, so you do not have to. One standard, written down and applied throughout.",
       link: { label: "Start a project", href: "/start" },
       points: [
-        "Inspection at the factory, against the golden sample",
-        "A second check when the goods arrive",
-        "A written report for every lot",
+        "Inspections at the factory at the key points of production, against the golden sample",
+        "Our team visits in person when it is required",
+        "A written report for every inspection",
       ],
       reportTitle: "Inspection report",
       reportRef: "Sample lot",
@@ -450,34 +463,34 @@ export const processContent: ProcessPageContent = {
     },
     paperwork: {
       title: "Paperwork and customs",
-      body: "Export papers in China, customs codes and clearance at destination. We prepare it, check it and file it.",
+      body: "On the China side, we prepare the export papers and the customs codes, check them and file them before the goods leave the factory.",
       link: { label: "Find your customs code", href: "/tools/tariff-finder" },
       points: [
         "Export documents prepared and checked in China",
         "The right customs code for your product",
-        "Clearance at destination filed for you",
+        "Export declarations filed before the goods leave",
       ],
       docs: ["Packing list", "Commercial invoice", "Customs declaration"],
       stamp: "Cleared",
     },
     support: {
       title: "Adaptable logistics support",
-      body: "Depending on the Incoterm you choose and your supply chain capabilities, we support you however you want, thanks to our logistics partners and logistics services.",
+      body: "Depending on the Incoterm you choose and your supply chain capabilities, we support you however you want, thanks to our logistics partners and logistics services. * Import clearance and national delivery at destination depend on the services available there.",
       link: { label: "Estimate a shipment", href: "/tools/shipping-estimate" },
       points: [
         "From the factory gate to your door, or any part of it",
         "Your forwarder, ours, or a mix of both",
-        "One team coordinating every handover along the way",
+        "Import clearance and national delivery at destination*",
       ],
       stops: ["Factory", "Origin port", "Destination port", "Your door"],
     },
     services: {
       title: "Additional logistics services",
-      body: "Moving the container is one part. We also take care of what happens around it: consolidation and warehousing in China, warehousing in your country, and insurance for the goods on the way.",
+      body: "Moving the container is one part. We also take care of what happens around it: consolidation and warehousing in China, and insurance for the goods on the way. * Warehousing in your country depends on the services available there.",
       link: { label: "Start a project", href: "/start" },
       points: [
         "Consolidation and warehouse in China",
-        "Warehouse in your country",
+        "Warehouse in your country*",
         "Insurance for your goods in transit",
       ],
       /* Painted on the side of the container sketch. A brand name, the same in every language. */

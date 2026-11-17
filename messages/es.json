@@ -1,6 +1,14 @@
 {
   "nav": {
-    "chineseSide": "Lado chino",
+    "chineseSite": "Sitio en chino",
+    "chineseSiteDialog": {
+      "title": "Bienvenido al sitio en chino",
+      "body": "Este sitio es para fábricas, proveedores y empresarios chinos que quieren construir su oferta y llevar sus productos a nuevos mercados en el extranjero.",
+      "question": "¿Quieres ir al sitio en chino o quedarte en este?",
+      "go": "Ir al sitio en chino",
+      "stay": "Quedarme aquí",
+      "close": "Cerrar"
+    },
     "process": "Proceso",
     "capabilities": "Impacto en clientes",
     "about": "Nosotros",

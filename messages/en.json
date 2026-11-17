@@ -1,6 +1,14 @@
 {
   "nav": {
-    "chineseSide": "Chinese side",
+    "chineseSite": "Chinese site",
+    "chineseSiteDialog": {
+      "title": "Welcome to the Chinese site",
+      "body": "This site is for Chinese factories, suppliers and business owners who want to build a supply side and take their products into new markets abroad.",
+      "question": "Do you want to go to the Chinese site, or stay on this one?",
+      "go": "Go to the Chinese site",
+      "stay": "Stay here",
+      "close": "Close"
+    },
     "process": "Process",
     "capabilities": "Client impact",
     "about": "About",
