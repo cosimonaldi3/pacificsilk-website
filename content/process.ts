@@ -363,7 +363,7 @@ export const processContent: ProcessPageContent = {
         { label: "Your time", time: "09:00", hour: 9, minute: 0 },
         { label: "China time", time: "16:00", hour: 16, minute: 0 },
       ],
-      senders: { you: "You", us: "PSC", factory: "Factory" },
+      senders: { you: "You", us: "PS", factory: "Factory" },
       messages: [
         { from: "you", text: "Can the finish be matte black?" },
         { from: "us", text: "表面可以做哑光黑吗？", zh: true },

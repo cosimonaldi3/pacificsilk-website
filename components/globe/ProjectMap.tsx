@@ -23,6 +23,8 @@ export interface MapPlace {
   labelSide?: "left" | "right";
   /* Display offset in map units, for dots that sit too close together */
   nudge?: [number, number];
+  /* "ink" draws a black dot instead of the default red one */
+  tone?: "red" | "ink";
 }
 
 const NO_PROJECTS: Project[] = [];
@@ -129,7 +131,11 @@ export default function ProjectMap({
           >
             <circle r={18} className="fill-transparent" />
             {active && <circle r={17} className="fill-none stroke-psc-red" strokeWidth={2} />}
-            <circle r={10} className="fill-psc-red stroke-psc-bg" strokeWidth={2} />
+            <circle
+              r={10}
+              className={o.tone === "ink" ? "fill-psc-ink stroke-psc-bg" : "fill-psc-red stroke-psc-bg"}
+              strokeWidth={2}
+            />
             {o.label && (
               <text
                 x={left ? -(10 + 7) : 10 + 7}

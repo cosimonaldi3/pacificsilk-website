@@ -5,8 +5,8 @@ import ResetPasswordForm from "@/components/portal/ResetPasswordForm";
 import { createClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
-  title: "Set a new password — Pacific Silk Consulting Portal",
-  description: "Set a new password for the Pacific Silk Consulting client portal.",
+  title: "Set a new password — Pacific Silk Group Portal",
+  description: "Set a new password for the Pacific Silk Group client portal.",
   robots: { index: false, follow: false },
 };
 

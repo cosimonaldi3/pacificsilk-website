@@ -13,12 +13,12 @@ import Image from "next/image";
  *   section background. Use sparingly — one per page max.
  *
  * Endorsement lockups (`endorsement-light`, `endorsement-dark`):
- *   PSC + PSA together. Reserve for content that explicitly discusses the
+ *   PS + PSA together. Reserve for content that explicitly discusses the
  *   Pacific Silk Alliance. Light variant for light sections, dark for dark.
  */
 
 export type LogoVariant =
-  // PSC wordmarks — horizontal
+  // PS wordmarks — horizontal
   | "psc-horizontal-red"
   | "psc-horizontal-white"
   | "psc-horizontal-black"
@@ -35,7 +35,7 @@ export type LogoVariant =
   | "logo-white-red"
   | "logo-black-white"
   | "logo-white-black"
-  // Endorsement lockups — PSC + PSA together
+  // Endorsement lockups — PS + PSA together
   | "endorsement-light"
   | "endorsement-dark"
   // Subsidiary logos
@@ -44,11 +44,14 @@ export type LogoVariant =
   | "spl-primary"
   | "spl-reversed";
 
+// Variants shipped as SVG (Pacific Silk Group lockup, 1152x240). The rest are PNG.
+const SVG_VARIANTS: LogoVariant[] = ["psc-horizontal-white", "psc-horizontal-black"];
+
 // Aspect ratio (width / height) for each variant group
 const ASPECT_RATIO: Record<LogoVariant, number> = {
   "psc-horizontal-red":   2,
-  "psc-horizontal-white": 2,
-  "psc-horizontal-black": 2,
+  "psc-horizontal-white": 4.8,
+  "psc-horizontal-black": 4.8,
   "psa-horizontal-red":   2,
   "psa-horizontal-white": 2,
   "psa-horizontal-black": 2,
@@ -97,7 +100,7 @@ export default function Logo({
 
   return (
     <Image
-      src={`/logos/${variant}.png`}
+      src={`/logos/${variant}.${SVG_VARIANTS.includes(variant) ? "svg" : "png"}`}
       alt={alt ?? defaultAlt(variant)}
       width={width}
       height={height}

@@ -14,7 +14,7 @@ async function loadContent(locale: string) {
 }
 
 export const metadata: Metadata = {
-  title: "Message received — Pacific Silk Consulting",
+  title: "Message received — Pacific Silk Group",
   description:
     "Your project inquiry is in. We'll be in touch within one business day.",
 };

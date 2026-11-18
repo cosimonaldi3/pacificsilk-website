@@ -62,7 +62,7 @@ export async function generateMetadata({
   const project = await getProjectBySlug(slug);
   if (!project) return {};
   return {
-    title: `${project.name} — Pacific Silk Consulting`,
+    title: `${project.name} — Pacific Silk Group`,
     description: project.summary,
     openGraph: {
       title: project.name,
@@ -106,7 +106,7 @@ export default async function ProjectDetailPage({
     ...(project.completedDate ? { dateModified: project.completedDate } : {}),
     publisher: {
       "@type": "Organization",
-      name: "Pacific Silk Consulting",
+      name: "Pacific Silk Group",
       url: "https://pacificsilkconsulting.com",
     },
   };

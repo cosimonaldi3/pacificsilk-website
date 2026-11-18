@@ -147,7 +147,7 @@ export const capabilitiesContent: CapabilitiesPageContent = {
   meta: {
     title: "Client impact — Pacific Silk Group",
     description:
-      "See where PSC operates and what we have built. Projects across sourcing, manufacturing, logistics, and market entry — run remotely, delivered on the ground.",
+      "See where PS operates and what we have built. Projects across sourcing, manufacturing, logistics, and market entry — run remotely, delivered on the ground.",
   },
   intro: {
     label: "Client impact",
@@ -301,7 +301,7 @@ export const capabilitiesContent: CapabilitiesPageContent = {
         key: "logistics",
         label: "Logistics",
         description:
-          "Freight, customs, consolidation, warehousing. SPL moves your cargo. PSC makes the handoff seamless.",
+          "Freight, customs, consolidation, warehousing. SPL moves your cargo. PS makes the handoff seamless.",
       },
     ],
   },
@@ -345,7 +345,7 @@ export const capabilitiesContent: CapabilitiesPageContent = {
     },
     manufacturing: {
       headline: "Ready to run production?",
-      body: "Lance Trade manages the factory floor. PSC manages you. First sample to final delivery.",
+      body: "Lance Trade manages the factory floor. PS manages you. First sample to final delivery.",
       cta: { label: "Start a project", href: "/start" },
     },
     logistics: {

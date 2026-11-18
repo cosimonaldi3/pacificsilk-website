@@ -4,7 +4,7 @@ export const capabilitiesContent: CapabilitiesPageContent = {
   meta: {
     title: "Impacto en clientes — Pacific Silk Group",
     description:
-      "Descubre dónde opera PSC y lo que hemos construido. Proyectos de abastecimiento, fabricación, logística y entrada al mercado — ejecutados de forma remota, entregados sobre el terreno.",
+      "Descubre dónde opera PS y lo que hemos construido. Proyectos de abastecimiento, fabricación, logística y entrada al mercado — ejecutados de forma remota, entregados sobre el terreno.",
   },
   intro: {
     label: "Impacto en clientes",
@@ -158,7 +158,7 @@ export const capabilitiesContent: CapabilitiesPageContent = {
         key: "logistics",
         label: "Logística",
         description:
-          "Flete, aduanas, consolidación, almacenaje. SPL mueve tu carga. PSC garantiza la transición sin fisuras.",
+          "Flete, aduanas, consolidación, almacenaje. SPL mueve tu carga. PS garantiza la transición sin fisuras.",
       },
     ],
   },
@@ -202,7 +202,7 @@ export const capabilitiesContent: CapabilitiesPageContent = {
     },
     manufacturing: {
       headline: "¿Listo para ejecutar producción?",
-      body: "Lance Trade gestiona la planta de producción. PSC te gestiona a ti. De la primera muestra a la entrega final.",
+      body: "Lance Trade gestiona la planta de producción. PS te gestiona a ti. De la primera muestra a la entrega final.",
       cta: { label: "Iniciar proyecto", href: "/start" },
     },
     logistics: {

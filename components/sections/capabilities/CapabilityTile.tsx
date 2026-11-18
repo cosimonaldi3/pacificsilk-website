@@ -4,6 +4,7 @@ import { Link } from "@/i18n/navigation";
 import { useId, useState } from "react";
 import TileShell from "./TileShell";
 import type { CapabilityTileBase } from "@/content/capabilities";
+import { isHiddenHref } from "@/lib/features";
 
 interface CapabilityTileProps {
   tile: CapabilityTileBase;
@@ -74,13 +75,15 @@ export default function CapabilityTile({
         className="cap-panel absolute inset-0 z-10 flex flex-col justify-end bg-psc-ink p-6 pt-28 md:p-8"
       >
         <p className="font-sans text-body leading-body text-psc-bg/85 max-w-md">{tile.body}</p>
-        <Link
-          href={tile.link.href}
-          className="mt-6 inline-flex w-fit items-center gap-2 font-sans text-small font-medium text-psc-bg underline underline-offset-4 hover:text-psc-red focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-psc-red"
-        >
-          {tile.link.label}
-          <span aria-hidden="true">→</span>
-        </Link>
+        {!isHiddenHref(tile.link.href) && (
+          <Link
+            href={tile.link.href}
+            className="mt-6 inline-flex w-fit items-center gap-2 font-sans text-small font-medium text-psc-bg underline underline-offset-4 hover:text-psc-red focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-psc-red"
+          >
+            {tile.link.label}
+            <span aria-hidden="true">→</span>
+          </Link>
+        )}
       </div>
     </TileShell>
   );

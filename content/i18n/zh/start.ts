@@ -5,7 +5,7 @@ const EMAIL_ADDRESS = "contact@pacificsilk.com";
 
 export const startContent: StartContent = {
   meta: {
-    title: "开始您的项目 — 太平洋丝绸咨询",
+    title: "开始您的项目 — 太平洋丝绸集团",
     description:
       "告诉我们您正在做什么。我们将在一个工作日内回复，并提议一个沟通时间。",
   },

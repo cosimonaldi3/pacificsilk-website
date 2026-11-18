@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Nav from "@/components/ui/Nav";
 import Footer from "@/components/ui/Footer";
 import FinalCta from "@/components/sections/FinalCta";
 import TestimonialCarousel from "@/components/sections/TestimonialCarousel";
 import Container from "@/components/ui/Container";
-import ChinaFoothold from "@/components/sections/about/ChinaFoothold";
 import Presence from "@/components/sections/about/Presence";
+import TeamMemberCard from "@/components/sections/about/TeamMemberCard";
 import { aboutContent } from "@/content/about";
 import { getTranslations } from "next-intl/server";
 
@@ -37,6 +36,9 @@ export default async function AboutPage({
   const content = await loadContent(locale);
   const t = await getTranslations({ locale, namespace: "common" });
   const { story, team, carousel, chinaFoothold, presence, finalCta } = content;
+  // Management pair on top (large cards); everyone else in the People grid below.
+  const leadership = team.filter((m) => m.leadership);
+  const others = team.filter((m) => !m.leadership);
 
   return (
     <>
@@ -51,51 +53,28 @@ export default async function AboutPage({
             <h1 className="font-display text-h2 font-medium text-psc-ink">
               {t("teamHeadline")}
             </h1>
+
+            {/* Management team */}
             <div className="grid grid-cols-1 sm:grid-cols-2 max-w-4xl gap-x-8 gap-y-16 mt-10">
-              {team.map((member) => (
-                <div key={member.name}>
-                  {/* Photo area */}
-                  <div className="aspect-square w-full mb-6 overflow-hidden bg-psc-muted">
-                    {member.placeholder || !member.photo ? (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <span className="font-display text-h1 text-psc-gray">
-                          {member.initials}
-                        </span>
-                      </div>
-                    ) : (
-                      <Image
-                        src={member.photo}
-                        alt={member.name}
-                        width={600}
-                        height={600}
-                        className="w-full h-full object-cover"
-                        style={{
-                          objectPosition: "center 15%",
-                          filter:
-                            "grayscale(100%) brightness(0.88) contrast(1.05)",
-                        }}
-                      />
-                    )}
-                  </div>
-                  {/* Company */}
-                  <div className="font-sans text-small font-medium text-psc-red uppercase tracking-widest mb-1">
-                    {member.company}
-                  </div>
-                  {/* Name */}
-                  <div className="font-display text-h3 font-medium text-psc-ink mb-1">
-                    {member.name}
-                  </div>
-                  {/* Title */}
-                  <div className="font-sans text-small text-psc-gray mb-4">
-                    {member.title}
-                  </div>
-                  {/* Bio */}
-                  <p className="font-sans text-small leading-body text-psc-gray">
-                    {member.bio}
-                  </p>
-                </div>
+              {leadership.map((member) => (
+                <TeamMemberCard key={member.name} member={member} size="lead" />
               ))}
             </div>
+
+            {/* Rest of the team, separated by a divider */}
+            {others.length > 0 && (
+              <div className="mt-20 md:mt-24 pt-12 border-t border-psc-border">
+                <div className="font-sans text-small uppercase tracking-widest text-psc-gray mb-10">
+                  <span className="font-semibold text-psc-ink">{story.peopleLabel}</span>
+                  <span className="font-normal"> — {story.peopleSubtitle}</span>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
+                  {others.map((member) => (
+                    <TeamMemberCard key={member.name} member={member} size="compact" />
+                  ))}
+                </div>
+              </div>
+            )}
           </Container>
         </section>
 
@@ -105,11 +84,8 @@ export default async function AboutPage({
           items={carousel.items}
         />
 
-        {/* China: headquarters and offices */}
-        <ChinaFoothold content={chinaFoothold} />
-
-        {/* Presence by country */}
-        <Presence content={presence} />
+        {/* Presence by country (China is one of the filters) */}
+        <Presence content={presence} chinaFoothold={chinaFoothold} />
 
         {/* Final CTA */}
         <FinalCta content={finalCta} />

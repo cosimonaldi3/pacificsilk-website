@@ -6,7 +6,7 @@ export const portalAuth = {
     intro: "Access your China operations portal.",
     submit: "Sign in",
     forgot: "Forgot password?",
-    switchPrompt: "New to PSC?",
+    switchPrompt: "New to PS?",
     switchLink: "Request access",
   },
   signUp: {
@@ -43,7 +43,7 @@ export const portalAuth = {
   },
   pending: {
     heading: "We're reviewing your access.",
-    body: "Your account is set up. A PSC team member will open your portal shortly and email you when it's ready.",
+    body: "Your account is set up. A PS team member will open your portal shortly and email you when it's ready.",
     contact: "Questions in the meantime?",
     contactLink: "Contact us",
   },

@@ -54,7 +54,7 @@ export default async function CapabilitiesPage({
   const projectsJsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "PSC Projects",
+    name: "PS Projects",
     itemListElement: allProjects.map((p, i) => ({
       "@type": "ListItem",
       position: i + 1,

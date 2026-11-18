@@ -1,6 +1,6 @@
 {
   "nav": {
-    "chineseSite": "Sitio en chino",
+    "chineseSite": "Web china",
     "chineseSiteDialog": {
       "title": "Bienvenido al sitio en chino",
       "body": "Este sitio es para fábricas, proveedores y empresarios chinos que quieren construir su oferta y llevar sus productos a nuevos mercados en el extranjero.",
@@ -10,9 +10,9 @@
       "close": "Cerrar"
     },
     "process": "Proceso",
-    "capabilities": "Impacto en clientes",
+    "capabilities": "Impacto",
     "about": "Nosotros",
-    "gallery": "Galería",
+    "blog": "Blog",
     "tools": "Herramientas",
     "portal": "Portal",
     "cta": "Iniciar proyecto",
@@ -22,7 +22,7 @@
   "footer": {
     "cta": "Iniciar proyecto →",
     "tagline": "Operando en Europa, Asia y las Américas",
-    "copyright": "© 2026 Pacific Silk Consulting. Todos los derechos reservados.",
+    "copyright": "© 2026 Pacific Silk Group. Todos los derechos reservados.",
     "links": {
       "process": "Proceso",
       "capabilities": "Impacto en clientes",
@@ -36,7 +36,7 @@
   },
   "common": {
     "you": "Tú:",
-    "psc": "PSC:",
+    "psc": "PS:",
     "active": "Activo",
     "completed": "Completado",
     "since": "Desde",
@@ -68,5 +68,61 @@
     "market-entry": "Entrada al mercado",
     "advisory": "Asesoría",
     "consulting": "Consultoría"
+  },
+  "blog": {
+    "meta": {
+      "title": "Blog | Pacific Silk Group",
+      "description": "Notas desde las fábricas, los puertos y las aduanas de China. Visión del sector, preguntas y respuestas, notas técnicas y novedades de Pacific Silk Group."
+    },
+    "label": "Blog",
+    "headline": "Cómo se hace el trabajo.",
+    "subline": "Notas desde la operación: lo que vemos en las fábricas, los puertos y las aduanas de China, y qué significa para tu proyecto.",
+    "breadcrumbHome": "Inicio",
+    "categoriesLabel": "Categorías",
+    "topicsLabel": "Temas populares",
+    "all": "Todas las entradas",
+    "categories": {
+      "industry-insights": "Visión del sector",
+      "qa": "Preguntas y respuestas",
+      "technical-notes": "Notas técnicas",
+      "news": "Novedades PSC"
+    },
+    "searchLabel": "Buscar en el blog",
+    "searchPlaceholder": "Busca temas, títulos y autores",
+    "clear": "Quitar filtros",
+    "results": "{count, plural, one {# entrada} other {# entradas}}",
+    "empty": "Ninguna entrada coincide. Prueba otra búsqueda o quita los filtros.",
+    "minRead": "{minutes} min de lectura",
+    "pagination": "Paginación",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "page": "Página {page}",
+    "readArticle": "Leer el artículo",
+    "learnMore": "Saber más en el blog",
+    "backToBlog": "Blog",
+    "share": {
+      "label": "Compartir",
+      "linkedin": "Compartir en LinkedIn",
+      "x": "Compartir en X",
+      "email": "Compartir por correo",
+      "copy": "Copiar enlace",
+      "copied": "Enlace copiado"
+    },
+    "related": "Sigue leyendo",
+    "topics": "Temas",
+    "cta": {
+      "headline": "¿Tienes un producto en mente?",
+      "body": "Nos envías la idea. Volvemos con un presupuesto, una muestra y una fábrica.",
+      "button": "Iniciar un proyecto"
+    },
+    "newsletter": {
+      "headline": "Notas de campo, en tu correo.",
+      "body": "Un correo breve cuando publiquemos. Lo que aprendemos dirigiendo proyectos en China, sin relleno.",
+      "emailLabel": "Correo electrónico",
+      "placeholder": "tu@empresa.com",
+      "button": "Suscribirme",
+      "invalid": "Introduce un correo electrónico válido.",
+      "pending": "El boletín abre pronto. No hemos guardado tu dirección, así que no se ha enviado nada."
+    }
   }
 }

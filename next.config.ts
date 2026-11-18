@@ -29,6 +29,9 @@ const nextConfig: NextConfig = {
         destination: "/:locale/client-impact/:slug*",
         permanent: true,
       },
+      // The photo gallery became the blog. Its photos now illustrate the posts.
+      { source: "/gallery", destination: "/blog", permanent: true },
+      { source: "/:locale(es|zh)/gallery", destination: "/:locale/blog", permanent: true },
     ];
   },
 };

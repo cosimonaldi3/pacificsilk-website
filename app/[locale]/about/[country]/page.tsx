@@ -15,9 +15,9 @@ async function loadContent(locale: string) {
   return aboutContent;
 }
 
-/* Only countries with services get a page; "more" has none */
+/* Only countries with services get a page */
 const countryIds = aboutContent.presence.countries
-  .filter((c) => c.id !== "more" && c.services?.length)
+  .filter((c) => c.services?.length)
   .map((c) => c.id);
 
 export function generateStaticParams() {
@@ -29,7 +29,7 @@ export function generateStaticParams() {
 async function findCountry(locale: string, id: string) {
   const content = await loadContent(locale);
   const country = content.presence.countries.find(
-    (c) => c.id === id && c.id !== "more" && c.services?.length
+    (c) => c.id === id && c.services?.length
   );
   return { content, country };
 }
@@ -43,7 +43,7 @@ export async function generateMetadata({
   const { country } = await findCountry(locale, id);
   if (!country) return {};
   return {
-    title: `${country.title} — Pacific Silk Consulting`,
+    title: `${country.title} — Pacific Silk Group`,
     description: country.servicesIntro ?? country.body,
   };
 }

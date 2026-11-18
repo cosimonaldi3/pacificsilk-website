@@ -20,8 +20,9 @@ const fill = (s: string, name: string) => s.replace("{country}", name);
    and the person who represents the country. */
 export default function CountryPage({ country, content }: CountryPageProps) {
   const name = country.name ?? country.title;
-  const place = country.id !== "more" ? presencePlaces[country.id] : undefined;
-  const rep = country.representative ?? content.representative;
+  const place = presencePlaces[country.id];
+  /* null = this country shows no contact block (only its actions) */
+  const rep = country.representative === undefined ? content.representative : country.representative;
 
   return (
     <>
@@ -59,7 +60,7 @@ export default function CountryPage({ country, content }: CountryPageProps) {
                 {content.backLabel}
               </Link>
               <p className="font-sans text-small font-medium uppercase tracking-widest text-psc-gray">
-                {content.hqLabel} · {country.hqCity}
+                {country.hqCity}
               </p>
               <h1 className="mt-2 font-display text-h1 font-medium leading-none text-psc-ink">
                 {name}
@@ -70,7 +71,7 @@ export default function CountryPage({ country, content }: CountryPageProps) {
           <nav aria-label={content.chipsLabel} className="mt-10">
             <ul className="flex flex-wrap gap-2">
               {content.countries
-                .filter((c) => c.id !== "more" && c.services?.length)
+                .filter((c) => c.services?.length)
                 .map((c) => {
                   const active = c.id === country.id;
                   return (
@@ -132,7 +133,8 @@ export default function CountryPage({ country, content }: CountryPageProps) {
         </section>
       )}
 
-      {/* Representative */}
+      {/* Representative (countries without one get only their actions) */}
+      {rep ? (
       <section className="bg-psc-muted py-16 md:py-24">
         <Container>
           <h2 className="font-sans text-small font-medium uppercase tracking-widest text-psc-gray">
@@ -158,14 +160,21 @@ export default function CountryPage({ country, content }: CountryPageProps) {
               </p>
               <p className="mt-2 font-display text-h2 font-medium text-psc-ink">{rep.name}</p>
               <p className="mt-1 font-sans text-small text-psc-gray">{rep.title}</p>
-              <p className="mt-6 max-w-xl font-sans text-body leading-body text-psc-gray">
-                {rep.bio}
-              </p>
+              {rep.bio && (
+                <p className="mt-6 max-w-xl font-sans text-body leading-body text-psc-gray">{rep.bio}</p>
+              )}
               <Actions actions={country.actions} />
             </div>
           </div>
         </Container>
       </section>
+      ) : (
+        <section className="bg-psc-bg pb-16 md:pb-24">
+          <Container>
+            <Actions actions={country.actions} />
+          </Container>
+        </section>
+      )}
     </>
   );
 }

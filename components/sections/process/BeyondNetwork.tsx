@@ -2,6 +2,7 @@ import { Link } from "@/i18n/navigation";
 import TileShell from "@/components/sections/capabilities/TileShell";
 import { NetworkVisual } from "./beyondVisuals";
 import type { BeyondContent } from "@/content/process";
+import { isHiddenHref } from "@/lib/features";
 
 interface BeyondNetworkProps {
   content: BeyondContent["network"];
@@ -29,13 +30,15 @@ export default function BeyondNetwork({ content }: BeyondNetworkProps) {
               </li>
             ))}
           </ul>
-          <Link
-            href={content.link.href}
-            className="mt-8 inline-flex w-fit items-center gap-2 font-sans text-small font-medium text-psc-bg underline underline-offset-4 hover:text-psc-red focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-psc-red"
-          >
-            {content.link.label}
-            <span aria-hidden="true">→</span>
-          </Link>
+          {!isHiddenHref(content.link.href) && (
+            <Link
+              href={content.link.href}
+              className="mt-8 inline-flex w-fit items-center gap-2 font-sans text-small font-medium text-psc-bg underline underline-offset-4 hover:text-psc-red focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-psc-red"
+            >
+              {content.link.label}
+              <span aria-hidden="true">→</span>
+            </Link>
+          )}
         </div>
 
         <div className="pr-net-dark">
