@@ -33,6 +33,7 @@ Format: one item per line. Use checkboxes. Group by category.
 - [ ] CSP headers (when added) — allowlist `tally.so` in `frame-src` and `script-src` directives in `next.config.ts`
 
 ## Tools (/tools) and data pipeline
+- [ ] **Public visibility:** `/tools` and its nav, footer and tile links are hidden unless `NEXT_PUBLIC_SHOW_TOOLS=true` (`lib/features.ts`). Internal editors set it in their `.env.local`. At launch, set it in the Vercel production env (or remove the gate) and redeploy. Vercel production must not have it set until then
 - [ ] **Launch blocker:** replace the placeholder freight rates in `lib/tools/estimate/model.ts` (`RATES`) and typical product figures in `lib/tools/estimate/productDefaults.ts` with real quotes. The results carry an "indicative estimate" caveat, but the pages are public
 - [ ] **Launch blocker:** add `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_KEY` in Vercel. Without them the tools show "not connected to a database"
 - [ ] Confirm in the Supabase dashboard that row-level security blocks writes with the publishable key. Not tested, to avoid attempting a write on the live database

@@ -45,7 +45,7 @@ export interface StartContent {
 
 export const startContent: StartContent = {
   meta: {
-    title: "Start your project — Pacific Silk Consulting",
+    title: "Start your project — Pacific Silk Group",
     description:
       "Tell us what you're working on. We'll reply within one business day with a proposed time to talk.",
   },

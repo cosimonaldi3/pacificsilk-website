@@ -2,11 +2,12 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import Container from "@/components/ui/Container";
 import Logo from "@/components/Logo";
+import { isHiddenHref } from "@/lib/features";
 
 export default async function Footer() {
   const t = await getTranslations("footer");
 
-  const navLinks = [
+  const allNavLinks = [
     { key: "process" as const, href: "/process" as const },
     { key: "capabilities" as const, href: "/client-impact" as const },
     { key: "about" as const, href: "/about" as const },
@@ -15,6 +16,9 @@ export default async function Footer() {
     { key: "privacy" as const, href: "/privacy" as const },
     { key: "terms" as const, href: "/terms" as const },
   ] satisfies Array<{ key: string; href: string; target?: string }>;
+
+  // Hidden sections (see lib/features.ts) drop out of the footer on the public site
+  const navLinks = allNavLinks.filter((link) => !isHiddenHref(link.href));
 
   return (
     <Container>
@@ -34,7 +38,7 @@ export default async function Footer() {
               href="https://www.linkedin.com/company/pacific-silk-consulting"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Pacific Silk Consulting on LinkedIn"
+              aria-label="Pacific Silk on LinkedIn"
               className="text-psc-bg/50 hover:text-psc-bg transition-colors"
             >
               <svg
@@ -59,7 +63,7 @@ export default async function Footer() {
               href="https://www.instagram.com/pacificsilkconsulting/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Pacific Silk Consulting on Instagram"
+              aria-label="Pacific Silk on Instagram"
               className="text-psc-bg/50 hover:text-psc-bg transition-colors"
             >
               <svg
@@ -116,7 +120,7 @@ export default async function Footer() {
         <span className="font-sans text-small text-psc-bg/40">
           {t("copyright")}
         </span>
-        <span className="font-display text-small text-psc-bg/40">PSC</span>
+        <span className="font-display text-small text-psc-bg/40">PS</span>
       </div>
     </Container>
   );

@@ -12,7 +12,7 @@ export default function PortalHeader() {
       <Container className="flex items-center justify-between h-16">
         <Link
           href="/"
-          aria-label="Pacific Silk Consulting — home"
+          aria-label="Pacific Silk Group — home"
           className="hover:opacity-80 transition flex items-center"
         >
           <Logo variant="psc-horizontal-black" width={160} priority className="h-8 w-auto" />

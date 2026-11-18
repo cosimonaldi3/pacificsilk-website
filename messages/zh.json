@@ -12,7 +12,7 @@
     "process": "流程",
     "capabilities": "客户成果",
     "about": "关于我们",
-    "gallery": "图集",
+    "blog": "博客",
     "tools": "工具",
     "portal": "客户门户",
     "cta": "开始项目",
@@ -22,7 +22,7 @@
   "footer": {
     "cta": "开始项目 →",
     "tagline": "业务遍及欧洲、亚洲及美洲",
-    "copyright": "© 2026 太平洋丝绸咨询。保留所有权利。",
+    "copyright": "© 2026 太平洋丝绸集团。保留所有权利。",
     "links": {
       "process": "流程",
       "capabilities": "客户成果",
@@ -36,7 +36,7 @@
   },
   "common": {
     "you": "您：",
-    "psc": "PSC：",
+    "psc": "PS：",
     "active": "进行中",
     "completed": "已完成",
     "since": "自",
@@ -68,5 +68,61 @@
     "market-entry": "市场准入",
     "advisory": "咨询",
     "consulting": "顾问"
+  },
+  "blog": {
+    "meta": {
+      "title": "博客 | Pacific Silk Group",
+      "description": "来自中国工厂、港口和海关一线的笔记。行业洞察、问答、技术笔记以及 Pacific Silk Group 的动态。"
+    },
+    "label": "博客",
+    "headline": "事情是怎么做成的。",
+    "subline": "来自运营一线的笔记：我们在中国工厂、港口和海关看到的情况，以及它对你的项目意味着什么。",
+    "breadcrumbHome": "首页",
+    "categoriesLabel": "分类",
+    "topicsLabel": "热门话题",
+    "all": "全部文章",
+    "categories": {
+      "industry-insights": "行业洞察",
+      "qa": "问答",
+      "technical-notes": "技术笔记",
+      "news": "PSC 动态"
+    },
+    "searchLabel": "搜索博客",
+    "searchPlaceholder": "搜索话题、标题和作者",
+    "clear": "清除筛选",
+    "results": "{count} 篇文章",
+    "empty": "没有匹配的文章。请换一个搜索词或清除筛选。",
+    "minRead": "阅读约 {minutes} 分钟",
+    "pagination": "分页",
+    "previous": "上一页",
+    "next": "下一页",
+    "page": "第 {page} 页",
+    "readArticle": "阅读文章",
+    "learnMore": "在博客中了解更多",
+    "backToBlog": "博客",
+    "share": {
+      "label": "分享",
+      "linkedin": "分享到 LinkedIn",
+      "x": "分享到 X",
+      "email": "通过邮件分享",
+      "copy": "复制链接",
+      "copied": "链接已复制"
+    },
+    "related": "继续阅读",
+    "topics": "话题",
+    "cta": {
+      "headline": "心里有产品了吗？",
+      "body": "你把想法发给我们。我们带着报价、样品和工厂回来。",
+      "button": "开始项目"
+    },
+    "newsletter": {
+      "headline": "一线笔记，发到你的邮箱。",
+      "body": "有新文章时发一封简短邮件。我们运营中国项目的所得，没有废话。",
+      "emailLabel": "电子邮箱",
+      "placeholder": "you@company.com",
+      "button": "订阅",
+      "invalid": "请输入有效的电子邮箱。",
+      "pending": "订阅功能即将开放。我们没有保存你的邮箱地址，也没有发送任何内容。"
+    }
   }
 }

@@ -24,7 +24,7 @@ const inter = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Pacific Silk Consulting",
+  title: "Pacific Silk Group",
   description:
     "We provide the infrastructure. You make the decisions. An operational bridge to China.",
 };

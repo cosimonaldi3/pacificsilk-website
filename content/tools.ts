@@ -5,12 +5,12 @@
 export const toolsContent = {
   meta: {
     estimate: {
-      title: "Shipping Estimate | Pacific Silk Consulting",
+      title: "Shipping Estimate | Pacific Silk Group",
       description:
         "Name a product and a destination. See the route from China, the transit time and an estimated landed cost, with freight, duties and VAT.",
     },
     finder: {
-      title: "Tariff Finder | Pacific Silk Consulting",
+      title: "Tariff Finder | Pacific Silk Group",
       description:
         "Find the customs code for your product, its average import price, and the EU tariff measures on imports from China.",
     },
@@ -286,7 +286,7 @@ export const toolsContent = {
         title: "Logistics",
         blurb: "Freight, customs, consolidation, warehousing.",
         promise:
-          "Freight, customs, consolidation, warehousing. SPL moves your cargo. PSC makes the handoff seamless.",
+          "Freight, customs, consolidation, warehousing. SPL moves your cargo. PS makes the handoff seamless.",
         points: [
           "Warehouse management in China and Europe",
           "Consolidation of cargo from several suppliers",

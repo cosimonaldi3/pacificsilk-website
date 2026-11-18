@@ -12,7 +12,7 @@ export interface PresencePlace {
   hqImagePosition?: string;
 }
 
-export const presencePlaces: Record<Exclude<PresenceCountryId, "more">, PresencePlace> = {
+export const presencePlaces: Record<PresenceCountryId, PresencePlace> = {
   spain: { lat: 40.2, lng: -3.6, hqImage: "/countries/office-spain.jpg" },
   italy: { lat: 42.8, lng: 12.5, hqImage: "/countries/office-italy.jpg" },
   mexico: { lat: 23.6, lng: -102.5, hqImage: "/countries/office-mexico.jpg", hqImagePosition: "50% 8%" },

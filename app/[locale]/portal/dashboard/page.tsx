@@ -8,7 +8,7 @@ import { createClient, isApproved } from "@/lib/supabase/server";
 import { portalAuth } from "@/content/portal";
 
 export const metadata: Metadata = {
-  title: "Dashboard — Pacific Silk Consulting Portal",
+  title: "Dashboard — Pacific Silk Group Portal",
   description: "Client dashboard.",
   robots: { index: false, follow: false },
 };
@@ -41,7 +41,7 @@ export default async function DashboardPage({
             </ToolsShell>
           </>
         ) : (
-          // Signed up but not yet approved by PSC (app_metadata.approved).
+          // Signed up but not yet approved by PS (app_metadata.approved).
           <section className="mx-auto max-w-3xl px-6 py-32">
             <h1 className="font-display text-h2 font-medium text-psc-ink mb-6">{pending.heading}</h1>
             <p className="font-sans text-lg leading-body text-psc-gray mb-8">{pending.body}</p>

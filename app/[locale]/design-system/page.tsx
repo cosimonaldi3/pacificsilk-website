@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Container from "@/components/ui/Container";
 
 export const metadata: Metadata = {
-  title: "Design System — PSC Internal",
+  title: "Design System — PS Internal",
   description: "Internal design system reference for typography and color tokens.",
   robots: { index: false, follow: false },
 };
@@ -21,7 +21,7 @@ export default function DesignSystemPage() {
     <main className="bg-psc-bg min-h-screen py-24">
       <Container>
         <h1 className="font-sans text-small text-psc-gray uppercase tracking-widest mb-16">
-          PSC Design System — Internal Reference
+          PS Design System — Internal Reference
         </h1>
 
         {/* Section 1: Typography */}
@@ -72,7 +72,7 @@ export default function DesignSystemPage() {
                 Body
               </span>
               <p className="font-sans text-body leading-body text-psc-ink max-w-2xl">
-                PSC and the Pacific Silk Alliance give international companies
+                PS and the Pacific Silk Alliance give international companies
                 privileged access to China&apos;s sourcing, production, and logistics
                 infrastructure.
               </p>

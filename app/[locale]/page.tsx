@@ -33,7 +33,7 @@ export async function generateMetadata({
     };
   if (locale === "zh")
     return {
-      title: "太平洋丝绸咨询",
+      title: "太平洋丝绸集团",
       description: "我们提供基础设施。您做决策。通向中国的运营桥梁。",
     };
   return {

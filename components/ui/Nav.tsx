@@ -7,15 +7,19 @@ import Container from "./Container";
 import Logo from "@/components/Logo";
 import LanguageSwitcher from "./LanguageSwitcher";
 import ChineseSiteDialog from "./ChineseSiteDialog";
+import { isHiddenHref } from "@/lib/features";
 
-const navItems = [
+const allNavItems = [
   { key: "process" as const, href: "/process" as const },
   { key: "capabilities" as const, href: "/client-impact" as const },
   { key: "about" as const, href: "/about" as const },
-  { key: "gallery" as const, href: "/gallery" as const },
+  { key: "blog" as const, href: "/blog" as const },
   { key: "tools" as const, href: "/tools/shipping-estimate" as const },
   { key: "portal" as const, href: "/portal/login" as const, target: "_blank" as const },
 ] satisfies Array<{ key: string; href: string; target?: string }>;
+
+// Hidden sections (see lib/features.ts) drop out of the nav on the public site
+const navItems = allNavItems.filter((item) => !isHiddenHref(item.href));
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
@@ -31,7 +35,7 @@ export default function Nav() {
         {/* Logo */}
         <Link
           href="/"
-          aria-label="Pacific Silk Consulting — home"
+          aria-label="Pacific Silk Group — home"
           className="hover:opacity-80 transition flex items-center"
         >
           <Logo
@@ -64,7 +68,7 @@ export default function Nav() {
               type="button"
               onClick={() => setChineseOpen(true)}
               aria-haspopup="dialog"
-              className="hidden lg:inline-block font-sans text-small font-medium text-psc-gray border border-psc-border rounded-full px-3 py-1.5 hover:text-psc-ink hover:border-psc-ink transition"
+              className="hidden lg:inline-block whitespace-nowrap font-sans text-small font-medium text-psc-gray border border-psc-border rounded-full px-3 py-1.5 hover:text-psc-ink hover:border-psc-ink transition"
             >
               {t("chineseSite")}
             </button>

@@ -20,7 +20,7 @@ export async function createClient() {
   });
 }
 
-// Signup is open but gated: PSC approves an account by setting
+// Signup is open but gated: PS approves an account by setting
 // app_metadata.approved = true in the Supabase dashboard. Users can't edit app_metadata.
 export function isApproved(user: User): boolean {
   return user.app_metadata?.approved === true;

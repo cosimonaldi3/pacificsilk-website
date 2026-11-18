@@ -5,8 +5,8 @@ import { portalAuth } from "@/content/portal";
 import RotatingPhrase from "./RotatingPhrase";
 
 export const metadata: Metadata = {
-  title: "Client Portal — Pacific Silk Consulting",
-  description: "Sign in to the Pacific Silk Consulting client portal.",
+  title: "Client Portal — Pacific Silk Group",
+  description: "Sign in to the Pacific Silk Group client portal.",
   robots: { index: false, follow: false },
 };
 
@@ -21,7 +21,7 @@ export default async function PortalLoginPage({
     <main className="flex h-screen overflow-hidden">
       {/* ── LEFT — white, clean sign-in form ──────────────────────────────── */}
       <div className="relative flex flex-col w-full md:w-[62%] h-full bg-white">
-        {/* PSC wordmark — top left */}
+        {/* PS wordmark — top left */}
         <div className="absolute top-8 left-10">
           <Logo variant="psc-horizontal-black" width={220} priority />
         </div>
@@ -36,7 +36,7 @@ export default async function PortalLoginPage({
 
       {/* ── RIGHT — psc-red panel, bold rotating phrase ───────────────────── */}
       <div className="hidden md:flex md:w-[38%] h-full bg-psc-red flex-col items-center justify-center relative overflow-hidden">
-        {/* PSC symbol — large white watermark, very subtle */}
+        {/* PS symbol — large white watermark, very subtle */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
           <Logo variant="logo-only-white" width={380} className="opacity-[0.07]" />
         </div>

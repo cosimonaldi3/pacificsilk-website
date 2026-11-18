@@ -2,7 +2,6 @@ import { geoMercator, geoPath } from "d3-geo";
 import { feature } from "topojson-client";
 import type { GeometryCollection, Topology } from "topojson-specification";
 import countries from "world-atlas/countries-50m.json";
-import Container from "@/components/ui/Container";
 import { Link } from "@/i18n/navigation";
 import type { ChinaCity, ChinaFootholdContent } from "@/content/about";
 
@@ -51,74 +50,74 @@ function CityDot({ city, hq = false }: { city: ChinaCity; hq?: boolean }) {
   );
 }
 
-/* "Our foothold in China": the China map with the headquarters and offices marked */
+/* China panel for the "Where we are" filter: headquarters and offices on the China map.
+   Renders the grid only; the parent section supplies the heading and filter. */
 export default function ChinaFoothold({ content }: ChinaFootholdProps) {
   return (
-    <section className="bg-psc-bg py-16 md:py-20">
-      <Container>
-        <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-[5fr_7fr] md:gap-16">
-          <div>
-            <div className="font-sans text-small font-medium text-psc-gray uppercase tracking-widest mb-4">
-              {content.label}
-            </div>
-            <h2 className="font-display text-h2 font-medium text-psc-ink">{content.headline}</h2>
-            <p className="mt-4 max-w-md font-sans text-body leading-body text-psc-gray">
-              {content.body}
-            </p>
-
-            <dl className="mt-8 grid grid-cols-[auto_1fr] gap-x-8 gap-y-3 font-sans text-body">
-              <dt className="text-small font-medium uppercase tracking-widest text-psc-red">
-                {content.hqLabel}
-              </dt>
-              <dd className="font-medium text-psc-ink">{content.hq.name}</dd>
-              <dt className="text-small font-medium uppercase tracking-widest text-psc-gray">
-                {content.officesLabel}
-              </dt>
-              <dd className="text-psc-ink">{content.offices.map((o) => o.name).join(" · ")}</dd>
-            </dl>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              {content.actions.map((a) => {
-                const cls = `inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-sans text-small font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-psc-red ${
-                  a.href === "/start"
-                    ? "bg-psc-ink text-psc-bg hover:bg-psc-red"
-                    : "border border-psc-ink text-psc-ink hover:border-psc-red hover:text-psc-red"
-                }`;
-                const inner = (
-                  <>
-                    {a.label}
-                    <span aria-hidden="true">→</span>
-                  </>
-                );
-                return a.href.startsWith("mailto:") ? (
-                  <a key={a.label} href={a.href} className={cls}>
-                    {inner}
-                  </a>
-                ) : (
-                  <Link key={a.label} href={a.href} locale={a.locale} className={cls}>
-                    {inner}
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-psc-border bg-psc-muted/40 p-4 md:p-6">
-            <svg
-              viewBox={`0 0 ${MAP_W} ${MAP_H}`}
-              role="img"
-              aria-label={content.mapLabel}
-              className="block h-auto w-full"
-            >
-              <path d={outline} className="fill-psc-border" />
-              {content.offices.map((o) => (
-                <CityDot key={o.name} city={o} />
-              ))}
-              <CityDot city={content.hq} hq />
-            </svg>
-          </div>
+    <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-[5fr_7fr] md:gap-16">
+      <div>
+        <div className="font-sans text-small font-medium text-psc-gray uppercase tracking-widest mb-4">
+          {content.label}
         </div>
-      </Container>
-    </section>
+        <h3 className="font-display text-h2 font-medium text-psc-ink">{content.headline}</h3>
+        <p className="mt-4 max-w-md font-sans text-body leading-body text-psc-gray">
+          {content.teaser}
+        </p>
+        <p className="mt-4 max-w-md font-sans text-body leading-body text-psc-gray">
+          {content.body}
+        </p>
+
+        <dl className="mt-8 grid grid-cols-[auto_1fr] gap-x-8 gap-y-3 font-sans text-body">
+          <dt className="text-small font-medium uppercase tracking-widest text-psc-red">
+            {content.hqLabel}
+          </dt>
+          <dd className="font-medium text-psc-ink">{content.hq.name}</dd>
+          <dt className="text-small font-medium uppercase tracking-widest text-psc-gray">
+            {content.officesLabel}
+          </dt>
+          <dd className="text-psc-ink">{content.offices.map((o) => o.name).join(" · ")}</dd>
+        </dl>
+
+        <div className="mt-8 flex flex-wrap gap-3">
+          {content.actions.map((a) => {
+            const cls = `inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-sans text-small font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-psc-red ${
+              a.href === "/start"
+                ? "bg-psc-ink text-psc-bg hover:bg-psc-red"
+                : "border border-psc-ink text-psc-ink hover:border-psc-red hover:text-psc-red"
+            }`;
+            const inner = (
+              <>
+                {a.label}
+                <span aria-hidden="true">→</span>
+              </>
+            );
+            return a.href.startsWith("mailto:") ? (
+              <a key={a.label} href={a.href} className={cls}>
+                {inner}
+              </a>
+            ) : (
+              <Link key={a.label} href={a.href} locale={a.locale} className={cls}>
+                {inner}
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="flex items-center rounded-2xl border border-psc-border bg-psc-muted/40 p-4 md:p-6">
+        <svg
+          viewBox={`0 0 ${MAP_W} ${MAP_H}`}
+          role="img"
+          aria-label={content.mapLabel}
+          className="block h-auto w-full"
+        >
+          <path d={outline} className="fill-psc-border" />
+          {content.offices.map((o) => (
+            <CityDot key={o.name} city={o} />
+          ))}
+          <CityDot city={content.hq} hq />
+        </svg>
+      </div>
+    </div>
   );
 }

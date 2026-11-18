@@ -74,7 +74,7 @@ export default function AuthForm({ initialError }: AuthFormProps) {
         setError(err.message);
       } else if (data.session) {
         // "Confirm email" is off in Supabase: the user is signed in already.
-        // The dashboard shows the pending screen until PSC approves them.
+        // The dashboard shows the pending screen until PS approves them.
         router.push("/portal/dashboard");
         router.refresh();
         return;

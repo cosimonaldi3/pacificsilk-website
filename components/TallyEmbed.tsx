@@ -11,7 +11,7 @@ export default function TallyEmbed() {
         frameBorder={0}
         marginHeight={0}
         marginWidth={0}
-        title="PSC project intake form"
+        title="PS project intake form"
         className="w-full"
       />
       <Script src="https://tally.so/widgets/embed.js" strategy="lazyOnload" />

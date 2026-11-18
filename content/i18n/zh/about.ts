@@ -3,44 +3,80 @@ import type { AboutContent } from "@/content/about";
 
 export const aboutContent: AboutContent = {
   meta: {
-    title: "关于我们 — 太平洋丝绸咨询",
+    title: "关于我们 — 太平洋丝绸集团",
     description:
-      "太平洋丝绸咨询及太平洋丝绸联盟背后的团队与故事。",
+      "太平洋丝绸集团及太平洋丝绸联盟背后的团队与故事。",
   },
   story: {
     label: "我们是谁",
+    peopleLabel: "团队",
+    peopleSubtitle: "遍布全球的网络",
   },
   team: [
     {
       name: "Jorge Villalonga Moragues",
-      title: "亚洲区负责人",
-      company: "Pacific Silk Consulting",
+      title: "Manager Pacific Silk Group",
+      company: "Pacific Silk Group",
       bio: "Jorge负责每个项目的中国端事务——与供应商沟通、工厂考察、生产监控。正因为有他，问题能在到达您之前被发现并解决。",
       photo: "/team/jorgev-villalonga-jr.png",
       placeholder: false,
     },
     {
       name: "Jorge Villalonga Fuster",
-      title: "欧洲区负责人",
-      company: "Pacific Silk Consulting",
-      bio: "PSC联合创始人。Jorge负责欧洲客户关系，拥有数十年西班牙与中国之间跨境商业经验。",
+      title: "联合创始人兼欧洲区负责人",
+      company: "Pacific Silk Group",
+      bio: "PS联合创始人。Jorge负责欧洲客户关系，拥有数十年西班牙与中国之间跨境商业经验。",
       photo: "/team/jorge-villalonga-sr.png",
       placeholder: false,
+      leadership: true,
     },
     {
       name: "顾朱挺 — James Gu",
-      title: "CEO",
-      company: "Sun Port Logistics (SPL)",
-      bio: "James在创建SPL之前，曾在中远海运工作逾十年。他负责每个PSC项目的货运、海关和交付——从中国港口到您的门口。",
+      title: "联合创始人兼中国区负责人",
+      company: "Pacific Silk Group",
+      bio: "James在创建SPL之前，曾在中远海运工作逾十年。他负责每个PS项目的货运、海关和交付——从中国港口到您的门口。",
       photo: "/team/james.png",
       placeholder: false,
+      leadership: true,
     },
     {
       name: "企鹅 — Freud Mao",
-      title: "CEO",
-      company: "Lance Trade",
+      title: "中国贸易负责人 Pacific Silk",
+      company: "Pacific Silk China",
       bio: "Freud在中国工厂生态系统中深耕二十余年。他知道哪些供应商能兑现承诺，哪些只是空谈。Lance Trade正是建立在这些关系之上。",
       photo: "/team/freud.png",
+      placeholder: false,
+    },
+    {
+      name: "Nicolás Robledo",
+      title: "Pacific Silk Group 墨西哥代表",
+      company: "Pacific Silk Mexico",
+      bio: "",
+      photo: "/team/nicolas-robledo.webp",
+      placeholder: false,
+    },
+    {
+      name: "Cosimo Naldi",
+      title: "Pacific Silk Group 意大利代表",
+      company: "Pacific Silk Italy",
+      bio: "",
+      photo: "/team/cosimo-naldi.webp",
+      placeholder: false,
+    },
+    {
+      name: "Lorena Hortal",
+      title: "Pacific Silk Group 西班牙代表",
+      company: "Pacific Silk Spain",
+      bio: "",
+      photo: "/team/lorena-hortal.webp",
+      placeholder: false,
+    },
+    {
+      name: "José Luis Gralla",
+      title: "Pacific Silk Group 巴拿马代表",
+      company: "Pacific Silk Panama",
+      bio: "",
+      photo: "/team/jose-luis-gralla.webp",
       placeholder: false,
     },
   ],
@@ -50,11 +86,11 @@ export const aboutContent: AboutContent = {
       {
         kind: "testimonial",
         id: "jorge-jr",
-        label: "亚洲区负责人",
+        label: "Manager Pacific Silk Group",
         quote:
           "工厂车间是你真正了解一家供应商实力的地方。我走过的工厂已经足够多，知道该看什么——也知道该在什么时候转身离开。",
         name: "Jorge Villalonga Moragues",
-        title: "Pacific Silk Consulting",
+        title: "Pacific Silk Group",
         photo: "/testimonials/factory-floor.jpg",
       },
       {
@@ -62,9 +98,9 @@ export const aboutContent: AboutContent = {
         id: "jorge-sr",
         label: "欧洲区负责人",
         quote:
-          "我们反复看到同一个问题：每当一家企业提到中国，对话就会转向。不确定性。复杂性。风险。我们知道这些问题可以解决。我们创建PSC就是为了解决它们。",
+          "我们反复看到同一个问题：每当一家企业提到中国，对话就会转向。不确定性。复杂性。风险。我们知道这些问题可以解决。我们创建PS就是为了解决它们。",
         name: "Jorge Villalonga Fuster",
-        title: "Pacific Silk Consulting",
+        title: "Pacific Silk Group",
         photo: "/testimonials/shipping-documents.jpg",
       },
       {
@@ -92,11 +128,11 @@ export const aboutContent: AboutContent = {
   },
   alliance: {
     headline: "三家公司。一体化运营。",
-    body: "大多数公司只是提供建议。我们付诸实施。PSC是一个三方合资企业的国际门面——太平洋丝绸咨询、SPL和Lance Trade。当您雇用我们时，通过一份合同即可访问三家公司的全部能力。",
+    body: "大多数公司只是提供建议。我们付诸实施。PS是一个三方合资企业的国际门面——太平洋丝绸集团、SPL和Lance Trade。当您雇用我们时，通过一份合同即可访问三家公司的全部能力。",
     companies: [
       {
-        name: "Pacific Silk Consulting",
-        role: "国际咨询、战略与客户关系",
+        name: "Pacific Silk Group",
+        role: "国际战略与客户关系",
         logo: "psc-horizontal-white",
         image: "/images/alliance/psc.jpeg",
       },

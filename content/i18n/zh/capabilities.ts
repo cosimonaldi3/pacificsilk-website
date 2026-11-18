@@ -5,9 +5,9 @@ import {
 
 export const capabilitiesContent: CapabilitiesPageContent = {
   meta: {
-    title: "业务能力 — 太平洋丝绸咨询",
+    title: "业务能力 — 太平洋丝绸集团",
     description:
-      "了解PSC的业务范围及我们的成果。采购、制造、物流和市场准入项目——远程运营，落地交付。",
+      "了解PS的业务范围及我们的成果。采购、制造、物流和市场准入项目——远程运营，落地交付。",
   },
   // New sections reuse the English copy until a Chinese translation is ready.
   intro: en.intro,
@@ -98,7 +98,7 @@ export const capabilitiesContent: CapabilitiesPageContent = {
         key: "logistics",
         label: "物流",
         description:
-          "货运、海关、拼箱、仓储。SPL运输您的货物。PSC确保交接无缝衔接。",
+          "货运、海关、拼箱、仓储。SPL运输您的货物。PS确保交接无缝衔接。",
       },
     ],
   },
@@ -141,7 +141,7 @@ export const capabilitiesContent: CapabilitiesPageContent = {
     },
     manufacturing: {
       headline: "准备好启动生产了吗？",
-      body: "Lance Trade管理工厂现场。PSC管理您。从第一个样品到最终交付。",
+      body: "Lance Trade管理工厂现场。PS管理您。从第一个样品到最终交付。",
       cta: { label: "开始项目", href: "/start" },
     },
     logistics: {

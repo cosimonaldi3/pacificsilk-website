@@ -1,12 +1,15 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { processLearnMore } from "@/content/blogLinks";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import TileShell from "@/components/sections/capabilities/TileShell";
 import DefineTile from "./DefineTile";
 import PlusIcon from "./PlusIcon";
 import { scrollToCenter } from "./scrollToCenter";
 import type { DefineTileCopy } from "@/content/process";
+import { isHiddenHref } from "@/lib/features";
 
 export interface DefineBentoTile {
   key: string;
@@ -52,6 +55,7 @@ export default function DefineBento({ idBase, tiles, expandLabel, closeLabel, ta
   const buttonRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const panelId = `${idBase}-panel`;
   const titleId = `${idBase}-title`;
+  const tBlog = useTranslations("blog");
 
   const [openKey, setOpenKey] = useState<string | null>(null);
   const [phase, setPhase] = useState<Phase>("closed");
@@ -147,6 +151,8 @@ export default function DefineBento({ idBase, tiles, expandLabel, closeLabel, ta
   const grown = phase === "open";
   const ink = active?.tone === "ink";
   const v = (i: number) => ({ "--i": i }) as React.CSSProperties;
+  // Blog post that explains the open tile in more depth, if one is linked (content/blogLinks.ts)
+  const learnMoreSlug = active ? processLearnMore[`${idBase}:${active.key}`] : undefined;
 
   return (
     <div ref={gridRef} className="relative">
@@ -211,14 +217,28 @@ export default function DefineBento({ idBase, tiles, expandLabel, closeLabel, ta
                     </li>
                   ))}
                 </ul>
-                <Link
-                  href={active.copy.link.href}
-                  style={v(active.copy.points.length + 2)}
-                  className={`pd-rise mt-8 inline-flex w-fit items-center gap-2 font-sans text-small font-medium underline underline-offset-4 hover:text-psc-red focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-psc-red ${ink ? "text-psc-bg" : "text-psc-ink"}`}
-                >
-                  {active.copy.link.label}
-                  <span aria-hidden="true">→</span>
-                </Link>
+                <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
+                  {!isHiddenHref(active.copy.link.href) && (
+                    <Link
+                      href={active.copy.link.href}
+                      style={v(active.copy.points.length + 2)}
+                      className={`pd-rise inline-flex w-fit items-center gap-2 font-sans text-small font-medium underline underline-offset-4 hover:text-psc-red focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-psc-red ${ink ? "text-psc-bg" : "text-psc-ink"}`}
+                    >
+                      {active.copy.link.label}
+                      <span aria-hidden="true">→</span>
+                    </Link>
+                  )}
+                  {learnMoreSlug && (
+                    <Link
+                      href={`/blog/${learnMoreSlug}`}
+                      style={v(active.copy.points.length + 3)}
+                      className={`pd-rise inline-flex w-fit items-center gap-2 font-sans text-small font-medium underline underline-offset-4 hover:text-psc-red focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-psc-red ${ink ? "text-psc-bg/75" : "text-psc-gray"}`}
+                    >
+                      {tBlog("learnMore")}
+                      <span aria-hidden="true">→</span>
+                    </Link>
+                  )}
+                </div>
               </div>
             </div>
 

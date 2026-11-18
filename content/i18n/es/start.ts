@@ -5,7 +5,7 @@ const EMAIL_ADDRESS = "contact@pacificsilk.com";
 
 export const startContent: StartContent = {
   meta: {
-    title: "Inicia tu proyecto — Pacific Silk Consulting",
+    title: "Inicia tu proyecto — Pacific Silk Group",
     description:
       "Cuéntanos en qué estás trabajando. Responderemos en un día hábil con una propuesta de hora para hablar.",
   },

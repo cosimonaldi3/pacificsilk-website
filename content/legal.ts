@@ -25,7 +25,7 @@ export const privacyContent: LegalContent = {
     {
       heading: "Who we are",
       body: [
-        "Pacific Silk Consulting ('PSC', 'we', 'us', 'our') is an international consulting firm that provides sourcing, market entry, manufacturing, logistics, and China advisory services to international businesses. We operate as the client-facing entity within the Pacific Silk Alliance, a joint venture with SPL (Chinese logistics) and Lance Trade (sourcing and production management).",
+        "Pacific Silk Consulting ('PS', 'we', 'us', 'our') is an international consulting firm that provides sourcing, market entry, manufacturing, logistics, and China advisory services to international businesses. We operate as the client-facing entity within the Pacific Silk Alliance, a joint venture with SPL (Chinese logistics) and Lance Trade (sourcing and production management).",
         "Registered business: Villa Mora Gestión 360 S.L. (trading as Pacific Silk Consulting), company registration number ESB16668931, registered at Carrer Cama Roja nº7, 07400, Alcúdia, Illes Balears, Spain. For privacy enquiries, contact us at: legal@pacificsilkconsulting.com.",
       ],
     },
@@ -45,7 +45,7 @@ export const privacyContent: LegalContent = {
       body: [
         "We use the personal data we collect for the following purposes:",
         "Responding to your enquiry: When you submit a contact form or email us, we use your data to respond to your message and to assess whether and how we can assist you.",
-        "Service delivery: If you engage PSC as a client, we use relevant contact information to administer the engagement, communicate about your project, and coordinate with alliance partners (SPL and Lance Trade) as required to deliver the contracted services.",
+        "Service delivery: If you engage PS as a client, we use relevant contact information to administer the engagement, communicate about your project, and coordinate with alliance partners (SPL and Lance Trade) as required to deliver the contracted services.",
         "Improving this website: Anonymised analytics data (if collected) helps us understand how the site is used so we can improve it.",
         "We do not use your data for automated decision-making or profiling. We do not sell, rent, or trade personal data.",
       ],
@@ -58,7 +58,7 @@ export const privacyContent: LegalContent = {
         "Consent: Where we send you marketing communications (for example, follow-up emails about services you have not yet engaged), we will do so only with your explicit consent, which you may withdraw at any time.",
         "Contract performance: Once an engagement begins, we process data necessary to deliver the contracted services.",
         "Legal obligation: We may process data where required to comply with applicable laws or regulatory requirements.",
-        "PSC is registered in Spain, an EU member state, and is subject to the EU General Data Protection Regulation (GDPR) and its Spanish implementation, Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD). The supervisory authority in Spain is the Agencia Española de Protección de Datos (AEPD, www.aepd.es).",
+        "PS is registered in Spain, an EU member state, and is subject to the EU General Data Protection Regulation (GDPR) and its Spanish implementation, Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD). The supervisory authority in Spain is the Agencia Española de Protección de Datos (AEPD, www.aepd.es).",
       ],
     },
     {
@@ -77,9 +77,9 @@ export const privacyContent: LegalContent = {
         "We share personal data with third parties only where necessary and on a strictly limited basis:",
         "Hosting infrastructure: This website is hosted on Vercel (vercel.com), which processes server requests and may temporarily handle data transmitted to and from this website. Vercel is subject to its own privacy and security standards.",
         "Contact form processing: Contact forms on this website are processed via Tally (tally.so), an external form service. When you submit a contact form, your data — including name, email address, company name, and message content — is transmitted to and stored by Tally. Tally operates in accordance with GDPR. We access your submission through the Tally platform solely to respond to your enquiry. Tally's privacy policy is available at tally.so/privacy.",
-        "Client portal authentication: The PSC client portal uses Supabase (supabase.com) for identity and authentication management. If you create a portal account, Supabase processes your email address, login events, and session data on our behalf under a data processing agreement. Supabase's privacy policy is available at supabase.com/privacy.",
-        "Alliance partners: Where you become a PSC client, relevant project information may be shared with SPL and Lance Trade as part of the coordinated alliance delivery of services. This is done under appropriate confidentiality and data-handling arrangements between the alliance entities.",
-        "Client portal: The PSC client portal is a separate service operating on a separate codebase and may be subject to its own privacy policy and terms. Any data you provide through the portal is governed by those separate terms.",
+        "Client portal authentication: The PS client portal uses Supabase (supabase.com) for identity and authentication management. If you create a portal account, Supabase processes your email address, login events, and session data on our behalf under a data processing agreement. Supabase's privacy policy is available at supabase.com/privacy.",
+        "Alliance partners: Where you become a PS client, relevant project information may be shared with SPL and Lance Trade as part of the coordinated alliance delivery of services. This is done under appropriate confidentiality and data-handling arrangements between the alliance entities.",
+        "Client portal: The PS client portal is a separate service operating on a separate codebase and may be subject to its own privacy policy and terms. Any data you provide through the portal is governed by those separate terms.",
         "Professional advisers: We may share data with our legal, financial, or regulatory advisers under strict confidentiality obligations.",
         "We do not sell data to third parties. We do not share data with advertising platforms.",
       ],
@@ -89,7 +89,7 @@ export const privacyContent: LegalContent = {
       body: [
         "Pacific Silk Consulting operates internationally. By the nature of our business — coordinating with alliance partners in China and serving clients across Europe, Asia, and the Americas — personal data may be processed in countries outside your own jurisdiction.",
         "Where data is transferred to countries that do not provide an equivalent level of data protection to your home jurisdiction, we implement appropriate safeguards, which may include standard contractual clauses or equivalent mechanisms.",
-        "PSC is registered in Spain and operates within the EU legal framework under GDPR. Where personal data is shared with alliance partners in China (SPL and Lance Trade) as part of service delivery, such transfers are governed by appropriate contractual safeguards, including standard contractual clauses (SCCs) as approved by the European Commission, to ensure adequate protection of personal data transferred outside the EEA.",
+        "PS is registered in Spain and operates within the EU legal framework under GDPR. Where personal data is shared with alliance partners in China (SPL and Lance Trade) as part of service delivery, such transfers are governed by appropriate contractual safeguards, including standard contractual clauses (SCCs) as approved by the European Commission, to ensure adequate protection of personal data transferred outside the EEA.",
       ],
     },
     {
@@ -111,7 +111,7 @@ export const privacyContent: LegalContent = {
       heading: "Cookies",
       body: [
         "This website uses only technically necessary cookies — small files stored on your device that are required for the website to function correctly. We do not use advertising cookies, social media tracking pixels, or cookies that track you across other websites.",
-        "This website does not set analytics cookies. Our contact forms are processed via Tally (tally.so), which may set its own functional cookies when you interact with a Tally-embedded form. The PSC client portal uses Supabase (supabase.com) for authentication, which sets session cookies required for login to function. These are technically necessary and are not used for tracking or advertising.",
+        "This website does not set analytics cookies. Our contact forms are processed via Tally (tally.so), which may set its own functional cookies when you interact with a Tally-embedded form. The PS client portal uses Supabase (supabase.com) for authentication, which sets session cookies required for login to function. These are technically necessary and are not used for tracking or advertising.",
         "You can control and delete cookies through your browser settings. Disabling technically necessary cookies may affect website functionality.",
       ],
     },
@@ -139,13 +139,13 @@ export const termsContent: LegalContent = {
       heading: "Acceptance of terms",
       body: [
         "By accessing and using this website (pacificsilkconsulting.com), you agree to be bound by these Terms of Use. If you do not agree, please do not use this website.",
-        "These terms apply to all visitors to this website. They do not govern the relationship between PSC and its clients — that relationship is governed by the engagement agreement entered into at the start of each project.",
+        "These terms apply to all visitors to this website. They do not govern the relationship between PS and its clients — that relationship is governed by the engagement agreement entered into at the start of each project.",
       ],
     },
     {
       heading: "About this website",
       body: [
-        "This website is a marketing and information resource operated by Pacific Silk Consulting ('PSC', 'we', 'us'). Its purpose is to describe our services, explain how we work, and allow prospective clients to make initial contact.",
+        "This website is a marketing and information resource operated by Pacific Silk Consulting ('PS', 'we', 'us'). Its purpose is to describe our services, explain how we work, and allow prospective clients to make initial contact.",
         "This website does not facilitate any transactions, purchases, or self-service account creation. No services are sold or contracted through this website. All commercial arrangements are entered into separately.",
         "Nothing on this website constitutes an offer capable of acceptance, a binding commitment to provide services, or a guarantee of any outcome.",
       ],
@@ -178,15 +178,15 @@ export const termsContent: LegalContent = {
     {
       heading: "The client portal",
       body: [
-        "PSC operates an invite-only client portal at a separate URL. The portal is a distinct service with its own codebase, access controls, and terms of use.",
-        "Access to the portal is granted by PSC at its sole discretion to engaged clients. There is no self-service registration. If you are an existing client and need access, contact your PSC engagement lead.",
+        "PS operates an invite-only client portal at a separate URL. The portal is a distinct service with its own codebase, access controls, and terms of use.",
+        "Access to the portal is granted by PS at its sole discretion to engaged clients. There is no self-service registration. If you are an existing client and need access, contact your PS engagement lead.",
         "Use of the client portal is governed by the separate terms and conditions applicable to that service, not these Terms of Use.",
       ],
     },
     {
       heading: "Third-party links",
       body: [
-        "This website may contain links to third-party websites for reference or convenience. PSC does not control, endorse, or take responsibility for the content, privacy practices, or terms of any third-party website.",
+        "This website may contain links to third-party websites for reference or convenience. PS does not control, endorse, or take responsibility for the content, privacy practices, or terms of any third-party website.",
         "Accessing third-party websites from links on this site is at your own risk.",
       ],
     },
