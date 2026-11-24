@@ -3,10 +3,12 @@
   "configurations": [
     {
       "name": "pacific-silk-website",
-      "runtimeExecutable": "cmd",
+      "runtimeExecutable": "env",
       "runtimeArgs": [
-        "/c",
-        "set NEXT_DIST_DIR=.next-preview&& npm run dev"
+        "NEXT_DIST_DIR=.next-preview",
+        "npm",
+        "run",
+        "dev"
       ],
       "port": 3000,
       "autoPort": true

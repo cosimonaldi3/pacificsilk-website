@@ -38,5 +38,5 @@ export default function BeyondGrid({ content }: BeyondGridProps) {
     },
   ];
 
-  return <DefineBento idBase="beyond" tiles={tiles} expandLabel={content.expandLabel} closeLabel={content.closeLabel} />;
+  return <DefineBento idBase="beyond" tall tiles={tiles} expandLabel={content.expandLabel} closeLabel={content.closeLabel} />;
 }

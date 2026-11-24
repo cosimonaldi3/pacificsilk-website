@@ -262,7 +262,7 @@ export const capabilitiesContent: CapabilitiesPageContent = {
     tracking: {
       title: "Track every project",
       body: "One shared view of where your project stands, what is next and what we need from you.",
-      link: { label: "About the portal", href: "/portal" },
+      link: { label: "Start a project", href: "/start" },
       projectLabel: "Sample project",
       steps: ["Define", "Validate", "Produce", "Ship", "Deliver"],
       current: 2,

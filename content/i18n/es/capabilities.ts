@@ -119,7 +119,7 @@ export const capabilitiesContent: CapabilitiesPageContent = {
     tracking: {
       title: "Sigue cada proyecto",
       body: "Una vista compartida de dónde está tu proyecto, qué viene después y qué necesitamos de ti.",
-      link: { label: "Sobre el portal", href: "/portal" },
+      link: { label: "Empezar un proyecto", href: "/start" },
       projectLabel: "Proyecto de ejemplo",
       steps: ["Definir", "Validar", "Producir", "Enviar", "Entregar"],
       current: 2,

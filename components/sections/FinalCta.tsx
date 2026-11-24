@@ -1,14 +1,21 @@
+import { getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import Container from "@/components/ui/Container";
 import { FinalCtaContent } from "@/content/home";
+import { finalCtaButtons } from "@/content/finalCtaButtons";
 
 interface FinalCtaProps {
   content: FinalCtaContent;
   /* Transparent, taller variant that lets a fixed hero video show through */
   overVideo?: boolean;
+  /* On the home page the primary button scrolls to the builder instead of opening /start */
+  primaryHref?: string;
 }
 
-export default function FinalCta({ content, overVideo = false }: FinalCtaProps) {
+/* Headline and body come from the page; the three buttons are shared (content/finalCtaButtons.ts) */
+export default async function FinalCta({ content, overVideo = false, primaryHref }: FinalCtaProps) {
+  const locale = await getLocale();
+  const buttons = finalCtaButtons[locale as keyof typeof finalCtaButtons] ?? finalCtaButtons.en;
   return (
     <section className={overVideo ? "relative z-10 flex items-center py-12 md:py-14" : "bg-psc-ink py-24 md:py-32"}>
       <Container>
@@ -21,13 +28,13 @@ export default function FinalCta({ content, overVideo = false }: FinalCtaProps) 
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link
-              href={content.cta.href}
+              href={primaryHref ?? buttons.primary.href}
               className="inline-block bg-psc-red text-psc-bg font-sans text-small font-medium px-8 py-4 hover:opacity-90 transition-opacity"
             >
-              {content.cta.label}
+              {buttons.primary.label}
             </Link>
-            {content.secondary?.map((link) => {
-              const external = link.href.startsWith("http");
+            {buttons.secondary.map((link) => {
+              const external = Boolean(link.external);
               return (
                 <Link
                   key={link.label}

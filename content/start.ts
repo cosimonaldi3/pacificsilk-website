@@ -26,6 +26,35 @@ export interface ThanksContent {
   socialLinks: SocialLink[];
 }
 
+export interface FormField {
+  label: string;
+  placeholder: string;
+}
+
+export interface QuoteFormContent {
+  heading: string;
+  fields: {
+    name: FormField;
+    email: FormField;
+    company: FormField;
+    country: FormField;
+    phone: FormField;
+    message: FormField;
+  };
+  optionalLabel: string;
+  errors: {
+    required: string;
+    email: string;
+    summary: string;
+    server: string;
+    rateLimited: string;
+  };
+  submitLabel: string;
+  /* {n} is replaced with the number of services in the visitor's blueprint */
+  blueprintCount: string;
+  blueprintCountOne: string;
+}
+
 export interface StartContent {
   meta: {
     title: string;
@@ -33,12 +62,7 @@ export interface StartContent {
   };
   pageTitle: string;
   intro: string;
-  bookingHeading: string;
-  bookingBody: string;
-  bookingCtaLabel: string;
-  bookingUrl: string;
-  emailHeading: string;
-  emailBody: string;
+  form: QuoteFormContent;
   emailAddress: string;
   thanks: ThanksContent;
 }
@@ -47,19 +71,35 @@ export const startContent: StartContent = {
   meta: {
     title: "Start your project — Pacific Silk Group",
     description:
-      "Tell us what you're working on. We'll reply within one business day with a proposed time to talk.",
+      "Tell us who you are and what you need. We reply within one business day with a first proposal.",
   },
   pageTitle: "Start your project",
   intro:
-    "Tell us what you're working on. We'll reply within one business day with a proposed time to talk.",
+    "Tell us who you are. Your project is below — adjust it, then send. We reply within one business day.",
 
-  bookingHeading: "Prefer to talk first?",
-  bookingBody: "Book a 30-minute introductory call directly on our calendar.",
-  bookingCtaLabel: "Book a call",
-  bookingUrl: BOOKING_URL,
+  form: {
+    heading: "Your details",
+    fields: {
+      name: { label: "Name", placeholder: "Your full name" },
+      email: { label: "Work email", placeholder: "you@company.com" },
+      company: { label: "Company", placeholder: "Company name" },
+      country: { label: "Country", placeholder: "Where you are based" },
+      phone: { label: "Phone or WhatsApp", placeholder: "+34 600 000 000" },
+      message: { label: "Project details", placeholder: "Product, quantities, timeline — whatever you already know." },
+    },
+    optionalLabel: "optional",
+    errors: {
+      required: "Required.",
+      email: "Enter a valid email address.",
+      summary: "Check the highlighted fields.",
+      server: "Something went wrong sending your details. Try again, or email contact@pacificsilk.com.",
+      rateLimited: "Too many attempts. Wait a few minutes and try again, or email contact@pacificsilk.com.",
+    },
+    submitLabel: "Send info",
+    blueprintCount: "Sent with your blueprint: {n} services",
+    blueprintCountOne: "Sent with your blueprint: 1 service",
+  },
 
-  emailHeading: "Or send us a note",
-  emailBody: "If you'd rather start with a quick message:",
   emailAddress: EMAIL_ADDRESS,
 
   thanks: {

@@ -10,7 +10,7 @@ interface ToolsShellProps {
 }
 
 // Everything a tool needs to render: its copy, the scoped styles and the services
-// dialog. /tools, the home page and the portal dashboard all mount tools through this.
+// dialog. /tools and the home page both mount tools through this.
 export default async function ToolsShell({ locale, children }: ToolsShellProps) {
   const content = await loadToolsContent(locale);
 

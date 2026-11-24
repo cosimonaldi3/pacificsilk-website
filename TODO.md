@@ -7,14 +7,6 @@ Format: one item per line. Use checkboxes. Group by category.
 ## Deferred decisions
 - [ ] Form handler service (Formspree, Resend, or Vercel serverless) — decide before contact page build
 - [ ] Analytics service (Plausible vs Vercel Analytics) — decide before launch
-- [ ] Portal URL — will be placeholder until portal app exists
-
-## Portal auth (Supabase)
-- [ ] Supabase dashboard → Authentication → Sign In / Providers → Email: enabled, "Confirm email" OFF (accounts are gated by manual approval instead)
-- [ ] Supabase dashboard → URL Configuration: add `http://localhost:3000/**`, the production domain and Vercel preview URLs as redirect URLs (signup confirmation and password reset land on `/portal/auth/callback`)
-- [ ] Approve each new portal account: SQL Editor → `update auth.users set raw_app_meta_data = raw_app_meta_data || '{"approved": true}'::jsonb where email = '…';`. Unapproved users see a "reviewing your access" screen
-- [ ] Optional: custom SMTP (Hostinger) so confirmation emails come from the PSC domain
-- [ ] Portal auth copy is English only (`content/portal.ts`); add es/zh when the portal is localized
 
 ## Known open work
 - [x] GitHub remote setup — create repo, push `main`, confirm CI is clean

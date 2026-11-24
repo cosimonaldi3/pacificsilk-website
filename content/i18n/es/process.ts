@@ -241,7 +241,7 @@ export const processContent: ProcessPageContent = {
     tracking: {
       title: "Sigue tus proyectos de cerca",
       body: "Seguimos cada proyecto de cerca, desde la fábrica hasta tu puerta. Una vista compartida de dónde está, qué viene después y qué necesitamos de ti. Ves cada paso cuando ocurre.",
-      link: { label: "Acceder al portal", href: "/portal/login" },
+      link: { label: "Empezar un proyecto", href: "/start" },
       points: [
         "Cada etapa de la producción seguida por nuestro equipo en China",
         "Novedades en tu idioma, sin que tengas que preguntar",

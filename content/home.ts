@@ -124,7 +124,8 @@ export interface BuilderContent {
 export interface FinalCtaContent {
   headline: string;
   body: string;
-  cta: CtaLink;
+  /* Superseded by content/finalCtaButtons.ts; kept optional so older page content still type-checks */
+  cta?: CtaLink;
   secondary?: CtaLink[];
 }
 

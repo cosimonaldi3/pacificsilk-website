@@ -77,9 +77,7 @@ export const privacyContent: LegalContent = {
         "We share personal data with third parties only where necessary and on a strictly limited basis:",
         "Hosting infrastructure: This website is hosted on Vercel (vercel.com), which processes server requests and may temporarily handle data transmitted to and from this website. Vercel is subject to its own privacy and security standards.",
         "Contact form processing: Contact forms on this website are processed via Tally (tally.so), an external form service. When you submit a contact form, your data — including name, email address, company name, and message content — is transmitted to and stored by Tally. Tally operates in accordance with GDPR. We access your submission through the Tally platform solely to respond to your enquiry. Tally's privacy policy is available at tally.so/privacy.",
-        "Client portal authentication: The PS client portal uses Supabase (supabase.com) for identity and authentication management. If you create a portal account, Supabase processes your email address, login events, and session data on our behalf under a data processing agreement. Supabase's privacy policy is available at supabase.com/privacy.",
         "Alliance partners: Where you become a PS client, relevant project information may be shared with SPL and Lance Trade as part of the coordinated alliance delivery of services. This is done under appropriate confidentiality and data-handling arrangements between the alliance entities.",
-        "Client portal: The PS client portal is a separate service operating on a separate codebase and may be subject to its own privacy policy and terms. Any data you provide through the portal is governed by those separate terms.",
         "Professional advisers: We may share data with our legal, financial, or regulatory advisers under strict confidentiality obligations.",
         "We do not sell data to third parties. We do not share data with advertising platforms.",
       ],
@@ -111,7 +109,7 @@ export const privacyContent: LegalContent = {
       heading: "Cookies",
       body: [
         "This website uses only technically necessary cookies — small files stored on your device that are required for the website to function correctly. We do not use advertising cookies, social media tracking pixels, or cookies that track you across other websites.",
-        "This website does not set analytics cookies. Our contact forms are processed via Tally (tally.so), which may set its own functional cookies when you interact with a Tally-embedded form. The PS client portal uses Supabase (supabase.com) for authentication, which sets session cookies required for login to function. These are technically necessary and are not used for tracking or advertising.",
+        "This website does not set analytics cookies. Our contact forms are processed via Tally (tally.so), which may set its own functional cookies when you interact with a Tally-embedded form.",
         "You can control and delete cookies through your browser settings. Disabling technically necessary cookies may affect website functionality.",
       ],
     },
@@ -173,14 +171,6 @@ export const termsContent: LegalContent = {
         "To the fullest extent permitted by law, Pacific Silk Consulting shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising from your use of, or inability to use, this website or any content on it.",
         "This includes, without limitation, damages for loss of profits, business interruption, loss of data, or any other commercial or financial losses, even if we have been advised of the possibility of such damages.",
         "Nothing in these terms limits or excludes liability that cannot be excluded by law, including liability for death or personal injury caused by our negligence or for fraudulent misrepresentation.",
-      ],
-    },
-    {
-      heading: "The client portal",
-      body: [
-        "PS operates an invite-only client portal at a separate URL. The portal is a distinct service with its own codebase, access controls, and terms of use.",
-        "Access to the portal is granted by PS at its sole discretion to engaged clients. There is no self-service registration. If you are an existing client and need access, contact your PS engagement lead.",
-        "Use of the client portal is governed by the separate terms and conditions applicable to that service, not these Terms of Use.",
       ],
     },
     {

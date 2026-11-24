@@ -433,7 +433,7 @@ export const processContent: ProcessPageContent = {
     tracking: {
       title: "Track your projects closely",
       body: "We follow every project closely, from the factory to your door. One shared view of where it stands, what is next and what we need from you. You see every step as it happens.",
-      link: { label: "Log in to the portal", href: "/portal/login" },
+      link: { label: "Start a project", href: "/start" },
       points: [
         "Every stage of production followed by our team in China",
         "Updates in your language, without having to ask",

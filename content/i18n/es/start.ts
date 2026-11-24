@@ -7,19 +7,35 @@ export const startContent: StartContent = {
   meta: {
     title: "Inicia tu proyecto — Pacific Silk Group",
     description:
-      "Cuéntanos en qué estás trabajando. Responderemos en un día hábil con una propuesta de hora para hablar.",
+      "Cuéntanos quién eres y qué necesitas. Respondemos en un día hábil con una primera propuesta.",
   },
   pageTitle: "Inicia tu proyecto",
   intro:
-    "Cuéntanos en qué estás trabajando. Responderemos en un día hábil con una propuesta de hora para hablar.",
+    "Cuéntanos quién eres. Tu plan está abajo: cambia lo que quieras. Respondemos en un día hábil.",
 
-  bookingHeading: "¿Prefieres hablar primero?",
-  bookingBody: "Reserva directamente una llamada introductoria de 30 minutos en nuestro calendario.",
-  bookingCtaLabel: "Reservar llamada",
-  bookingUrl: BOOKING_URL,
+  form: {
+    heading: "Tus datos",
+    fields: {
+      name: { label: "Nombre", placeholder: "Tu nombre completo" },
+      email: { label: "Email de trabajo", placeholder: "tu@empresa.com" },
+      company: { label: "Empresa", placeholder: "Nombre de la empresa" },
+      country: { label: "País", placeholder: "Dónde estás" },
+      phone: { label: "Teléfono o WhatsApp", placeholder: "+34 600 000 000" },
+      message: { label: "Detalles del proyecto", placeholder: "Producto, cantidades, plazos: lo que ya sepas." },
+    },
+    optionalLabel: "opcional",
+    errors: {
+      required: "Obligatorio.",
+      email: "Introduce un email válido.",
+      summary: "Revisa los campos marcados.",
+      server: "Algo salió mal al enviar tus datos. Inténtalo de nuevo o escríbenos a contact@pacificsilk.com.",
+      rateLimited: "Demasiados intentos. Espera unos minutos e inténtalo de nuevo, o escríbenos a contact@pacificsilk.com.",
+    },
+    submitLabel: "Enviar datos",
+    blueprintCount: "Se envía con tu plan: {n} servicios",
+    blueprintCountOne: "Se envía con tu plan: 1 servicio",
+  },
 
-  emailHeading: "O envíanos un mensaje",
-  emailBody: "Si prefieres empezar con un mensaje rápido:",
   emailAddress: EMAIL_ADDRESS,
 
   thanks: {

@@ -32,15 +32,22 @@ interface DefineBentoProps {
   tiles: DefineBentoTile[];
   expandLabel: string;
   closeLabel: string;
-  /* For a grid taller than a screen (Validate, three rows): the opened card sits at the top
-     at its own height instead of filling the grid, and the other tiles stay faintly visible
-     below it. Clicking them closes the card. */
+  /* For a grid taller than a screen (Validate, Execute): the opened card sits at the top of the grid
+     at one fixed height (never taller than the screen) instead of filling it, the same for every tile,
+     and scrolls inside if its content is longer. The other tiles stay faintly visible below it.
+     Clicking them closes the card. */
   tall?: boolean;
 }
 
 /* Matches the clip-path transition on .pd-overlay in process.css */
 const GROW_MS = 520;
 const FULL = "inset(0px 0px 0px 0px round 1rem)";
+/* Close-on-scroll: how long after wheel/touch/key input a scroll counts as the reader's, and how far it may drift */
+const INTENT_MS = 600;
+/* After opening, wheel input is ignored this long (the camera is still scrolling, trackpad momentum may linger) */
+const OPEN_GRACE_MS = 1200;
+const SCROLL_CLOSE_PX = 24;
+const SCROLL_KEYS = new Set(["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "]);
 
 type Phase = "closed" | "from" | "open" | "closing";
 
@@ -147,6 +154,40 @@ export default function DefineBento({ idBase, tiles, expandLabel, closeLabel, ta
     };
   }, [openKey, close]);
 
+  /* Scrolling the page closes the card. Only scrolling the reader does counts: the camera's own smooth
+     scroll to centre the card on open fires scroll events too, but no wheel, touch or key input. Such
+     input marks the page as reader-driven for a moment; a scroll of more than a few pixels in that window
+     closes the card. A wheel turn inside the card's own overflow moves the card, not the page, so it does not. */
+  useEffect(() => {
+    if (phase !== "open") return;
+    let intentUntil = 0;
+    let startY = window.scrollY;
+    const openedAt = performance.now();
+    const intent = () => {
+      const now = performance.now();
+      /* Trackpad momentum from before the click, and the camera's own scroll, both land here */
+      if (now - openedAt < OPEN_GRACE_MS) return;
+      if (now > intentUntil) startY = window.scrollY;
+      intentUntil = now + INTENT_MS;
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (SCROLL_KEYS.has(e.key)) intent();
+    };
+    const onScroll = () => {
+      if (performance.now() < intentUntil && Math.abs(window.scrollY - startY) > SCROLL_CLOSE_PX) close();
+    };
+    window.addEventListener("wheel", intent, { passive: true });
+    window.addEventListener("touchmove", intent, { passive: true });
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("wheel", intent);
+      window.removeEventListener("touchmove", intent);
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [phase, close]);
+
   const active = tiles.find((t) => t.key === openKey);
   const grown = phase === "open";
   const ink = active?.tone === "ink";
@@ -155,7 +196,7 @@ export default function DefineBento({ idBase, tiles, expandLabel, closeLabel, ta
   const learnMoreSlug = active ? processLearnMore[`${idBase}:${active.key}`] : undefined;
 
   return (
-    <div ref={gridRef} className="relative">
+    <div ref={gridRef} className={`relative ${tall && openKey ? "lg:min-h-[min(46rem,calc(100svh-8rem))]" : ""}`}>
       <div
         inert={openKey !== null}
         className={`pd-dim grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:auto-rows-[minmax(18rem,auto)] lg:gap-5 ${
@@ -190,7 +231,7 @@ export default function DefineBento({ idBase, tiles, expandLabel, closeLabel, ta
           className={`pd-overlay absolute inset-0 z-20 flex ${tall ? "pointer-events-none items-start" : ""}`}
           style={{ clipPath: grown ? FULL : from }}
         >
-          <TileShell glowAt={active.glowAt} tone={active.tone ?? "cream"} className={`pointer-events-auto w-full ${tall ? "lg:min-h-[34rem]" : ""}`}>
+          <TileShell glowAt={active.glowAt} tone={active.tone ?? "cream"} className={`pointer-events-auto w-full ${tall ? "lg:h-[min(46rem,calc(100svh-8rem))]" : ""}`}>
             <div className={`relative flex h-full flex-col overflow-y-auto lg:flex-row ${grown ? "pd-overlay-in" : ""}`}>
               {/* Visual side: the tile's mock UI, larger */}
               <div className="pd-overlay-visual flex items-center justify-center px-4 pt-20 pb-6 md:px-8 lg:w-[58%] lg:py-10">

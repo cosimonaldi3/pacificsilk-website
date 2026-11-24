@@ -4,7 +4,7 @@ import Hero from "@/components/sections/Hero";
 import Journey from "@/components/sections/home/Journey";
 import Benefits from "@/components/sections/home/Benefits";
 import Comparison from "@/components/sections/home/Comparison";
-import ProjectBuilder from "@/components/sections/home/ProjectBuilder";
+import ProjectBuilder from "@/components/sections/ProjectBuilder";
 import "@/components/sections/capabilities/capabilities.css";
 import "@/components/sections/home/home.css";
 import FinalCta from "@/components/sections/FinalCta";
@@ -61,10 +61,10 @@ export default async function Home({
           <Journey content={content.journey} />
           <Benefits content={content.benefits} />
           <Comparison content={content.comparison} />
-          <ProjectBuilder content={content.builder} />
+          <ProjectBuilder content={content.builder} variant="home" />
         </div>
         {/* ...and the final call to action is transparent, so the video returns */}
-        <FinalCta content={content.finalCta} overVideo />
+        <FinalCta content={content.finalCta} overVideo primaryHref="#builder" />
       </main>
       <footer className="relative z-10 bg-psc-ink py-8">
         <Footer />

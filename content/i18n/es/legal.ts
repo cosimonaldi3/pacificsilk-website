@@ -64,9 +64,7 @@ export const privacyContent: LegalContent = {
         "Compartimos datos personales con terceros únicamente cuando es necesario y de forma estrictamente limitada:",
         "Infraestructura de alojamiento: Este sitio web está alojado en Vercel (vercel.com), que procesa las solicitudes del servidor y puede gestionar temporalmente datos transmitidos hacia y desde este sitio web. Vercel está sujeto a sus propios estándares de privacidad y seguridad.",
         "Procesamiento de formularios de contacto: Los formularios de contacto de este sitio web se procesan a través de Tally (tally.so), un servicio externo de formularios. Al enviar un formulario de contacto, tus datos — incluidos nombre, dirección de correo electrónico, nombre de empresa y contenido del mensaje — se transmiten a Tally y se almacenan en su plataforma. Tally opera conforme al RGPD. Accedemos a tu envío a través de la plataforma de Tally exclusivamente para responder a tu consulta. La política de privacidad de Tally está disponible en tally.so/privacy.",
-        "Autenticación del portal de clientes: El portal de clientes de PS utiliza Supabase (supabase.com) para la gestión de identidad y autenticación. Si creas una cuenta en el portal, Supabase procesa tu dirección de correo electrónico, eventos de inicio de sesión y datos de sesión en nuestro nombre bajo un acuerdo de procesamiento de datos. La política de privacidad de Supabase está disponible en supabase.com/privacy.",
         "Socios de la alianza: Cuando te conviertas en cliente de PS, la información relevante del proyecto podrá compartirse con SPL y Lance Trade como parte de la prestación coordinada de servicios de la alianza. Esto se hace bajo acuerdos apropiados de confidencialidad y gestión de datos entre las entidades de la alianza.",
-        "Portal de clientes: El portal de clientes de PS es un servicio independiente que opera con un código separado y puede estar sujeto a su propia política de privacidad y condiciones. Los datos que proporciones a través del portal están regidos por esos términos separados.",
         "Asesores profesionales: Podemos compartir datos con nuestros asesores legales, financieros o regulatorios bajo estrictas obligaciones de confidencialidad.",
         "No vendemos datos a terceros. No compartimos datos con plataformas publicitarias.",
       ],
@@ -98,7 +96,7 @@ export const privacyContent: LegalContent = {
       heading: "Cookies",
       body: [
         "Este sitio web utiliza únicamente las cookies técnicamente necesarias — pequeños archivos almacenados en tu dispositivo que son necesarios para que el sitio web funcione correctamente. No utilizamos cookies publicitarias, píxeles de seguimiento de redes sociales ni cookies que te rastreen en otros sitios web.",
-        "Este sitio web no instala cookies de analítica. Nuestros formularios de contacto se procesan a través de Tally (tally.so), que puede instalar sus propias cookies funcionales cuando interactúas con un formulario integrado de Tally. El portal de clientes de PS utiliza Supabase (supabase.com) para la autenticación, que instala cookies de sesión necesarias para que el inicio de sesión funcione. Estas son técnicamente necesarias y no se utilizan para rastreo ni publicidad.",
+        "Este sitio web no instala cookies de analítica. Nuestros formularios de contacto se procesan a través de Tally (tally.so), que puede instalar sus propias cookies funcionales cuando interactúas con un formulario integrado de Tally.",
         "Puedes controlar y eliminar las cookies a través de la configuración de tu navegador. Desactivar las cookies técnicamente necesarias puede afectar a la funcionalidad del sitio web.",
       ],
     },
@@ -160,14 +158,6 @@ export const termsContent: LegalContent = {
         "En la máxima medida permitida por la ley, Pacific Silk Consulting no será responsable de ningún daño directo, indirecto, incidental, especial, consecuente o punitivo derivado de tu uso o imposibilidad de uso de este sitio web o cualquier contenido del mismo.",
         "Esto incluye, sin limitación, daños por pérdida de beneficios, interrupción de la actividad, pérdida de datos o cualquier otra pérdida comercial o financiera, incluso si se nos ha advertido de la posibilidad de tales daños.",
         "Nada en estos términos limita o excluye la responsabilidad que no pueda excluirse por ley, incluida la responsabilidad por muerte o lesiones personales causadas por nuestra negligencia o por representación fraudulenta.",
-      ],
-    },
-    {
-      heading: "El portal de clientes",
-      body: [
-        "PS opera un portal de clientes de acceso restringido en una URL separada. El portal es un servicio distinto con su propio código, controles de acceso y condiciones de uso.",
-        "El acceso al portal es concedido por PS a su entera discreción a clientes comprometidos. No existe registro autónomo. Si eres un cliente existente y necesitas acceso, contacta con tu responsable de encargo en PS.",
-        "El uso del portal de clientes se rige por los términos y condiciones separados aplicables a ese servicio, no por estos Términos de uso.",
       ],
     },
     {

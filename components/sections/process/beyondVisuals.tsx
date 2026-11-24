@@ -125,70 +125,40 @@ export function NetworkVisual({ c, large = false }: { c: BeyondContent["network"
   );
 }
 
-/* ---------- Other ways in: rising steps. Buying, where you are today, is the shortest bar at
-   the bottom; each step up goes deeper into China. A red path climbs the ends of the steps. ---------- */
-
-const STEP_H = 32;
-const STEP_GAP = 10;
-const STEP_TOP = 22;
-/* Bar lengths in viewBox units, bottom step first */
-const STEP_W = [124, 164, 188, 212];
-const STEP_VIEW_W = 250;
+/* ---------- Other ways in: one road that splits. You start on the trunk, buying. It forks, and one
+   fork forks again: each road ends in its own way into China. No words, no motion: the title and
+   points beside it say the rest. ---------- */
 
 export function EntryOptionsVisual({ c, large = false }: { c: BeyondContent["options"]; large?: boolean }) {
-  const n = c.items.length;
-  /* Row 0 is the bottom step */
-  const rowY = (i: number) => STEP_TOP + (n - 1 - i) * (STEP_H + STEP_GAP);
-  const ends = c.items.map((_, i) => [STEP_W[i] ?? STEP_W[STEP_W.length - 1], rowY(i) + STEP_H / 2] as const);
-  const climb = ends.map(([x, y], i) => `${i ? "L" : "M"}${x + 10} ${y}`).join(" ");
-  const height = STEP_TOP + n * (STEP_H + STEP_GAP);
-  const [topX, topY] = ends[n - 1];
+  /* Each road as one path; the trunk and the first fork are shared, so they are drawn once */
+  const roads = [
+    "M0 70 H56 C84 70 84 70 100 70", // trunk
+    "M100 70 C128 70 134 22 170 22 H228", // upper road
+    "M100 70 C128 70 134 70 150 70 H228", // middle road
+    "M100 70 C128 70 134 118 170 118 H228", // lower road
+    "M150 70 C176 70 182 46 200 46 H228", // the middle road forks again
+  ];
+  const ends = [22, 46, 70, 118];
   return (
-    <div className={large ? "mx-auto w-full max-w-[28rem]" : "px-6 pb-6"}>
-      <svg viewBox={`0 0 ${STEP_VIEW_W} ${height}`} className="h-auto w-full overflow-visible" role="img" aria-label={c.items.join(", ")}>
-        {c.items.map((item, i) => {
-          const w = ends[i][0];
-          const y = rowY(i);
-          const today = i === 0;
-          return (
-            <g key={item}>
-              <rect
-                x="0"
-                y={y}
-                width={w}
-                height={STEP_H}
-                rx="6"
-                fill={today ? "var(--color-psc-ink)" : "var(--color-psc-red)"}
-                fillOpacity={today ? 1 : 0.12 + i * 0.1}
-              />
-              <text
-                x="10"
-                y={y + STEP_H / 2}
-                dominantBaseline="central"
-                fontFamily="var(--font-sans)"
-                fontSize="11"
-                fontWeight="500"
-                fill={today ? "var(--color-psc-bg)" : "var(--color-psc-ink)"}
-              >
-                {item}
-              </text>
-            </g>
-          );
-        })}
-
-        {/* The climb, step end to step end (dash flow from capabilities.css) */}
-        <path d={climb} fill="none" stroke="var(--color-psc-red)" strokeWidth="1.5" strokeDasharray="4 5" strokeLinejoin="round" className="pb-climb" />
-        <path d={`M${topX + 5} ${topY - 6} L${topX + 10} ${topY - 12} L${topX + 15} ${topY - 6}`} fill="none" stroke="var(--color-psc-red)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        <text x={topX + 10} y={topY - 20} textAnchor="end" fontFamily="var(--font-mono)" fontSize="9" letterSpacing="1" fill="var(--color-psc-red)">
-          {c.deeperLabel.toUpperCase()}
-        </text>
-
-        {/* You are here */}
-        <circle cx={ends[0][0] + 10} cy={ends[0][1]} r="5" fill="var(--color-psc-red)" className="pb-here" />
-        <circle cx={ends[0][0] + 10} cy={ends[0][1]} r="5" fill="var(--color-psc-red)" />
-        <text x={ends[0][0] + 22} y={ends[0][1]} dominantBaseline="central" fontFamily="var(--font-mono)" fontSize="9" letterSpacing="1" fill="var(--color-psc-gray)">
-          {c.currentLabel.toUpperCase()}
-        </text>
+    <div className={large ? "mx-auto w-full max-w-[26rem]" : "px-6 pb-6"}>
+      <svg viewBox="0 0 240 140" className="h-auto w-full overflow-visible" role="img" aria-label={c.items.join(", ")} fill="none">
+        {roads.map((d) => (
+          <path key={d} d={d} stroke="var(--color-psc-ink)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        ))}
+        {/* The junctions */}
+        {[
+          [100, 70],
+          [150, 70],
+        ].map(([x, y]) => (
+          <circle key={x} cx={x} cy={y} r="2.5" fill="var(--color-psc-ink)" />
+        ))}
+        {/* Where each road arrives */}
+        {ends.map((y) => (
+          <circle key={y} cx="228" cy={y} r="4" fill="var(--color-psc-bg)" stroke="var(--color-psc-red)" strokeWidth="1.5" />
+        ))}
+        {/* You, at the start of the trunk */}
+        <circle cx="14" cy="70" r="9" fill="var(--color-psc-red)" fillOpacity="0.18" />
+        <circle cx="14" cy="70" r="4.5" fill="var(--color-psc-red)" />
       </svg>
     </div>
   );

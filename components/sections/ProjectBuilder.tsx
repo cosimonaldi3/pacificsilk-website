@@ -1,25 +1,27 @@
 "use client";
 
-import { useId, useMemo, useState } from "react";
+import { useId, useMemo } from "react";
 import { Link } from "@/i18n/navigation";
 import Container from "@/components/ui/Container";
 import type { BuilderContent, BuilderOption } from "@/content/home";
 import { buildBlueprint, type GuidedAnswers } from "@/lib/home/blueprint";
+import { useBuilderState, type BuilderMode } from "@/lib/home/useBuilderState";
 
 interface ProjectBuilderProps {
   content: BuilderContent;
+  /* "home": shows the Book a call / Get a quote / send CTAs. "start": blueprint only; the quote form above it is the action. */
+  variant: "home" | "start";
 }
 
-type Mode = "guided" | "manual";
-
 /* Two ways in: answer four questions (guided) or pick services directly (manual).
-   The blueprint updates live. Nothing is stored or sent: the CTAs lead to /start,
-   the booking page, or the visitor's own email client. */
-export default function ProjectBuilder({ content }: ProjectBuilderProps) {
-  const [mode, setMode] = useState<Mode>("guided");
-  const [answers, setAnswers] = useState<GuidedAnswers>({ type: null, today: null, dest: "", worries: [] });
-  const [manual, setManual] = useState<string[]>([]);
-  const [otherText, setOtherText] = useState("");
+   The blueprint updates live. Selections are kept in sessionStorage (useBuilderState) so the
+   same builder on /start shows what the visitor picked on the home page. Nothing is sent from here. */
+export default function ProjectBuilder({ content, variant }: ProjectBuilderProps) {
+  const [{ mode, answers, manual, otherText }, update] = useBuilderState();
+  const setMode = (m: BuilderMode) => update((s) => ({ ...s, mode: m }));
+  const setAnswers = (fn: (a: GuidedAnswers) => GuidedAnswers) => update((s) => ({ ...s, answers: fn(s.answers) }));
+  const setManual = (fn: (l: string[]) => string[]) => update((s) => ({ ...s, manual: fn(s.manual) }));
+  const setOtherText = (t: string) => update((s) => ({ ...s, otherText: t }));
   const destId = useId();
   const otherId = useId();
 
@@ -128,10 +130,14 @@ export default function ProjectBuilder({ content }: ProjectBuilderProps) {
   };
 
   return (
-    <section id="builder" aria-labelledby="builder-heading" className="scroll-mt-16 bg-psc-muted py-16 md:py-20">
+    <section id="builder" aria-labelledby="builder-heading" className={`scroll-mt-24 ${variant === "home" ? "bg-psc-muted py-16 md:py-20" : "bg-psc-bg pb-16 pt-4 md:pb-20"}`}>
       <Container>
-        <p className="mb-4 font-mono text-[12px] uppercase tracking-widest text-psc-red">{content.label}</p>
-        <h2 id="builder-heading" className="mb-8 max-w-2xl font-display text-h2 font-medium leading-tight text-psc-ink">
+                {/* On /start the form above already introduces the builder, so its heading is for screen readers only */}
+        {variant === "home" && <p className="mb-4 font-mono text-[12px] uppercase tracking-widest text-psc-red">{content.label}</p>}
+        <h2
+          id="builder-heading"
+          className={variant === "home" ? "mb-8 max-w-2xl font-display text-h2 font-medium leading-tight text-psc-ink" : "sr-only"}
+        >
           {content.headline}
         </h2>
 
@@ -231,23 +237,27 @@ export default function ProjectBuilder({ content }: ProjectBuilderProps) {
                 )}
               </ol>
 
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link href={content.quote.href} className="bg-psc-red px-5 py-3 font-sans text-small font-medium text-psc-bg transition-opacity hover:opacity-90">
-                  {content.quote.label}
-                </Link>
-                <a
-                  href={content.call.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="border border-psc-bg/30 px-5 py-3 font-sans text-small font-medium text-psc-bg transition-colors hover:border-psc-bg"
-                >
-                  {content.call.label}
-                </a>
-              </div>
-              {services.length > 0 && (
-                <a href={mailto} className="mt-4 inline-block font-sans text-small text-psc-bg/70 underline underline-offset-4 hover:text-psc-bg">
-                  {content.send.label}
-                </a>
+              {variant === "home" && (
+                <>
+                  <div className="mt-8 flex flex-wrap gap-3">
+                    <a
+                      href={content.call.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-psc-red px-5 py-3 font-sans text-small font-medium text-psc-bg transition-opacity hover:opacity-90"
+                    >
+                      {content.call.label}
+                    </a>
+                    <Link href={content.quote.href} className="border border-psc-bg/30 px-5 py-3 font-sans text-small font-medium text-psc-bg transition-colors hover:border-psc-bg">
+                      {content.quote.label}
+                    </Link>
+                  </div>
+                  {services.length > 0 && (
+                    <a href={mailto} className="mt-4 inline-block font-sans text-small text-psc-bg/70 underline underline-offset-4 hover:text-psc-bg">
+                      {content.send.label}
+                    </a>
+                  )}
+                </>
               )}
             </div>
           </aside>

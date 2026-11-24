@@ -121,8 +121,7 @@ export default function Hero({
           playsInline
           className={`${fixedBackdrop ? "fixed" : "absolute"} inset-0 w-full h-full object-cover`}
         >
-          <source src="/videos/hero-bg.mp4" type="video/mp4" />
-          <source src="/videos/hero-bg.webm" type="video/webm" />
+          <source src="/videos/output.mp4" type="video/mp4" />
         </video>
       )}
 

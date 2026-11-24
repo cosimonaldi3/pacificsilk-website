@@ -10,7 +10,6 @@
     "test": "node --test \"lib/**/*.test.ts\""
   },
   "dependencies": {
-    "@supabase/ssr": "^0.12.7",
     "@supabase/supabase-js": "^2.119.0",
     "d3-geo": "^3.1.2",
     "next": "^15.5.29",

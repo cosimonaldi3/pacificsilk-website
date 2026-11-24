@@ -192,7 +192,7 @@ export const aboutContent: AboutContent = {
       title: "Manager Pacific Silk Group",
       company: "Pacific Silk Group",
       bio: "Jorge manages the China side of every engagement — supplier conversations, factory visits, production holds. He is the reason problems get caught before they reach you.",
-      photo: "/team/jorgev-villalonga-jr.png",
+      photo: "/team/jorgev-villalonga-jr.webp",
       placeholder: false,
     },
     {
@@ -200,7 +200,7 @@ export const aboutContent: AboutContent = {
       title: "Co-founder and Head of Europe",
       company: "Pacific Silk Group",
       bio: "Co-founder of PS. Jorge runs the European client relationship, drawing on decades of cross-border business between Spain and China.",
-      photo: "/team/jorge-villalonga-sr.png",
+      photo: "/team/jorge-villalonga-sr.webp",
       placeholder: false,
       leadership: true,
     },
@@ -209,7 +209,7 @@ export const aboutContent: AboutContent = {
       title: "Co-founder and Head of China",
       company: "Pacific Silk Group",
       bio: "James spent over a decade at COSCO Shipping before building SPL. He runs our China operations and specializes in the freight, customs, and delivery side of every project.",
-      photo: "/team/james.png",
+      photo: "/team/james.webp",
       placeholder: false,
       leadership: true,
     },
@@ -218,7 +218,7 @@ export const aboutContent: AboutContent = {
       title: "Head of China Trading Pacific Silk",
       company: "Pacific Silk China",
       bio: "Freud has been inside China's factory ecosystem for over twenty years. He knows which suppliers deliver and which ones promise. Lance Trade is built on those relationships.",
-      photo: "/team/freud.png",
+      photo: "/team/freud.webp",
       placeholder: false,
     },
     {
@@ -368,7 +368,7 @@ export const aboutContent: AboutContent = {
       title: "Manager Pacific Silk Group",
       company: "Pacific Silk Group",
       bio: "Jorge manages the China side of every engagement — supplier conversations, factory visits, production holds. He is the reason problems get caught before they reach you.",
-      photo: "/team/jorgev-villalonga-jr.png",
+      photo: "/team/jorgev-villalonga-jr.webp",
     },
     countries: [
       // DRAFT services and intros below: replace with the real ones per country.
@@ -382,7 +382,7 @@ export const aboutContent: AboutContent = {
           title: "Co-founder and Head of Europe",
           company: "Pacific Silk Group",
           bio: "Co-founder of PS. Jorge runs the European client relationship, drawing on decades of cross-border business between Spain and China.",
-          photo: "/team/jorge-villalonga-sr.png",
+          photo: "/team/jorge-villalonga-sr.webp",
         },
         insights: [
           "Spanish buyers brief us in Spanish. We put your questions to the factory in Chinese, so nothing gets lost in translation.",

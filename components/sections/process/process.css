@@ -138,15 +138,6 @@
 .pd-overlay-in .pd-rise { animation: pd-rise 0.55s ease-out both; animation-delay: calc(0.25s + var(--i) * 0.08s); }
 @keyframes pd-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
-/* Beyond, other ways in: the dashed path climbs the steps (cap-dash, capabilities.css) */
-.pb-climb { animation: cap-dash 1.6s linear infinite; }
-/* A ripple off the "today" dot */
-.pb-here { transform-box: fill-box; transform-origin: center; animation: pb-here 2s ease-out infinite; }
-@keyframes pb-here {
-  0% { opacity: 0.45; transform: scale(1); }
-  100% { opacity: 0; transform: scale(2.6); }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .pd-overlay, .pd-dim { transition: none; }
   .pd-dim-on, .pd-dim-soft { transform: none; filter: none; }
@@ -154,8 +145,7 @@
   .pd-overlay-in .pd-overlay-visual, .pd-overlay-in .pd-rise { animation: none; }
   .pd-sticker, .pd-region, .pd-line, .pd-area, .pd-fill, .pd-opp, .pd-ping, .pd-chip, .pd-seg, .pd-row { animation: none; }
   .pd-opp:nth-of-type(odd) { fill: var(--color-psc-red); }
-  .pv-stamp, .pv-msg, .pv-hand, .pv-jaw, .pv-lens, .pv-lens-tick, .pv-press, .pb-climb { animation: none; }
-  .pb-here { animation: none; opacity: 0; }
+  .pv-stamp, .pv-msg, .pv-hand, .pv-jaw, .pv-lens, .pv-lens-tick, .pv-press { animation: none; }
   .pv-lens { transform: translate(98px, 66px); }
   .pv-press { transform: translateY(-6px); }
   .pv-stamp { opacity: 0.9; transform: rotate(var(--r)); }

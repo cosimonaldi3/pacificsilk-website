@@ -12,10 +12,9 @@ export default async function Footer() {
     { key: "capabilities" as const, href: "/client-impact" as const },
     { key: "about" as const, href: "/about" as const },
     { key: "tools" as const, href: "/tools/shipping-estimate" as const },
-    { key: "portal" as const, href: "/portal/login" as const, target: "_blank" as const },
     { key: "privacy" as const, href: "/privacy" as const },
     { key: "terms" as const, href: "/terms" as const },
-  ] satisfies Array<{ key: string; href: string; target?: string }>;
+  ] satisfies Array<{ key: string; href: string }>;
 
   // Hidden sections (see lib/features.ts) drop out of the footer on the public site
   const navLinks = allNavLinks.filter((link) => !isHiddenHref(link.href));
@@ -93,8 +92,6 @@ export default async function Footer() {
           <Link
             key={link.href}
             href={link.href}
-            target={link.target}
-            rel={link.target === "_blank" ? "noopener noreferrer" : undefined}
             className="font-sans text-small text-psc-bg/70 hover:text-psc-bg transition-colors"
           >
             {t(`links.${link.key}`)}
@@ -102,14 +99,8 @@ export default async function Footer() {
         ))}
       </div>
 
-      {/* Row 3: CTA + tagline */}
-      <div className="border-t border-psc-bg/10 pt-8 flex flex-col gap-4 md:flex-row md:justify-between md:items-center">
-        <Link
-          href="/start"
-          className="inline-block border border-psc-bg/30 text-psc-bg font-sans text-small font-medium px-5 py-2.5 hover:border-psc-bg hover:bg-psc-bg hover:text-psc-ink transition-all"
-        >
-          {t("cta")}
-        </Link>
+      {/* Row 3: tagline */}
+      <div className="border-t border-psc-bg/10 pt-8 flex flex-col gap-4 md:flex-row md:justify-end md:items-center">
         <span className="font-sans text-small text-psc-bg/50">
           {t("tagline")}
         </span>

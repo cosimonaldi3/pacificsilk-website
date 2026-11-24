@@ -59,7 +59,7 @@ export const capabilitiesContent: CapabilitiesPageContent = {
     tracking: {
       title: "追踪每个项目",
       body: "一个共享视图：项目进展到哪里、下一步是什么、需要您提供什么。",
-      link: { label: "了解客户门户", href: "/portal" },
+      link: { label: "开始项目", href: "/start" },
       projectLabel: "示例项目",
       steps: ["定义", "验证", "生产", "运输", "交付"],
       current: 2,

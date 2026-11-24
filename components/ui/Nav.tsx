@@ -15,8 +15,7 @@ const allNavItems = [
   { key: "about" as const, href: "/about" as const },
   { key: "blog" as const, href: "/blog" as const },
   { key: "tools" as const, href: "/tools/shipping-estimate" as const },
-  { key: "portal" as const, href: "/portal/login" as const, target: "_blank" as const },
-] satisfies Array<{ key: string; href: string; target?: string }>;
+] satisfies Array<{ key: string; href: string }>;
 
 // Hidden sections (see lib/features.ts) drop out of the nav on the public site
 const navItems = allNavItems.filter((item) => !isHiddenHref(item.href));
@@ -52,8 +51,6 @@ export default function Nav() {
             <Link
               key={item.href}
               href={item.href}
-              target={item.target}
-              rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
               className="font-sans text-small font-medium text-psc-gray hover:text-psc-ink transition"
             >
               {t(item.key)}
@@ -126,8 +123,6 @@ export default function Nav() {
               <Link
                 key={item.href}
                 href={item.href}
-                target={item.target}
-                rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
                 onClick={() => setOpen(false)}
                 className="font-sans text-body font-medium text-psc-ink hover:text-psc-red transition py-3 border-b border-psc-border last:border-0"
               >

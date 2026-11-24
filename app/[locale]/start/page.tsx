@@ -2,15 +2,22 @@ import type { Metadata } from "next";
 import Nav from "@/components/ui/Nav";
 import Footer from "@/components/ui/Footer";
 import Container from "@/components/ui/Container";
-import TallyEmbed from "@/components/TallyEmbed";
+import ProjectBuilder from "@/components/sections/ProjectBuilder";
+import QuoteForm from "@/components/start/QuoteForm";
+import "@/components/sections/home/home.css";
 import { startContent } from "@/content/start";
+import { homeContent } from "@/content/home";
 
 async function loadContent(locale: string) {
-  if (locale === "es")
-    return (await import("@/content/i18n/es/start")).startContent;
-  if (locale === "zh")
-    return (await import("@/content/i18n/zh/start")).startContent;
-  return startContent;
+  if (locale === "es") {
+    const [start, home] = await Promise.all([import("@/content/i18n/es/start"), import("@/content/i18n/es/home")]);
+    return { start: start.startContent, builder: home.homeContent.builder };
+  }
+  if (locale === "zh") {
+    const [start, home] = await Promise.all([import("@/content/i18n/zh/start"), import("@/content/i18n/zh/home")]);
+    return { start: start.startContent, builder: home.homeContent.builder };
+  }
+  return { start: startContent, builder: homeContent.builder };
 }
 
 export async function generateMetadata({
@@ -19,76 +26,35 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const content = await loadContent(locale);
-  return { title: content.meta.title, description: content.meta.description };
+  const { start } = await loadContent(locale);
+  return { title: start.meta.title, description: start.meta.description };
 }
 
+/* One action on this page: the form. The builder below is the same component as on the home page,
+   sharing its selections, so "Get a quote" carries the blueprint here. */
 export default async function StartPage({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const content = await loadContent(locale);
+  const { start, builder } = await loadContent(locale);
 
   return (
     <>
       <Nav />
+      {/* One background for details + builder so they read as a single piece */}
       <main className="bg-psc-bg">
-        <section className="py-24 md:py-32">
+        <section aria-labelledby="start-heading" className="pt-24 pb-10 md:pt-28 md:pb-12">
           <Container>
-            <div className="max-w-3xl">
-              {/* Page header */}
-              <h1 className="font-display text-h1 font-medium text-psc-ink mb-6">
-                {content.pageTitle}
-              </h1>
-              <p className="font-sans text-body leading-body text-psc-gray mb-16">
-                {content.intro}
-              </p>
-
-              {/* Form — visual centerpiece */}
-              <div className="mb-16">
-                <TallyEmbed />
-              </div>
-
-              {/* Booking — secondary */}
-              <hr className="border-psc-border mb-12" />
-              <div className="mb-12">
-                <h2 className="font-display text-h2 font-medium text-psc-ink mb-3">
-                  {content.bookingHeading}
-                </h2>
-                <p className="font-sans text-body leading-body text-psc-gray mb-6">
-                  {content.bookingBody}
-                </p>
-                <a
-                  href={content.bookingUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block font-sans text-small font-medium px-6 py-3 bg-psc-ink text-psc-bg hover:opacity-80 transition-opacity"
-                >
-                  {content.bookingCtaLabel}
-                </a>
-              </div>
-
-              {/* Email — tertiary / footnote feel */}
-              <hr className="border-psc-border mb-8" />
-              <div className="pb-16">
-                <p className="font-sans text-small font-medium text-psc-gray uppercase tracking-widest mb-2">
-                  {content.emailHeading}
-                </p>
-                <p className="font-sans text-small text-psc-gray">
-                  {content.emailBody}{" "}
-                  <a
-                    href={`mailto:${content.emailAddress}`}
-                    className="text-psc-ink underline underline-offset-2 hover:text-psc-gray transition-colors"
-                  >
-                    {content.emailAddress}
-                  </a>
-                </p>
-              </div>
-            </div>
+            <h1 id="start-heading" className="mb-4 font-display text-h1 font-medium text-psc-ink">
+              {start.pageTitle}
+            </h1>
+            <p className="mb-10 max-w-2xl font-sans text-body leading-body text-psc-gray">{start.intro}</p>
+            <QuoteForm content={start.form} builder={builder} />
           </Container>
         </section>
+        <ProjectBuilder content={builder} variant="start" />
       </main>
       <footer className="bg-psc-ink py-16">
         <Footer />

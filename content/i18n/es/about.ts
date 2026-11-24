@@ -18,7 +18,7 @@ export const aboutContent: AboutContent = {
       title: "Manager Pacific Silk Group",
       company: "Pacific Silk Group",
       bio: "Jorge gestiona el lado chino de cada proyecto — conversaciones con proveedores, visitas a fábricas, controles de producción. Él es la razón por la que los problemas se detectan antes de llegar a ti.",
-      photo: "/team/jorgev-villalonga-jr.png",
+      photo: "/team/jorgev-villalonga-jr.webp",
       placeholder: false,
     },
     {
@@ -26,7 +26,7 @@ export const aboutContent: AboutContent = {
       title: "Cofundador y Head of Europe",
       company: "Pacific Silk Group",
       bio: "Cofundador de PS. Jorge gestiona la relación con los clientes europeos, basándose en décadas de negocio transfronterizo entre España y China.",
-      photo: "/team/jorge-villalonga-sr.png",
+      photo: "/team/jorge-villalonga-sr.webp",
       placeholder: false,
       leadership: true,
     },
@@ -35,7 +35,7 @@ export const aboutContent: AboutContent = {
       title: "Cofundador y Head of China",
       company: "Pacific Silk Group",
       bio: "James pasó más de una década en COSCO Shipping antes de construir SPL. Dirige el transporte, aduanas y entrega de cada proyecto PS — desde los puertos de China hasta tu puerta.",
-      photo: "/team/james.png",
+      photo: "/team/james.webp",
       placeholder: false,
       leadership: true,
     },
@@ -44,7 +44,7 @@ export const aboutContent: AboutContent = {
       title: "Head of China Trading Pacific Silk",
       company: "Pacific Silk China",
       bio: "Freud lleva más de veinte años dentro del ecosistema de fábricas chinas. Sabe qué proveedores cumplen y cuáles solo prometen. Lance Trade está construida sobre esas relaciones.",
-      photo: "/team/freud.png",
+      photo: "/team/freud.webp",
       placeholder: false,
     },
     {
@@ -194,7 +194,7 @@ export const aboutContent: AboutContent = {
       title: "Manager Pacific Silk Group",
       company: "Pacific Silk Group",
       bio: "Jorge gestiona el lado chino de cada proyecto — conversaciones con proveedores, visitas a fábricas, controles de producción. Él es la razón por la que los problemas se detectan antes de llegar a ti.",
-      photo: "/team/jorgev-villalonga-jr.png",
+      photo: "/team/jorgev-villalonga-jr.webp",
     },
     countries: [
       // BORRADOR: sustituir introducciones y servicios por los reales de cada país.
@@ -208,7 +208,7 @@ export const aboutContent: AboutContent = {
           title: "Cofundador y director de Europa",
           company: "Pacific Silk Group",
           bio: "Cofundador de PS. Jorge dirige la relación con los clientes europeos, con décadas de negocios entre España y China.",
-          photo: "/team/jorge-villalonga-sr.png",
+          photo: "/team/jorge-villalonga-sr.webp",
         },
         insights: [
           "Los compradores españoles nos escriben en español. Llevamos sus preguntas a la fábrica en chino, para que nada se pierda en la traducción.",

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { scrollToCenter } from "./scrollToCenter";
 
 interface StageGroupProps {
@@ -18,7 +18,7 @@ interface StageGroupProps {
 }
 
 /* One stage: its heading, and a plus/minus button that folds the stage's box grid open and shut.
-   Only the first stage starts open; the rest start closed so the page stays short. The grid stays
+   Only the first stage starts open; the rest start closed and open as they are scrolled to. The grid stays
    in the HTML either way. When a stage opens, the camera centres on the whole stage block; if that
    is taller than the screen, its heading is lined up under the nav instead so the title stays visible. */
 export default function StageGroup({ number, name, span, showLabel, hideLabel, index, footer, children }: StageGroupProps) {
@@ -28,6 +28,25 @@ export default function StageGroup({ number, name, span, showLabel, hideLabel, i
   const bodyRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const bodyId = `stage-${index}-body`;
+
+  /* Scrolling a stage's heading to the middle of the screen opens it, once. Opening only pushes content
+     below it down, so the scroll position never jumps. After that the button is in the reader's hands:
+     closing a stage by hand is not undone by scrolling past it again. */
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setOpen(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "-35% 0px -45% 0px" },
+    );
+    observer.observe(header);
+    return () => observer.disconnect();
+  }, []);
 
   const toggle = () => {
     const next = !open;

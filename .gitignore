@@ -55,3 +55,6 @@ data-pipeline/**/*.log
 
 # leftover Clerk keyless config (contains a secret key) — safe to delete the folder
 /.clerk/
+
+# large originals kept locally, not shipped
+/references/
